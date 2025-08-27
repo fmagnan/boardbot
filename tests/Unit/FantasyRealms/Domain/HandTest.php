@@ -40,3 +40,22 @@ it('princess get points from elemental enchantress', function () use ($deck) {
     }
     expect($hand->getValue())->toBe(15);
 });
+
+it('lightning get no points from princess', function () use ($deck) {
+    $hand = new Hand();
+    foreach (['princess', 'lightning'] as $cardId) {
+        $card = Card::fromConf($deck[$cardId]);
+        $hand->addCard($card);
+    }
+    expect($hand->getValue())->toBe(13);
+});
+
+it('lightning points from rainstorm', function () use ($deck) {
+    $hand = new Hand();
+    foreach (['rainstorm', 'lightning'] as $cardId) {
+        $card = Card::fromConf($deck[$cardId]);
+        $hand->addCard($card);
+    }
+    expect($hand->getValue())->toBe(49);
+});
+

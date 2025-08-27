@@ -16,7 +16,7 @@ return [
             'name' => Card::NAME_BELL_TOWER,
             'suit' => Card::SUIT_LAND,
             'base_strength' => 8,
-            'bonus' => [Bonus::WITH_ANY_ONE, [15, Card::SUIT_WIZARD]],
+            'bonus' => [Bonus::WITH_ANY_ONE_SUIT, [15, Card::SUIT_WIZARD]],
         ],
         'mountain' => [
             'name' => Card::NAME_MOUNTAIN,
@@ -56,13 +56,26 @@ return [
             'name' => Card::NAME_MAGIC_WAND,
             'suit' => Card::SUIT_WEAPON,
             'base_strength' => 1,
-            'bonus' => [Bonus::WITH_ANY_ONE, [25, Card::SUIT_WIZARD]],
+            'bonus' => [Bonus::WITH_ANY_ONE_SUIT, [25, Card::SUIT_WIZARD]],
         ],
         'elemental_enchantress' => [
             'name' => Card::NAME_ELEMENTAL_ENCHANTRESS,
             'suit' => Card::SUIT_WIZARD,
             'base_strength' => 5,
             'bonus' => [Bonus::FOR_EACH, [5, [Card::SUIT_LAND, Card::SUIT_WEATHER, Card::SUIT_FLOOD, Card::SUIT_FLAME]]],
+        ],
+        'lightning' => [
+            'name' => Card::NAME_LIGHTNING,
+            'suit' => Card::SUIT_FLAME,
+            'base_strength' => 11,
+            'bonus' => [Bonus::WITH_CARD, [30, Card::NAME_RAINSTORM]],
+        ],
+        'rainstorm' => [
+            'name' => Card::NAME_RAINSTORM,
+            'suit' => Card::SUIT_WEATHER,
+            'base_strength' => 8,
+            'bonus' => [Bonus::WITH_ANY_ONE_SUIT, [10, Card::SUIT_FLOOD]],
+            //'penalty' => 'Blanks all Flames except Lightning',
         ],
     ],
 ];
