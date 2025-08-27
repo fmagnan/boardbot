@@ -1,26 +1,25 @@
 <?php
 
-use App\FantasyRealms\Domain\Bonus;
-use App\FantasyRealms\Domain\Card;
+use App\FantasyRealms\Domain\Glossary;
 use App\FantasyRealms\Domain\Penalty;
 
 return [
     'deck' => [
         'dragon' => [
-            'name' => Card::NAME_DRAGON,
-            'suit' => Card::SUIT_BEAST,
+            'name' => Glossary::CARD_DRAGON,
+            'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 30,
-            'penalty' => [Penalty::UNLESS_AT_LEAST, [40, Card::SUIT_WIZARD]],
+            'penalty' => [Glossary::ACTION_UNLESS_AT_LEAST, [40, Glossary::SUIT_WIZARD]],
         ],
         'bell_tower' => [
-            'name' => Card::NAME_BELL_TOWER,
-            'suit' => Card::SUIT_LAND,
+            'name' => Glossary::CARD_BELL_TOWER,
+            'suit' => Glossary::SUIT_LAND,
             'base_strength' => 8,
-            'bonus' => [Bonus::WITH_ANY_ONE_SUIT, [15, Card::SUIT_WIZARD]],
+            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [15, Glossary::SUIT_WIZARD]],
         ],
         'mountain' => [
-            'name' => Card::NAME_MOUNTAIN,
-            'suit' => Card::SUIT_LAND,
+            'name' => Glossary::CARD_MOUNTAIN,
+            'suit' => Glossary::SUIT_LAND,
             'base_strength' => 9,
             'bonus' => [
                 '+50 with both Smoke and Wildfire',
@@ -28,53 +27,53 @@ return [
             ],
         ],
         'princess' => [
-            'name' => Card::NAME_PRINCESS,
-            'suit' => Card::SUIT_LEADER,
+            'name' => Glossary::CARD_PRINCESS,
+            'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 2,
-            'bonus' => [Bonus::FOR_EACH, [8, [Card::SUIT_ARMY, Card::SUIT_WIZARD, Card::SUIT_LEADER]]],
+            'bonus' => [Glossary::ACTION_FOR_EACH, [8, [Glossary::SUIT_ARMY, Glossary::SUIT_WIZARD, Glossary::SUIT_LEADER]]],
         ],
         'queen' => [
-            'name' => Card::NAME_QUEEN,
-            'suit' => Card::SUIT_LEADER,
+            'name' => Glossary::CARD_QUEEN,
+            'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 6,
             'bonus' => '+5 for each Army, +20 for each Army if in the same hand with King',
         ],
         'king' => [
-            'name' => Card::NAME_KING,
-            'suit' => Card::SUIT_LEADER,
+            'name' => Glossary::CARD_KING,
+            'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 8,
             'bonus' => '+5 for each Army, +20 for each Army if in the same hand with Queen',
         ],
         'empress' => [
-            'name' => Card::NAME_EMPRESS,
-            'suit' => Card::SUIT_LEADER,
+            'name' => Glossary::CARD_EMPRESS,
+            'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 10,
-            'bonus' => [Bonus::FOR_EACH, [10, [Card::SUIT_ARMY]]],
-            'penalty' => [Bonus::FOR_EACH, [5, [Card::SUIT_LEADER]]],
+            'bonus' => [Glossary::ACTION_FOR_EACH, [10, [Glossary::SUIT_ARMY]]],
+            'penalty' => [Glossary::ACTION_FOR_EACH, [5, [Glossary::SUIT_LEADER]]],
         ],
         'magic_wand' => [
-            'name' => Card::NAME_MAGIC_WAND,
-            'suit' => Card::SUIT_WEAPON,
+            'name' => Glossary::CARD_MAGIC_WAND,
+            'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 1,
-            'bonus' => [Bonus::WITH_ANY_ONE_SUIT, [25, Card::SUIT_WIZARD]],
+            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [25, Glossary::SUIT_WIZARD]],
         ],
         'elemental_enchantress' => [
-            'name' => Card::NAME_ELEMENTAL_ENCHANTRESS,
-            'suit' => Card::SUIT_WIZARD,
+            'name' => Glossary::CARD_ELEMENTAL_ENCHANTRESS,
+            'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 5,
-            'bonus' => [Bonus::FOR_EACH, [5, [Card::SUIT_LAND, Card::SUIT_WEATHER, Card::SUIT_FLOOD, Card::SUIT_FLAME]]],
+            'bonus' => [Glossary::ACTION_FOR_EACH, [5, [Glossary::SUIT_LAND, Glossary::SUIT_WEATHER, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]]],
         ],
         'lightning' => [
-            'name' => Card::NAME_LIGHTNING,
-            'suit' => Card::SUIT_FLAME,
+            'name' => Glossary::CARD_LIGHTNING,
+            'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 11,
-            'bonus' => [Bonus::WITH_CARD, [30, Card::NAME_RAINSTORM]],
+            'bonus' => [Glossary::ACTION_WITH_CARD, [30, Glossary::CARD_RAINSTORM]],
         ],
         'rainstorm' => [
-            'name' => Card::NAME_RAINSTORM,
-            'suit' => Card::SUIT_WEATHER,
+            'name' => Glossary::CARD_RAINSTORM,
+            'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 8,
-            'bonus' => [Bonus::WITH_ANY_ONE_SUIT, [10, Card::SUIT_FLOOD]],
+            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [10, Glossary::SUIT_FLOOD]],
             //'penalty' => 'Blanks all Flames except Lightning',
         ],
     ],

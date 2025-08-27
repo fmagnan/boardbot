@@ -67,4 +67,3 @@ it('princess add points from empress when empress lose points from princess', fu
     }
     expect($hand->getValue())->toBe(15);
 });
-

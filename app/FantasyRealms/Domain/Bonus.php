@@ -6,12 +6,6 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
-    public const string WITH_ANY_ONE_SUIT = 'withAnyOneSuit';
-
-    public const string FOR_EACH = 'forEach';
-
-    public const string WITH_CARD = 'withCard';
-
     public static function withAnyOneSuit(Hand $hand, Card $current, array $params): int
     {
         $value = $params[0];
@@ -31,19 +25,7 @@ class Bonus
 
     public static function forEach(Hand $hand, Card $current, array $params): int
     {
-        $total = 0;
-        $value = $params[0];
-        $suits = $params[1];
-        foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
-                continue;
-            }
-            if (in_array($card->getSuit(), $suits)) {
-                $total += $value;
-            }
-        }
-
-        return $total;
+        return Action::forEach($hand, $current, $params);
     }
 
     public static function withCard(Hand $hand, Card $current, array $params): int
