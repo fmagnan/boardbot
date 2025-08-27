@@ -8,13 +8,13 @@ return [
             'name' => Card::NAME_DRAGON,
             'suit' => Card::SUIT_BEAST,
             'base_strength' => 30,
-            'penalty' => '-40 unless with at least one Wizard'
+            'penalty' => ['unlessAtLeast',40, Card::SUIT_WIZARD]
         ],
         'bell_tower' => [
             'name' => Card::NAME_BELL_TOWER,
             'suit' => Card::SUIT_LAND,
             'base_strength' => 8,
-            'bonus' => '+15 with any one Wizard'
+            'bonus' => ['withAnyOne',15, Card::SUIT_WIZARD]
         ],
         'mountain' => [
             'name' => Card::NAME_MOUNTAIN,
@@ -54,7 +54,7 @@ return [
             'name' => Card::NAME_MAGIC_WAND,
             'suit' => Card::SUIT_WEAPON,
             'base_strength' => 1,
-            'bonus' => '+25 with any one Wizard'
+            'bonus' => ['withAnyOne',25, Card::SUIT_WIZARD]
         ]
     ],
 ];

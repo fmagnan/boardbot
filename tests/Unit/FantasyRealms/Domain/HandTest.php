@@ -7,7 +7,7 @@ global $deck;
 
 it('count cards in hand', function () use ($deck) {
     $hand = new Hand();
-    foreach (['dragon', 'princess', 'king'] as $cardId) {
+    foreach (['dragon', 'bell_tower', 'magic_wand'] as $cardId) {
         $card = Card::fromConf($deck[$cardId]);
         $hand->addCard($card);
     }
@@ -16,9 +16,9 @@ it('count cards in hand', function () use ($deck) {
 
 it('calculates hand value', function () use ($deck) {
     $hand = new Hand();
-    foreach (['dragon', 'princess', 'king'] as $cardId) {
+    foreach (['dragon', 'bell_tower', 'magic_wand'] as $cardId) {
         $card = Card::fromConf($deck[$cardId]);
         $hand->addCard($card);
     }
-    expect($hand->getValue())->toBe(8);
+    expect($hand->getValue())->toBe(39);
 });

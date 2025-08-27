@@ -6,13 +6,18 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
-    public function __construct(private string $formula='')
+    public static function withAnyOne(Hand $hand, Card $current, int $value, int $suit) : int
     {
+        $found = false;
+        foreach($hand->getCards() as $card) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if ($card->getSuit() === $suit) {
+                $found = true;
+            }
+        }
 
-    }
-
-    public function apply() : int
-    {
-        return 0;
+        return $found ? 0 : $value;
     }
 }

@@ -6,6 +6,7 @@ namespace App\FantasyRealms\Domain;
 
 class Hand
 {
+    /** @var Card[] */
     private array $cards = [];
 
     public function addCard(Card $card): void
@@ -27,7 +28,7 @@ class Hand
     {
         $sum = 0;
         foreach ($this->cards as $card) {
-            $sum += $card->getValue();
+            $sum += $card->getValue($this);
         }
 
         return $sum;

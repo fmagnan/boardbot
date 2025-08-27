@@ -134,17 +134,42 @@ class Card
 
     public const string NAME_WORLD_TREE = 'World Tree';
 
-    public function __construct(private string $name, private int $suit, private int $base_strength, private Bonus $bonus, private Penalty $penalty)
+    public function __construct(private string $name, private int $suit, private int $base_strength, private array $bonus, private array $penalty)
     {
     }
 
     public static function fromConf(array $conf)
     {
-        return new self($conf['name'], (int)$conf['suit'], (int)$conf['base_strength'], new Bonus($conf['bonus'] ?? ''), new Penalty($conf['penalty'] ?? ''));
+        return new self($conf['name'], (int)$conf['suit'], (int)$conf['base_strength'], $conf['bonus'] ?? [], $conf['penalty'] ?? []);
     }
 
-    public function getValue(): int
+    public function getName(): string
     {
-        return $this->base_strength + $this->bonus->apply() + $this->penalty->apply();
+        return $this->name;
+    }
+
+    public function getSuit(): int
+    {
+        return $this->suit;
+    }
+
+    public function getBaseStrength(): int
+    {
+        return $this->base_strength;
+    }
+
+    public function getValue(Hand $hand): int
+    {
+        $value = $this->base_strength;
+        if (!empty($this->bonus)) {
+            $bonusFunction = $this->bonus[0];
+            $value += Bonus::$bonusFunction($hand, $this, $this->bonus[1], $this->bonus[2]);
+        }
+        if (!empty($this->penalty)) {
+            $penaltyFunction = $this->penalty[0];
+            $value -= Penalty::$penaltyFunction($hand, $this, $this->penalty[1], $this->penalty[2]);
+        }
+
+        return $value;
     }
 }

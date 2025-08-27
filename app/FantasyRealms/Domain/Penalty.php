@@ -6,25 +6,19 @@ namespace App\FantasyRealms\Domain;
 
 class Penalty
 {
-    public function __construct(private string $formula='')
-    {
-
-    }
-
-    public function unlessSuit(Hand $hand, Card $current, string $suit, int $value) : int
+    public static function unlessAtLeast(Hand $hand, Card $current, int $value, int $suit) : int
     {
         $found = false;
         foreach($hand->getCards() as $card) {
-            if ($card->suit() === $suit) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if ($card->getSuit() === $suit) {
                 $found = true;
             }
         }
 
-        return $found ? $current->getValue() : $current->getValue() - $value;
+        return $found ? 0 : $value;
     }
 
-    public function apply() : int
-    {
-        return 0;
-    }
 }
