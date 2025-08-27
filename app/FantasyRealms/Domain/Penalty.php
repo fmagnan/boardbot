@@ -6,6 +6,8 @@ namespace App\FantasyRealms\Domain;
 
 class Penalty
 {
+    public const string UNLESS_AT_LEAST = 'unlessAtLeast';
+
     public static function unlessAtLeast(Hand $hand, Card $current, int $value, int $suit) : int
     {
         $found = false;

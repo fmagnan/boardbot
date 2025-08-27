@@ -1,6 +1,8 @@
 <?php
 
 use App\FantasyRealms\Domain\Card;
+use App\FantasyRealms\Domain\Bonus;
+use App\FantasyRealms\Domain\Penalty;
 
 return [
     'deck' => [
@@ -8,13 +10,13 @@ return [
             'name' => Card::NAME_DRAGON,
             'suit' => Card::SUIT_BEAST,
             'base_strength' => 30,
-            'penalty' => ['unlessAtLeast',40, Card::SUIT_WIZARD]
+            'penalty' => [Penalty::UNLESS_AT_LEAST, 40, Card::SUIT_WIZARD]
         ],
         'bell_tower' => [
             'name' => Card::NAME_BELL_TOWER,
             'suit' => Card::SUIT_LAND,
             'base_strength' => 8,
-            'bonus' => ['withAnyOne',15, Card::SUIT_WIZARD]
+            'bonus' => [Bonus::WITH_ANY_ONE, 15, Card::SUIT_WIZARD]
         ],
         'mountain' => [
             'name' => Card::NAME_MOUNTAIN,
@@ -54,7 +56,7 @@ return [
             'name' => Card::NAME_MAGIC_WAND,
             'suit' => Card::SUIT_WEAPON,
             'base_strength' => 1,
-            'bonus' => ['withAnyOne',25, Card::SUIT_WIZARD]
+            'bonus' => [Bonus::WITH_ANY_ONE, 25, Card::SUIT_WIZARD]
         ]
     ],
 ];

@@ -6,6 +6,8 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
+    public const string WITH_ANY_ONE = 'withAnyOne';
+
     public static function withAnyOne(Hand $hand, Card $current, int $value, int $suit) : int
     {
         $found = false;

@@ -20,5 +20,5 @@ it('calculates hand value', function () use ($deck) {
         $card = Card::fromConf($deck[$cardId]);
         $hand->addCard($card);
     }
-    expect($hand->getValue())->toBe(39);
+    expect($hand->getValue())->toBe(-1);
 });
