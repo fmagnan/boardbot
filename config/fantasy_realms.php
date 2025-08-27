@@ -49,8 +49,8 @@ return [
             'name' => Card::NAME_EMPRESS,
             'suit' => Card::SUIT_LEADER,
             'base_strength' => 10,
-            'bonus' => '+10 for each Army',
-            'penalty' => '-5 for each other leader',
+            'bonus' => [Bonus::FOR_EACH, [10, [Card::SUIT_ARMY]]],
+            'penalty' => [Bonus::FOR_EACH, [5, [Card::SUIT_LEADER]]],
         ],
         'magic_wand' => [
             'name' => Card::NAME_MAGIC_WAND,

@@ -59,3 +59,12 @@ it('lightning points from rainstorm', function () use ($deck) {
     expect($hand->getValue())->toBe(49);
 });
 
+it('princess add points from empress when empress lose points from princess', function () use ($deck) {
+    $hand = new Hand();
+    foreach (['princess', 'empress'] as $cardId) {
+        $card = Card::fromConf($deck[$cardId]);
+        $hand->addCard($card);
+    }
+    expect($hand->getValue())->toBe(15);
+});
+
