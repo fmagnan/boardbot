@@ -14,11 +14,29 @@ it('count cards in hand', function () use ($deck) {
     expect($hand->countCards())->toBe(3);
 });
 
-it('calculates hand value', function () use ($deck) {
+it('applies penalty when dragon has not a wizard', function () use ($deck) {
     $hand = new Hand();
-    foreach (['dragon', 'bell_tower', 'magic_wand'] as $cardId) {
+    foreach (['dragon'] as $cardId) {
         $card = Card::fromConf($deck[$cardId]);
         $hand->addCard($card);
     }
-    expect($hand->getValue())->toBe(-1);
+    expect($hand->getValue())->toBe(-10);
+});
+
+it('neutralizes penalty when dragon is with a wizard', function () use ($deck) {
+    $hand = new Hand();
+    foreach (['dragon', 'elemental_enchantress'] as $cardId) {
+        $card = Card::fromConf($deck[$cardId]);
+        $hand->addCard($card);
+    }
+    expect($hand->getValue())->toBe(35);
+});
+
+it('princess get points from elemental enchantress', function () use ($deck) {
+    $hand = new Hand();
+    foreach (['princess', 'elemental_enchantress'] as $cardId) {
+        $card = Card::fromConf($deck[$cardId]);
+        $hand->addCard($card);
+    }
+    expect($hand->getValue())->toBe(15);
 });

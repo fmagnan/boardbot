@@ -8,8 +8,10 @@ class Penalty
 {
     public const string UNLESS_AT_LEAST = 'unlessAtLeast';
 
-    public static function unlessAtLeast(Hand $hand, Card $current, int $value, int $suit) : int
+    public static function unlessAtLeast(Hand $hand, Card $current, array $params) : int
     {
+        $value = $params[0];
+        $suit = $params[1];
         $found = false;
         foreach($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {

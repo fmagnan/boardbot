@@ -163,11 +163,11 @@ class Card
         $value = $this->base_strength;
         if (!empty($this->bonus)) {
             $bonusFunction = $this->bonus[0];
-            $value += Bonus::$bonusFunction($hand, $this, $this->bonus[1], $this->bonus[2]);
+            $value += Bonus::$bonusFunction($hand, $this, $this->bonus[1]);
         }
         if (!empty($this->penalty)) {
             $penaltyFunction = $this->penalty[0];
-            $value -= Penalty::$penaltyFunction($hand, $this, $this->penalty[1], $this->penalty[2]);
+            $value -= Penalty::$penaltyFunction($hand, $this, $this->penalty[1]);
         }
 
         return $value;
