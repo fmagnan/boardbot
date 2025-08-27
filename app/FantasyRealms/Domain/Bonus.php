@@ -18,6 +18,6 @@ class Bonus
             }
         }
 
-        return $found ? 0 : $value;
+        return $found ? $value : 0;
     }
 }
