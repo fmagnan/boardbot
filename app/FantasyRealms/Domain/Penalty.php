@@ -13,7 +13,7 @@ class Penalty
         $value = $params[0];
         $suit = $params[1];
         $found = false;
-        foreach($hand->getCards() as $card) {
+        foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
@@ -24,5 +24,4 @@ class Penalty
 
         return $found ? 0 : $value;
     }
-
 }

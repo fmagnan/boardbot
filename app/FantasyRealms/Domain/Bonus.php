@@ -7,6 +7,7 @@ namespace App\FantasyRealms\Domain;
 class Bonus
 {
     public const string WITH_ANY_ONE = 'withAnyOne';
+
     public const string FOR_EACH = 'forEach';
 
     public static function withAnyOne(Hand $hand, Card $current, array $params): int

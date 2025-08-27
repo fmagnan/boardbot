@@ -1,8 +1,8 @@
 <?php
 
+use App\FantasyRealms\Domain\Bonus;
 use App\FantasyRealms\Domain\Card;
 use App\FantasyRealms\Domain\Hand;
-use App\FantasyRealms\Domain\Bonus;
 
 global $deck;
 
