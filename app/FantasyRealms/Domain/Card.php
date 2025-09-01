@@ -6,13 +6,23 @@ namespace App\FantasyRealms\Domain;
 
 class Card
 {
-    public function __construct(private string $name, private int $suit, private int $base_strength, private array $bonus, private array $penalty)
-    {
-    }
+    public function __construct(
+        private string $name,
+        private int $suit,
+        private int $base_strength,
+        private array $bonus,
+        private array $penalty,
+    ) {}
 
-    public static function fromConf(array $conf) : self
+    public static function fromConf(array $conf): self
     {
-        return new self($conf['name'], (int) $conf['suit'], (int) $conf['base_strength'], $conf['bonus'] ?? [], $conf['penalty'] ?? []);
+        return new self(
+            $conf['name'],
+            (int) $conf['suit'],
+            (int) $conf['base_strength'],
+            $conf['bonus'] ?? [],
+            $conf['penalty'] ?? [],
+        );
     }
 
     public function getName(): string
@@ -33,11 +43,11 @@ class Card
     public function getValue(Hand $hand): int
     {
         $value = $this->base_strength;
-        if (! empty($this->bonus)) {
+        if (count($this->bonus) > 0) {
             $bonusFunction = $this->bonus[0];
             $value += Bonus::$bonusFunction($hand, $this, $this->bonus[1]);
         }
-        if (! empty($this->penalty)) {
+        if (count($this->penalty) > 0) {
             $penaltyFunction = $this->penalty[0];
             $value -= Penalty::$penaltyFunction($hand, $this, $this->penalty[1]);
         }

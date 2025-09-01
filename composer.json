@@ -12,6 +12,7 @@
         "sort-packages": true,
         "bin-dir": "bin",
         "allow-plugins": {
+            "carthage-software/mago": true,
             "pestphp/pest-plugin": true
         }
 
@@ -28,8 +29,7 @@
     },
     "prefer-stable": true,
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.86",
-        "pestphp/pest": "^4.0",
-        "phpstan/phpstan": "^2.1"
+        "carthage-software/mago": "1.0.0-beta.5",
+        "pestphp/pest": "^4.0"
     }
 }

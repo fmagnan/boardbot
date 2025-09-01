@@ -15,7 +15,7 @@ class Action
             if ($card->getName() === $current->getName()) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits)) {
+            if (in_array($card->getSuit(), $suits, true)) {
                 $total += $value;
             }
         }

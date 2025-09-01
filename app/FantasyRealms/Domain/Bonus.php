@@ -41,8 +41,7 @@ class Bonus
         return 0;
     }
 
-    public static function clearsPenalty(Hand $hand, Card $current, array $params)
+    public static function clearsPenalty(Hand $hand, Card $current, array $params): Hand
     {
-
     }
 }

@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-uses(PHPUnit\Framework\TestCase::class)->in('Unit');
-
-$config = require_once __DIR__.'/../config/fantasy_realms.php';
-
-global $deck;
+$config = require_once __DIR__ . '/../config/fantasy_realms.php';
 $deck = $config['deck'];
+
+uses(PHPUnit\Framework\TestCase::class)
+    ->in('Unit')
+    ->beforeEach(function () use ($deck): void {
+        $this->deck = $deck;
+    });

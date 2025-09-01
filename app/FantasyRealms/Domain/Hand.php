@@ -24,7 +24,7 @@ class Hand
         return count($this->cards);
     }
 
-    public function getValue() : int
+    public function getValue(): int
     {
         $sum = 0;
         foreach ($this->cards as $card) {

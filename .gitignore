@@ -1,4 +1,5 @@
 /bin/*
+!/bin/pre-commit.sh
 storage/debugbar/*
 vendor
 .DS_Store

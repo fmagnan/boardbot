@@ -1,5 +1,0 @@
-parameters:
-    paths:
-        - app
-    ignoreErrors:
-        - identifier: missingType.iterableValue

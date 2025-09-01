@@ -6,7 +6,7 @@ namespace App\FantasyRealms\Domain;
 
 class Penalty
 {
-    public static function unlessAtLeast(Hand $hand, Card $current, array $params) : int
+    public static function unlessAtLeast(Hand $hand, Card $current, array $params): int
     {
         $value = $params[0];
         $suit = $params[1];
