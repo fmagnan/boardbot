@@ -10,11 +10,29 @@ return [
             'base_strength' => 4,
             'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_WEATHER]]],
         ],
+        'basilisk' => [
+            'name' => Glossary::CARD_BASILISK,
+            'suit' => Glossary::SUIT_BEAST,
+            'base_strength' => 35,
+            //'penalty' => Blanks all Armies, Leaders, and other Beasts
+        ],
         'bell_tower' => [
             'name' => Glossary::CARD_BELL_TOWER,
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 8,
             'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [15, Glossary::SUIT_WIZARD]],
+        ],
+        'book_of_changes' => [
+            'name' => Glossary::CARD_BOOK_OF_CHANGES,
+            'suit' => Glossary::SUIT_ARTIFACT,
+            'base_strength' => 3,
+            // 'bonus' => you may change the suit of one other card. Its name, bonuses and penalties remain the same.
+        ],
+        'candle' => [
+            'name' => Glossary::CARD_CANDLE,
+            'suit' => Glossary::SUIT_FLAME,
+            'base_strength' => 2,
+            //'bonus' => +100 with Book of Changes, Bell Tower, and any one Wizard
         ],
         'celestial_knights' => [
             'name' => Glossary::CARD_WARLOCK_LORD,
@@ -46,6 +64,12 @@ return [
             'base_strength' => 5,
             'bonus' => [Glossary::ACTION_FOR_EACH, [5, [Glossary::SUIT_LAND, Glossary::SUIT_WEATHER, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]]],
         ],
+        'elven_archers' => [
+            'name' => Glossary::CARD_ELVEN_ARCHERS,
+            'suit' => Glossary::SUIT_ARMY,
+            'base_strength' => 10,
+            //'bonus' => +5 if no Weather in hand
+        ],
         'empress' => [
             'name' => Glossary::CARD_EMPRESS,
             'suit' => Glossary::SUIT_LEADER,
@@ -58,6 +82,12 @@ return [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 4,
             'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_FLAME]]],
+        ],
+        'gem_of_order' => [
+            'name' => Glossary::CARD_GEM_OF_ORDER,
+            'suit' => Glossary::SUIT_ARTIFACT,
+            'base_strength' => 5,
+            //  'bonus' => +10 for 3-card run, +30 for 4-card run, +60 for 5-card run, +100 for 6-card run, +150 for 7-card run
         ],
         'hydra' => [
             'name' => Glossary::CARD_HYDRA,
@@ -123,6 +153,25 @@ return [
             'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [10, Glossary::SUIT_FLOOD]],
             //'penalty' => 'Blanks all Flames except Lightning',
         ],
+        'rangers' => [
+            'name' => Glossary::CARD_RANGERS,
+            'suit' => Glossary::SUIT_ARMY,
+            'base_strength' => 5,
+            'bonus' => [Glossary::ACTION_FOR_EACH, [10, [Glossary::SUIT_LAND]]],
+            //Clears the word Army from Penalty section of all cards in hand
+        ],
+        'shield_of_keth' => [
+            'name' => Glossary::CARD_SHIELD_OF_KETH,
+            'suit' => Glossary::SUIT_ARTIFACT,
+            'base_strength' => 4,
+            //'bonus' => +15 with any one Leader, +40 with both Leader and Sword of Keth
+        ],
+        'unicorn' => [
+            'name' => Glossary::CARD_UNICORN,
+            'suit' => Glossary::SUIT_BEAST,
+            'base_strength' => 9,
+            //'bonus' => +30 with Princess, +15 with Empress, Queen, or Elemental Enchantress
+        ],
         'swamp' => [
             'name' => Glossary::CARD_SWAMP,
             'suit' => Glossary::SUIT_FLOOD,
@@ -135,11 +184,25 @@ return [
             'base_strength' => 25,
             'penalty' => [Glossary::ACTION_FOR_EACH, [10, [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]]],
         ],
+        'warhorse' => [
+            'name' => Glossary::CARD_WARHORSE,
+            'suit' => Glossary::SUIT_BEAST,
+            'base_strength' => 6,
+            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [14, [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]]],
+        ],
         'water_elemental' => [
             'name' => Glossary::CARD_WATER_ELEMENTAL,
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 4,
             'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_FLOOD]]],
         ],
+        'world_tree' => [
+            'name' => Glossary::CARD_WORLD_TREE,
+            'suit' => Glossary::SUIT_ARTIFACT,
+            'base_strength' => 2,
+            //'bonus' => +50 if every active card in hand is a different suit
+        ],
+
+
     ],
 ];
