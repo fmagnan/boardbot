@@ -17,8 +17,8 @@ uses(PHPUnit\Framework\TestCase::class)
 function init_hand(array $deck, array $cards): Hand
 {
     $hand = new Hand();
-    foreach ($cards as $cardId) {
-        $card = Card::fromConf($deck[$cardId]);
+    foreach ($cards as $name) {
+        $card = Card::fromConf($name, $deck[$name]);
         $hand->addCard($card);
     }
 

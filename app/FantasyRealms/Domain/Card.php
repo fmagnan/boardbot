@@ -10,20 +10,21 @@ class Card
 
     public function __construct(
         private string $name,
-        private int $suit,
-        private int $base_strength,
-        private array $bonus,
-        private array $penalty,
-    ) {
+        private int    $suit,
+        private int    $base_strength,
+        private array  $bonus,
+        private array  $penalty,
+    )
+    {
         $this->value = $this->base_strength;
     }
 
-    public static function fromConf(array $conf): self
+    public static function fromConf(string $name, array $conf): self
     {
         return new self(
-            $conf['name'],
-            (int) $conf['suit'],
-            (int) $conf['base_strength'],
+            $name,
+            (int)$conf['suit'],
+            (int)$conf['base_strength'],
             $conf['bonus'] ?? [],
             $conf['penalty'] ?? [],
         );
