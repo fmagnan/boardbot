@@ -41,3 +41,13 @@ it('rainstorm get points from each flood', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_RAINSTORM, Glossary::CARD_SWAMP, Glossary::CARD_WATER_ELEMENTAL]);
     expect($hand->getTotal())->toBe(55);
 });
+
+it('island has no effect on dragon', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_DRAGON, Glossary::CARD_ISLAND]);
+    expect($hand->getTotal())->toBe(4);
+});
+
+it('island clears penalty from swamp', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_SWAMP, Glossary::CARD_ISLAND, Glossary::CARD_DWARVISH_INFANTRY]);
+    expect($hand->getTotal())->toBe(47);
+});

@@ -37,4 +37,15 @@ class Penalty
             }
         }
     }
+
+    public static function withCard(Hand $hand, Card $current, array $params): void
+    {
+        $value = $params[0];
+        $cardName = $params[1];
+        foreach ($hand->getCards() as $card) {
+            if ($card->getName() === $cardName) {
+                $current->applyPenalty($value);
+            }
+        }
+    }
 }

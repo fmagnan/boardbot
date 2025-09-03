@@ -40,6 +40,15 @@ class Card
         return $this->suit;
     }
 
+    public function isPrior() : bool
+    {
+        if (isset($this->bonus[0]) && $this->bonus[0] === Glossary::ACTION_CLEARS_PENALTY) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function getBaseStrength(): int
     {
         return $this->base_strength;
@@ -76,5 +85,11 @@ class Card
     public function getValue(): int
     {
         return $this->value;
+    }
+
+    public function clearPenalty(): self
+    {
+        $this->penalty = [];
+        return $this;
     }
 }

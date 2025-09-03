@@ -19,7 +19,7 @@ return [
             'base_strength' => 9,
             'bonus' => [
                 [Glossary::ACTION_FOR_EACH, [9, [Glossary::SUIT_BEAST]]],
-                'Clears the Penalty on all Beasts'
+                [Glossary::ACTION_CLEARS_PENALTY, [[Glossary::SUIT_BEAST]]]
             ]
         ],
         Glossary::CARD_BELL_TOWER => [
@@ -139,7 +139,14 @@ return [
         Glossary::CARD_ISLAND => [
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 14,
-            'bonus' => 'Clears the Penalty on any one Flood or Flame'
+            'bonus' => [
+                Glossary::ACTION_CLEARS_PENALTY, [
+                    [
+                        Glossary::SUIT_FLOOD,
+                        Glossary::SUIT_FLAME
+                    ]
+                ]
+            ]
         ],
         Glossary::CARD_LIGHT_CALVARY => [
             'suit' => Glossary::SUIT_ARMY,
@@ -166,7 +173,7 @@ return [
             'base_strength' => 9,
             'bonus' => [
                 '+50 with both Smoke and Wildfire',
-                'Clears the Penalty on all Floods',
+                [Glossary::ACTION_CLEARS_PENALTY, [[Glossary::SUIT_FLOOD]]],
             ],
         ],
         Glossary::CARD_NECROMANCER => [
@@ -182,7 +189,19 @@ return [
         Glossary::CARD_PROTECTION_RUNE => [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 1,
-            'bonus' => [Glossary::ACTION_CLEARS_PENALTY, []],
+            'bonus' => [Glossary::ACTION_CLEARS_PENALTY, [[
+                Glossary::SUIT_ARMY,
+                Glossary::SUIT_ARTIFACT,
+                Glossary::SUIT_BEAST,
+                Glossary::SUIT_FLAME,
+                Glossary::SUIT_FLOOD,
+                Glossary::SUIT_LAND,
+                Glossary::SUIT_LEADER,
+                Glossary::SUIT_WEAPON,
+                Glossary::SUIT_WEATHER,
+                Glossary::SUIT_WILD,
+                Glossary::SUIT_WIZARD,
+            ]]],
         ],
         Glossary::CARD_QUEEN => [
             'suit' => Glossary::SUIT_LEADER,
@@ -231,7 +250,10 @@ return [
         Glossary::CARD_UNDERGROUND_CAVERNS => [
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 6,
-            'bonus' => '+25 with Dwarvish Infantry or Dragon; Clears the Penalty on all Weather'
+            'bonus' => [
+                '+25 with Dwarvish Infantry or Dragon',
+                [Glossary::ACTION_CLEARS_PENALTY, [[Glossary::SUIT_WEATHER]]]
+            ]
         ],
         Glossary::CARD_UNICORN => [
             'suit' => Glossary::SUIT_BEAST,
@@ -256,7 +278,10 @@ return [
         Glossary::CARD_WARSHIP => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 23,
-            'penalty' => 'Blanked unless with at least one Flood; Clears the word Army from Penalty section of all Floods'
+            'penalty' => [
+                'Blanked unless with at least one Flood',
+                'Clears the word Army from Penalty section of all Floods'
+            ]
         ],
         Glossary::CARD_WATER_ELEMENTAL => [
             'suit' => Glossary::SUIT_FLOOD,

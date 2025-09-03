@@ -49,7 +49,13 @@ class Bonus
         }
     }
 
-    public static function clearsPenalty(Hand $hand, Card $current, array $params): Hand
+    public static function clearsPenalty(Hand $hand, Card $current, array $params): void
     {
+        $suits = $params[0];
+        foreach ($hand->getCards() as $card) {
+            if (in_array($card->getSuit(), $suits, true)) {
+                $card->clearPenalty();
+            }
+        }
     }
 }
