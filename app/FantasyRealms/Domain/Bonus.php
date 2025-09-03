@@ -6,7 +6,7 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
-    public static function withAnyOneSuit(Hand $hand, Card $current, array $params): int
+    public static function withAnyOneSuit(Hand $hand, Card $current, array $params): void
     {
         $value = $params[0];
         $suit = $params[1];
@@ -19,26 +19,34 @@ class Bonus
                 $found = true;
             }
         }
-
-        return $found ? $value : 0;
+        if ($found) {
+            $current->applyBonus($value);
+        }
     }
 
-    public static function forEach(Hand $hand, Card $current, array $params): int
+    public static function forEach(Hand $hand, Card $current, array $params): void
     {
-        return Action::forEach($hand, $current, $params);
+        $value = $params[0];
+        $suits = $params[1];
+        foreach ($hand->getCards() as $card) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if (in_array($card->getSuit(), $suits, true)) {
+                $current->applyBonus($value);
+            }
+        }
     }
 
-    public static function withCard(Hand $hand, Card $current, array $params): int
+    public static function withCard(Hand $hand, Card $current, array $params): void
     {
         $value = $params[0];
         $cardName = $params[1];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $cardName) {
-                return $value;
+                $current->applyBonus($value);
             }
         }
-
-        return 0;
     }
 
     public static function clearsPenalty(Hand $hand, Card $current, array $params): Hand

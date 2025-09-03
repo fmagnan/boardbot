@@ -123,6 +123,12 @@ return [
             'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [10, Glossary::SUIT_FLOOD]],
             //'penalty' => 'Blanks all Flames except Lightning',
         ],
+        'swamp' => [
+            'name' => Glossary::CARD_SWAMP,
+            'suit' => Glossary::SUIT_FLOOD,
+            'base_strength' => 18,
+            'penalty' => [Glossary::ACTION_FOR_EACH, [3, [Glossary::SUIT_ARMY, Glossary::SUIT_FLAME]]],
+        ],
         'warlock_lord' => [
             'name' => Glossary::CARD_WARLOCK_LORD,
             'suit' => Glossary::SUIT_WIZARD,
@@ -133,7 +139,7 @@ return [
             'name' => Glossary::CARD_WATER_ELEMENTAL,
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 4,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [15,[Glossary::SUIT_FLOOD]]],
+            'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_FLOOD]]],
         ],
     ],
 ];

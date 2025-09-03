@@ -24,13 +24,17 @@ class Hand
         return count($this->cards);
     }
 
-    public function getValue(): int
+    public function getTotal(): int
     {
-        $sum = 0;
         foreach ($this->cards as $card) {
-            $sum += $card->getValue($this);
+            $card->apply($this);
         }
 
-        return $sum;
+        $total = 0;
+        foreach ($this->cards as $card) {
+            $total += $card->getValue();
+        }
+
+        return $total;
     }
 }
