@@ -42,7 +42,7 @@ class Card
 
     public function isPrior() : bool
     {
-        if (isset($this->bonus[0]) && $this->bonus[0] === Glossary::ACTION_CLEARS_PENALTY) {
+        if (isset($this->bonus['action']) && $this->bonus['action'] === Glossary::ACTION_CLEARS_PENALTY) {
             return true;
         }
 
@@ -71,12 +71,12 @@ class Card
     public function apply(Hand $hand): Hand
     {
         if (count($this->bonus) > 0) {
-            $bonusFunction = $this->bonus[0];
-            Bonus::$bonusFunction($hand, $this, $this->bonus[1]);
+            $bonusFunction = $this->bonus['action'];
+            Bonus::$bonusFunction($hand, $this, $this->bonus);
         }
         if (count($this->penalty) > 0) {
-            $penaltyFunction = $this->penalty[0];
-            Penalty::$penaltyFunction($hand, $this, $this->penalty[1]);
+            $penaltyFunction = $this->penalty['action'];
+            Penalty::$penaltyFunction($hand, $this, $this->penalty);
         }
 
         return $hand;

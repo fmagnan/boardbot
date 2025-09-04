@@ -7,99 +7,175 @@ return [
         Glossary::CARD_AIR_ELEMENTAL => [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 4,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_WEATHER]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 15,
+                'suits' => [Glossary::SUIT_WEATHER]
+            ]
         ],
         Glossary::CARD_BASILISK => [
             'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 35,
-            'penalty' => [Glossary::ACTION_BLANKS, [[Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST]]]
+            'penalty' => [
+                'action' => Glossary::ACTION_BLANKS,
+                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST]
+            ]
         ],
         Glossary::CARD_BEASTMASTER => [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 9,
             'bonus' => [
-                [Glossary::ACTION_FOR_EACH, [9, [Glossary::SUIT_BEAST]]],
-                [Glossary::ACTION_CLEARS_PENALTY, [[Glossary::SUIT_BEAST]]]
+                'and' => [
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 9,
+                        'suits' => [Glossary::SUIT_BEAST]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_CLEARS_PENALTY,
+                        'suits' => [Glossary::SUIT_BEAST]
+                    ]
+                ]
             ]
         ],
         Glossary::CARD_BELL_TOWER => [
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 8,
-            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [15, Glossary::SUIT_WIZARD]],
+            'bonus' => [
+                'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                'value' => 15,
+                'suits' => [Glossary::SUIT_WIZARD]
+            ],
         ],
         Glossary::CARD_BLIZZARD => [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 30,
             'penalty' => [
-                [Glossary::ACTION_BLANKS, [[Glossary::SUIT_FLOOD]]],
-                [Glossary::ACTION_FOR_EACH, [5, [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST, Glossary::SUIT_FLAME]]]
-            ],
+                'and' => [
+                    [
+                        'action' => Glossary::ACTION_BLANKS,
+                        'suits' => [Glossary::SUIT_FLOOD]
+                    ],
+                    ['action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 5,
+                        'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST, Glossary::SUIT_FLAME]
+                    ]
+                ],
+            ]
         ],
         Glossary::CARD_BOOK_OF_CHANGES => [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 3,
-            'bonus' => 'you may change the suit of one other card. Its name, bonuses and penalties remain the same.'
+            'bonus' => [
+                'action' => 'you may change the suit of one other card. Its name, bonuses and penalties remain the same.'
+            ]
         ],
         Glossary::CARD_CANDLE => [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 2,
-            'bonus' => '+100 with Book of Changes, Bell Tower, and any one Wizard'
+            'bonus' => [
+                'action' => '+100 with Book of Changes, Bell Tower, and any one Wizard'
+            ]
         ],
         Glossary::CARD_CELESTIAL_KNIGHTS => [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 20,
-            'penalty' => [Glossary::ACTION_UNLESS_AT_LEAST, [8, Glossary::SUIT_LEADER]],
+            'penalty' => [
+                'action' => Glossary::ACTION_UNLESS_AT_LEAST,
+                'value' => 8,
+                'suits' => [Glossary::SUIT_LEADER]
+            ],
         ],
         Glossary::CARD_COLLECTOR => [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 7,
-            'bonus' => '+10 if three different cards in same suit, +40 if four different cards, +100 if five different cards'
+            'bonus' => [
+                'action' => '+10 if three different cards in same suit, +40 if four different cards, +100 if five different cards'
+            ]
         ],
         Glossary::CARD_DOPPELGANGER => [
             'suit' => Glossary::SUIT_WILD,
             'base_strength' => 0,
-            'bonus' => 'May duplicate the name, suit, base strength, and penalty but not bonus of any one other card in your hand'
+            'bonus' => [
+                'action' => 'May duplicate the name, suit, base strength, and penalty but not bonus of any one other card in your hand'
+            ]
         ],
         Glossary::CARD_DRAGON => [
             'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 30,
-            'penalty' => [Glossary::ACTION_UNLESS_AT_LEAST, [40, Glossary::SUIT_WIZARD]],
+            'penalty' => [
+                'action' => Glossary::ACTION_UNLESS_AT_LEAST,
+                'value' => 40,
+                'suits' => [Glossary::SUIT_WIZARD]
+            ],
         ],
         Glossary::CARD_DWARVISH_INFANTRY => [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 15,
-            'penalty' => [Glossary::ACTION_WITH_CARD, [2, Glossary::SUIT_ARMY]],
+            'penalty' => [
+                'action' => Glossary::ACTION_WITH_SUITS,
+                'value' => 2,
+                'suits' => [Glossary::SUIT_ARMY]
+            ],
         ],
         Glossary::CARD_EARTH_ELEMENTAL => [
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 4,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_LAND]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 15,
+                'suits' => [Glossary::SUIT_LAND]
+            ],
         ],
         Glossary::CARD_ELEMENTAL_ENCHANTRESS => [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 5,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [5, [Glossary::SUIT_LAND, Glossary::SUIT_WEATHER, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 5,
+                'suits' => [Glossary::SUIT_LAND, Glossary::SUIT_WEATHER, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]
+            ],
         ],
         Glossary::CARD_ELVEN_ARCHERS => [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 10,
-            'bonus' => [Glossary::ACTION_IF_NO, [5, [Glossary::SUIT_WEATHER]]]
+            'bonus' => [
+                'action' => Glossary::ACTION_IF_NO,
+                'value' => 5,
+                'suits' => [Glossary::SUIT_WEATHER]
+            ]
         ],
         Glossary::CARD_ELVEN_LONGBOW => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 3,
-            'bonus' => [Glossary::ACTION_WITH_CARD, [30, [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_WARLORD, Glossary::CARD_BEASTMASTER]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_WITH_SUITS,
+                'value' => 30,
+                'suits' => [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_WARLORD, Glossary::CARD_BEASTMASTER]
+            ],
         ],
         Glossary::CARD_EMPRESS => [
             'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 10,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [10, [Glossary::SUIT_ARMY]]],
-            'penalty' => [Glossary::ACTION_FOR_EACH, [5, [Glossary::SUIT_LEADER]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 10,
+                'suits' => [Glossary::SUIT_ARMY]
+            ],
+            'penalty' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 5,
+                'suits' => [Glossary::SUIT_LEADER]
+            ],
         ],
         Glossary::CARD_FIRE_ELEMENTAL => [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 4,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_FLAME]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 15,
+                'suits' => [Glossary::SUIT_FLAME]
+            ],
         ],
         Glossary::CARD_FOREST => [
             'suit' => Glossary::SUIT_LAND,
@@ -124,198 +200,333 @@ return [
         Glossary::CARD_GREAT_FLOOD => [
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 32,
-            'penalty' => [Glossary::ACTION_BLANKS, [[Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_FLAME], ['cards' => [Glossary::CARD_MOUNTAIN, Glossary::CARD_LIGHTNING]]]]
+            'penalty' => [
+                'action' => Glossary::ACTION_BLANKS,
+                'targets' => [Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_FLAME],
+                'excludes' => [
+                    'cards' => [Glossary::CARD_MOUNTAIN, Glossary::CARD_LIGHTNING]
+                ]
+            ]
         ],
         Glossary::CARD_HYDRA => [
             'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 12,
-            'bonus' => [Glossary::ACTION_WITH_CARD, [28, Glossary::CARD_SWAMP]],
+            'bonus' => [
+                'action' => Glossary::ACTION_WITH_CARD,
+                'value' => 28,
+                'card' => Glossary::CARD_SWAMP
+            ],
         ],
         Glossary::CARD_KING => [
             'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 8,
-            'bonus' => '+5 for each Army, +20 for each Army if in the same hand with Queen',
+            'bonus' => [
+                'or' => [
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 5,
+                        'suits' => [Glossary::SUIT_ARMY]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 20,
+                        'suits' => [Glossary::SUIT_ARMY],
+                        'with_card' => Glossary::CARD_QUEEN
+                    ]
+                ]
+            ]
         ],
         Glossary::CARD_ISLAND => [
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 14,
             'bonus' => [
-                Glossary::ACTION_CLEARS_PENALTY, [
-                    [
-                        Glossary::SUIT_FLOOD,
-                        Glossary::SUIT_FLAME
-                    ]
-                ]
+                'action' => Glossary::ACTION_CLEARS_PENALTY,
+                'suits' => [Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]
             ]
         ],
         Glossary::CARD_LIGHT_CALVARY => [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 17,
-            'penalty' => [Glossary::ACTION_WITH_CARD, [2, Glossary::SUIT_LAND]],
+            'penalty' => [
+                'action' => Glossary::ACTION_WITH_SUITS,
+                'value' => 2,
+                'suits' => [Glossary::SUIT_LAND]
+            ],
         ],
         Glossary::CARD_LIGHTNING => [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 11,
-            'bonus' => [Glossary::ACTION_WITH_CARD, [30, Glossary::CARD_RAINSTORM]],
+            'bonus' => [
+                'action' => Glossary::ACTION_WITH_CARD,
+                'value' => 30,
+                'card' => Glossary::CARD_RAINSTORM
+            ],
         ],
         Glossary::CARD_MAGIC_WAND => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 1,
-            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [25, Glossary::SUIT_WIZARD]],
+            'bonus' => [
+                'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                'value' => 25,
+                'suits' => [Glossary::SUIT_WIZARD]
+            ],
         ],
         Glossary::CARD_MIRAGE => [
             'suit' => Glossary::SUIT_WILD,
             'base_strength' => 0,
-            'bonus' => 'May take on the name and suit of any Army, Land, Weather, Flood or Flame. Does not take bonus or penalty.'
+            'bonus' => [
+                'action' => 'May take on the name and suit of any Army, Land, Weather, Flood or Flame. Does not take bonus or penalty.'
+            ]
         ],
         Glossary::CARD_MOUNTAIN => [
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 9,
             'bonus' => [
-                [Glossary::ACTION_WITH_BOTH_CARDS, [50, [Glossary::CARD_SMOKE, Glossary::CARD_WILDFIRE]]],
-                [Glossary::ACTION_CLEARS_PENALTY, [[Glossary::SUIT_FLOOD]]],
-            ],
+                'and' => [
+                    [
+                        'action' => Glossary::ACTION_WITH_BOTH_CARDS,
+                        'value' => 50,
+                        'cards' => [Glossary::CARD_SMOKE, Glossary::CARD_WILDFIRE]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_CLEARS_PENALTY,
+                        'suits' => [Glossary::SUIT_FLOOD]
+                    ]
+                ]
+            ]
         ],
         Glossary::CARD_NECROMANCER => [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 3,
-            'bonus' => 'At the end of the game, you may take one Army, Leader, Wizard, or Beast from the discard pile and add it to your hand as an eighth card.'
+            'bonus' => [
+                'action' => 'At the end of the game, you may take one Army, Leader, Wizard, or Beast from the discard pile and add it to your hand as an eighth card.'
+            ]
         ],
         Glossary::CARD_PRINCESS => [
             'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 2,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [8, [Glossary::SUIT_ARMY, Glossary::SUIT_WIZARD, Glossary::SUIT_LEADER]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 8,
+                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_WIZARD, Glossary::SUIT_LEADER]
+            ],
         ],
         Glossary::CARD_PROTECTION_RUNE => [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 1,
-            'bonus' => [Glossary::ACTION_CLEARS_PENALTY, [[
-                Glossary::SUIT_ARMY,
-                Glossary::SUIT_ARTIFACT,
-                Glossary::SUIT_BEAST,
-                Glossary::SUIT_FLAME,
-                Glossary::SUIT_FLOOD,
-                Glossary::SUIT_LAND,
-                Glossary::SUIT_LEADER,
-                Glossary::SUIT_WEAPON,
-                Glossary::SUIT_WEATHER,
-                Glossary::SUIT_WILD,
-                Glossary::SUIT_WIZARD,
-            ]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_CLEARS_PENALTY,
+                'suits' => [
+                    Glossary::SUIT_ARMY,
+                    Glossary::SUIT_ARTIFACT,
+                    Glossary::SUIT_BEAST,
+                    Glossary::SUIT_FLAME,
+                    Glossary::SUIT_FLOOD,
+                    Glossary::SUIT_LAND,
+                    Glossary::SUIT_LEADER,
+                    Glossary::SUIT_WEAPON,
+                    Glossary::SUIT_WEATHER,
+                    Glossary::SUIT_WILD,
+                    Glossary::SUIT_WIZARD,
+                ]
+            ],
         ],
         Glossary::CARD_QUEEN => [
             'suit' => Glossary::SUIT_LEADER,
             'base_strength' => 6,
-            'bonus' => '+5 for each Army, +20 for each Army if in the same hand with King',
+            'bonus' => [
+                'or' => [
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 5,
+                        'suits' => [Glossary::SUIT_ARMY]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 20,
+                        'suits' => [Glossary::SUIT_ARMY],
+                        'with_card' => Glossary::CARD_KING
+                    ]
+                ]
+            ]
         ],
         Glossary::CARD_RAINSTORM => [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 8,
-            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [10, Glossary::SUIT_FLOOD]],
-            'penalty' => [Glossary::ACTION_BLANKS, [[Glossary::SUIT_FLAME], ['cards' => [Glossary::CARD_LIGHTNING]]]]
+            'bonus' => [
+                'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                'value' => 10,
+                'suits' => [Glossary::SUIT_FLOOD]
+            ],
+            'penalty' => [
+                'action' => Glossary::ACTION_BLANKS,
+                'targets' => [
+                    'suits' => [Glossary::SUIT_FLAME],
+                ],
+                'excludes' => [
+                    'cards' => [Glossary::CARD_LIGHTNING]
+                ]
+            ]
         ],
         Glossary::CARD_RANGERS => [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 5,
             'bonus' => [
-                [Glossary::ACTION_FOR_EACH, [10, [Glossary::SUIT_LAND]]],
-                'Clears the word Army from Penalty section of all cards in hand'
+                'and' => [
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 10,
+                        'suits' => [Glossary::SUIT_LAND]
+                    ],
+                    [
+                        'action' => 'Clears the word Army from Penalty section of all cards in hand'
+                    ]
+                ]
             ]
         ],
         Glossary::CARD_SHAPESHIFTER => [
             'suit' => Glossary::SUIT_WILD,
             'base_strength' => 0,
-            'bonus' => ['May take on the name and suit of any Artifact, Leader, Wizard, Weapon or Beast. Does not take bonus or penalty.'],
+            'bonus' => [
+                'action' => 'May take on the name and suit of any Artifact, Leader, Wizard, Weapon or Beast. Does not take bonus or penalty.'
+            ],
         ],
         Glossary::CARD_SHIELD_OF_KETH => [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 4,
-            'bonus' => '+15 with any one Leader, +40 with both Leader and Sword of Keth'
+            'bonus' => [
+                'action' => '+15 with any one Leader, +40 with both Leader and Sword of Keth'
+            ]
         ],
         Glossary::CARD_SMOKE => [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 27,
-            'penalty' => [Glossary::ACTION_BLANKED_UNLESS, [[Glossary::SUIT_FLAME]]],
+            'penalty' => [
+                'action' => Glossary::ACTION_BLANKED_UNLESS,
+                'suits' => [Glossary::SUIT_FLAME]
+            ],
         ],
         Glossary::CARD_SWAMP => [
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 18,
-            'penalty' => [Glossary::ACTION_FOR_EACH, [3, [Glossary::SUIT_ARMY, Glossary::SUIT_FLAME]]],
+            'penalty' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 3,
+                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_FLAME]
+            ],
         ],
         Glossary::CARD_SWORD_OF_KETH => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 7,
-            'bonus' => '+10 with any one Leader, +40 with both Leader and Shield of Keth'
+            'bonus' => [
+                'action' => '+10 with any one Leader, +40 with both Leader and Shield of Keth'
+            ]
         ],
         Glossary::CARD_UNDERGROUND_CAVERNS => [
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 6,
             'bonus' => [
-                '+25 with Dwarvish Infantry or Dragon',
-                [Glossary::ACTION_CLEARS_PENALTY, [[Glossary::SUIT_WEATHER]]]
+                'and' => [
+                    [
+                        'action' => '+25 with Dwarvish Infantry or Dragon'
+                    ],
+                    [
+                        'action' => Glossary::ACTION_CLEARS_PENALTY,
+                        'suits' => [Glossary::SUIT_WEATHER]
+                    ]
+                ]
             ]
         ],
         Glossary::CARD_UNICORN => [
             'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 9,
-            'bonus' => '+30 with Princess, +15 with Empress, Queen, or Elemental Enchantress'
+            'bonus' => [
+                'action' => '+30 with Princess, +15 with Empress, Queen, or Elemental Enchantress'
+            ]
         ],
         Glossary::CARD_WAR_DIRIGIBLE => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 25,
             'penalty' => [
-                [Glossary::ACTION_BLANKED_UNLESS, [[Glossary::SUIT_ARMY]]],
-                [Glossary::ACTION_BLANKED_WITH, [[Glossary::SUIT_WEATHER]]],
+                [
+                    'action' => Glossary::ACTION_BLANKED_UNLESS,
+                    'suits' => [Glossary::SUIT_ARMY]
+                ],
+                [
+                    'action' => Glossary::ACTION_BLANKED_WITH,
+                    'suits' => [Glossary::SUIT_WEATHER]
+                ],
             ]
         ],
         Glossary::CARD_WARHORSE => [
             'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 6,
-            'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [14, [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                'value' => 14,
+                'suits' => [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]
+            ]
         ],
         Glossary::CARD_WARLOCK_LORD => [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 25,
-            'penalty' => [Glossary::ACTION_FOR_EACH, [10, [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]]],
+            'penalty' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 10,
+                'suits' => [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]
+            ],
         ],
         Glossary::CARD_WARSHIP => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 23,
             'penalty' => [
-                [Glossary::ACTION_BLANKED_UNLESS, [[Glossary::SUIT_FLOOD]]],
-                'Clears the word Army from Penalty section of all Floods'
+                'and' => [
+                    [
+                        'action' => Glossary::ACTION_BLANKED_UNLESS,
+                        'suits' => [Glossary::SUIT_FLOOD],
+                    ],
+                    [
+                        'action' => 'Clears the word Army from Penalty section of all Floods'
+                    ]
+                ]
             ]
         ],
         Glossary::CARD_WATER_ELEMENTAL => [
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 4,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [15, [Glossary::SUIT_FLOOD]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 15,
+                'suits' => [Glossary::SUIT_FLOOD]
+            ]
         ],
         Glossary::CARD_WHIRLWIND => [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 13,
-            'bonus' => '+40 with Rainstorm and either Blizzard or Great Flood'
+            'bonus' => [
+                'action' => '+40 with Rainstorm and either Blizzard or Great Flood'
+            ]
         ],
         Glossary::CARD_WILDFIRE => [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 40,
             'penalty' => [
-                Glossary::ACTION_BLANKS, [
-                    [], [
-                        'suits' => [
-                            Glossary::SUIT_FLAME,
-                            Glossary::SUIT_WEATHER,
-                            Glossary::SUIT_WIZARD,
-                            Glossary::SUIT_WEAPON,
-                            Glossary::SUIT_ARTIFACT,
-                        ],
-                        'cards' => [
-                            Glossary::CARD_GREAT_FLOOD,
-                            Glossary::CARD_ISLAND,
-                            Glossary::CARD_MOUNTAIN,
-                            Glossary::CARD_UNICORN,
-                            Glossary::CARD_DRAGON,
-                        ]
+                'action' => Glossary::ACTION_BLANKS,
+                'targets' => [],
+                'excludes' => [
+                    'suits' => [
+                        Glossary::SUIT_FLAME,
+                        Glossary::SUIT_WEATHER,
+                        Glossary::SUIT_WIZARD,
+                        Glossary::SUIT_WEAPON,
+                        Glossary::SUIT_ARTIFACT,
+                    ],
+                    'cards' => [
+                        Glossary::CARD_GREAT_FLOOD,
+                        Glossary::CARD_ISLAND,
+                        Glossary::CARD_MOUNTAIN,
+                        Glossary::CARD_UNICORN,
+                        Glossary::CARD_DRAGON,
                     ]
                 ]
             ]
@@ -323,7 +534,9 @@ return [
         Glossary::CARD_WORLD_TREE => [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 2,
-            'bonus' => '+50 if every active card in hand is a different suit'
+            'bonus' => [
+                'action' => '+50 if every active card in hand is a different suit'
+            ],
         ],
-    ],
+    ]
 ];

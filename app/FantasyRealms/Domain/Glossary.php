@@ -142,6 +142,8 @@ class Glossary
 
     public const string ACTION_WITH_CARD = 'withCard';
 
+    public const string ACTION_WITH_SUITS = 'withSuits';
+
     public const string ACTION_CLEARS_PENALTY = 'clearsPenalty';
 
     public const string ACTION_WITH_BOTH_CARDS = 'withBothCards';

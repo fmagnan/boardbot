@@ -8,7 +8,11 @@ it('card does not trigger bonus with empty hand', function (): void {
         'magic carpet',
         Glossary::SUIT_ARTIFACT,
         12,
-        [Glossary::ACTION_WITH_ANY_ONE_SUIT, [10, Glossary::SUIT_ARTIFACT]],
+        [
+            'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+            'value' => 10,
+            'suits' => [Glossary::SUIT_ARTIFACT]
+        ],
         [],
     );
     expect($magicCarpet->getBaseStrength())->toBe(12);

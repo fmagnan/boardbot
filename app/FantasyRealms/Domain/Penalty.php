@@ -8,14 +8,14 @@ class Penalty
 {
     public static function unlessAtLeast(Hand $hand, Card $current, array $params): void
     {
-        $value = $params[0];
-        $suit = $params[1];
+        $value = (int) $params['value'];
+        $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
-            if ($card->getSuit() === $suit) {
+            if (in_array($card->getSuit(), $suits, true)) {
                 $found = true;
             }
         }
@@ -26,8 +26,8 @@ class Penalty
 
     public static function forEach(Hand $hand, Card $current, array $params): void
     {
-        $value = $params[0];
-        $suits = $params[1];
+        $value = (int) $params['value'];
+        $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
@@ -40,8 +40,8 @@ class Penalty
 
     public static function withCard(Hand $hand, Card $current, array $params): void
     {
-        $value = $params[0];
-        $cardName = $params[1];
+        $value = (int) $params['value'];
+        $cardName = $params['card'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $cardName) {
                 $current->applyPenalty($value);
@@ -49,15 +49,29 @@ class Penalty
         }
     }
 
-    public static function blanks(Hand $hand, Card $current, array $params): void
+    public static function withSuits(Hand $hand, Card $current, array $params): void
     {
-        $targets = $params[0];
-        $excludes = $params[1];
+        $value = (int) $params['value'];
+        $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
-            if (empty($targets) || in_array($card->getSuit(), $targets, true)) {
+            if (in_array($card->getSuit(), $suits, true)) {
+                $current->applyPenalty($value);
+            }
+        }
+    }
+
+    public static function blanks(Hand $hand, Card $current, array $params): void
+    {
+        $targetSuits = $params['targets']['suits'] ?? [];
+        $excludes = $params['excludes'];
+        foreach ($hand->getCards() as $card) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if (empty($targetSuits) || in_array($card->getSuit(), $targetSuits, true)) {
                 if (isset($excludes['suits']) && in_array($card->getSuit(), $excludes['suits'], true)) {
                     continue;
                 }
@@ -71,7 +85,7 @@ class Penalty
 
     public static function blankedUnless(Hand $hand, Card $current, array $params): void
     {
-        $suits = $params[0];
+        $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
