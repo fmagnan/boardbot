@@ -17,72 +17,72 @@ it('neutralizes penalty when dragon is with a wizard', function (): void {
     expect($hand->getTotal())->toBe(35);
 });
 
-it('princess get points from elemental enchantress', function (): void {
+it('gets points for princess with elemental enchantress', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_PRINCESS, Glossary::CARD_ELEMENTAL_ENCHANTRESS]);
     expect($hand->getTotal())->toBe(15);
 });
 
-it('lightning get no points from princess', function (): void {
+it('cancels lightning points from princess', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_PRINCESS, Glossary::CARD_LIGHTNING]);
     expect($hand->getTotal())->toBe(13);
 });
 
-it('lightning get points from rainstorm', function (): void {
+it('gets lightning points with rainstorm', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_RAINSTORM, Glossary::CARD_LIGHTNING]);
     expect($hand->getTotal())->toBe(49);
 });
 
-it('princess add points from empress when empress lose points from princess', function (): void {
+it('gets points from princess and loses points from empress when they are together', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_PRINCESS, Glossary::CARD_EMPRESS]);
     expect($hand->getTotal())->toBe(15);
 });
 
-it('rainstorm get points from each flood', function (): void {
+it('adds points from each flood for rainstorm', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_RAINSTORM, Glossary::CARD_SWAMP, Glossary::CARD_WATER_ELEMENTAL]);
     expect($hand->getTotal())->toBe(55);
 });
 
-it('island has no effect on dragon', function (): void {
+it('does nothing when island is with dragon', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_DRAGON, Glossary::CARD_ISLAND]);
     expect($hand->getTotal())->toBe(4);
 });
 
-it('island clears penalty from swamp', function (): void {
+it('clears penalty from swamp with island', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_SWAMP, Glossary::CARD_ISLAND, Glossary::CARD_DWARVISH_INFANTRY]);
     expect($hand->getTotal())->toBe(47);
 });
 
-it('elven archers get points if there is no weather', function (): void {
+it('adds points to elven archers when there is no weather', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_ISLAND]);
     expect($hand->getTotal())->toBe(29);
 });
 
-it('air elemental cancel elven archers bonus', function (): void {
+it('cancels elven archers bonus with air elemental', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_AIR_ELEMENTAL]);
     expect($hand->getTotal())->toBe(14);
 });
 
-it('rainstorm blanks fire elemental', function (): void {
+it('blanks fire elemental with rainstorm', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_RAINSTORM, Glossary::CARD_FIRE_ELEMENTAL]);
     expect($hand->getTotal())->toBe(8);
 });
 
-it('wildfire blanks hydra', function (): void {
+it('blanks hydra with wildfire', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_WILDFIRE, Glossary::CARD_HYDRA]);
     expect($hand->getTotal())->toBe(40);
 });
 
-it('dragon is not blanked by wildfire', function (): void {
+it('does not blank dragon with wildfire', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_WILDFIRE, Glossary::CARD_DRAGON]);
     expect($hand->getTotal())->toBe(30);
 });
 
-it('smoke without flame is blanked', function (): void {
+it('blanks smoke when there is no flame', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_SMOKE, Glossary::CARD_AIR_ELEMENTAL]);
     expect($hand->getTotal())->toBe(4);
 });
 
-it('smoke counts with fire elemental', function (): void {
+it('counts smoke with fire elemental', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_SMOKE, Glossary::CARD_FIRE_ELEMENTAL]);
     expect($hand->getTotal())->toBe(31);
 });
