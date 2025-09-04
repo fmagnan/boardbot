@@ -57,7 +57,7 @@ class Penalty
             if ($card->getName() === $current->getName()) {
                 continue;
             }
-            if (in_array($card->getSuit(), $targets, true)) {
+            if (empty($targets) || in_array($card->getSuit(), $targets, true)) {
                 if (isset($excludes['suits']) && in_array($card->getSuit(), $excludes['suits'], true)) {
                     continue;
                 }
@@ -66,6 +66,20 @@ class Penalty
                 }
                 $card->blank();
             }
+        }
+    }
+
+    public static function blankedUnless(Hand $hand, Card $current, array $params): void
+    {
+        $suits = $params[0];
+        foreach ($hand->getCards() as $card) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if (in_array($card->getSuit(), $suits, true)) {
+                return;
+            }
+            $current->blank();
         }
     }
 }

@@ -152,4 +152,10 @@ class Glossary
 
     public const string ACTION_BLANKS = 'blanks';
 
+    public const string ACTION_BLANKED_UNLESS = 'blankedUnless';
+
+    public const string ACTION_BLANKED_WITH = 'blankedWith';
+
+
+
 }

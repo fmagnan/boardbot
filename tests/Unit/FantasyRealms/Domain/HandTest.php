@@ -66,3 +66,23 @@ it('rainstorm blanks fire elemental', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_RAINSTORM, Glossary::CARD_FIRE_ELEMENTAL]);
     expect($hand->getTotal())->toBe(8);
 });
+
+it('wildfire blanks hydra', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_WILDFIRE, Glossary::CARD_HYDRA]);
+    expect($hand->getTotal())->toBe(40);
+});
+
+it('dragon is not blanked by wildfire', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_WILDFIRE, Glossary::CARD_DRAGON]);
+    expect($hand->getTotal())->toBe(30);
+});
+
+it('smoke without flame is blanked', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_SMOKE, Glossary::CARD_AIR_ELEMENTAL]);
+    expect($hand->getTotal())->toBe(4);
+});
+
+it('smoke counts with fire elemental', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_SMOKE, Glossary::CARD_FIRE_ELEMENTAL]);
+    expect($hand->getTotal())->toBe(31);
+});

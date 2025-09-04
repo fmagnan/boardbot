@@ -235,7 +235,7 @@ return [
         Glossary::CARD_SMOKE => [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 27,
-            'bonus' => 'This card is blanked unless with at least one Flame',
+            'penalty' => [Glossary::ACTION_BLANKED_UNLESS, [[Glossary::SUIT_FLAME]]],
         ],
         Glossary::CARD_SWAMP => [
             'suit' => Glossary::SUIT_FLOOD,
@@ -263,7 +263,10 @@ return [
         Glossary::CARD_WAR_DIRIGIBLE => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 25,
-            'penalty' => 'Blanked unless with at least one Army, Blanked if hand contains any weather'
+            'penalty' => [
+                [Glossary::ACTION_BLANKED_UNLESS, [[Glossary::SUIT_ARMY]]],
+                [Glossary::ACTION_BLANKED_WITH, [[Glossary::SUIT_WEATHER]]],
+            ]
         ],
         Glossary::CARD_WARHORSE => [
             'suit' => Glossary::SUIT_BEAST,
@@ -279,7 +282,7 @@ return [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 23,
             'penalty' => [
-                'Blanked unless with at least one Flood',
+                [Glossary::ACTION_BLANKED_UNLESS, [[Glossary::SUIT_FLOOD]]],
                 'Clears the word Army from Penalty section of all Floods'
             ]
         ],
