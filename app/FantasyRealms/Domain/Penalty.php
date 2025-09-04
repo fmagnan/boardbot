@@ -48,4 +48,24 @@ class Penalty
             }
         }
     }
+
+    public static function blanks(Hand $hand, Card $current, array $params): void
+    {
+        $targets = $params[0];
+        $excludes = $params[1];
+        foreach ($hand->getCards() as $card) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if (in_array($card->getSuit(), $targets, true)) {
+                if (isset($excludes['suits']) && in_array($card->getSuit(), $excludes['suits'], true)) {
+                    continue;
+                }
+                if (isset($excludes['cards']) && in_array($card->getName(), $excludes['cards'], true)) {
+                    continue;
+                }
+                $card->blank();
+            }
+        }
+    }
 }

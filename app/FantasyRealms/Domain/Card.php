@@ -92,4 +92,16 @@ class Card
         $this->penalty = [];
         return $this;
     }
+
+    public function blank(): self
+    {
+        $this->base_strength = 0;
+        $this->value = 0;
+        $this->bonus = [];
+        $this->penalty = [];
+        $this->name = '';
+        $this->suit = Glossary::SUIT_NONE;
+
+        return $this;
+    }
 }

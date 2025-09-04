@@ -38,7 +38,7 @@ echo "$output"
 #fi
 
 title "PestPHP"
-output=$($DOCKER_CMD bin/pest)
+output=$($DOCKER_CMD bin/pest --colors=never)
 echo $output
 nb_rows=$(echo $output |grep "FAILURES\|ERRORS"|wc -l)
 if [ "$nb_rows" -gt "0" ]; then

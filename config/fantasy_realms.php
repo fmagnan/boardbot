@@ -12,7 +12,7 @@ return [
         Glossary::CARD_BASILISK => [
             'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 35,
-            'penalty' => 'Blanks all Armies, Leaders, and other Beasts'
+            'penalty' => [Glossary::ACTION_BLANKS, [[Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST]]]
         ],
         Glossary::CARD_BEASTMASTER => [
             'suit' => Glossary::SUIT_WIZARD,
@@ -31,7 +31,7 @@ return [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 30,
             'penalty' => [
-                'Blanks all Floods',
+                [Glossary::ACTION_BLANKS, [[Glossary::SUIT_FLOOD]]],
                 [Glossary::ACTION_FOR_EACH, [5, [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST, Glossary::SUIT_FLAME]]]
             ],
         ],
@@ -83,7 +83,7 @@ return [
         Glossary::CARD_ELVEN_ARCHERS => [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 10,
-            'bonus' => '+5 if no Weather in hand'
+            'bonus' => [Glossary::ACTION_IF_NO, [5, [Glossary::SUIT_WEATHER]]]
         ],
         Glossary::CARD_ELVEN_LONGBOW => [
             'suit' => Glossary::SUIT_WEAPON,
@@ -124,7 +124,7 @@ return [
         Glossary::CARD_GREAT_FLOOD => [
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 32,
-            'penalty' => 'Blanks all Armies, all Land except Mountain, all Flames except Lightning'
+            'penalty' => [Glossary::ACTION_BLANKS, [[Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_FLAME], ['cards' => [Glossary::CARD_MOUNTAIN, Glossary::CARD_LIGHTNING]]]]
         ],
         Glossary::CARD_HYDRA => [
             'suit' => Glossary::SUIT_BEAST,
@@ -172,7 +172,7 @@ return [
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 9,
             'bonus' => [
-                '+50 with both Smoke and Wildfire',
+                [Glossary::ACTION_WITH_BOTH_CARDS, [50, [Glossary::CARD_SMOKE, Glossary::CARD_WILDFIRE]]],
                 [Glossary::ACTION_CLEARS_PENALTY, [[Glossary::SUIT_FLOOD]]],
             ],
         ],
@@ -212,7 +212,7 @@ return [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 8,
             'bonus' => [Glossary::ACTION_WITH_ANY_ONE_SUIT, [10, Glossary::SUIT_FLOOD]],
-            'penalty' => [], // Blanks all Flames except Lightning
+            'penalty' => [Glossary::ACTION_BLANKS, [[Glossary::SUIT_FLAME], ['cards' => [Glossary::CARD_LIGHTNING]]]]
         ],
         Glossary::CARD_RANGERS => [
             'suit' => Glossary::SUIT_ARMY,
@@ -296,7 +296,26 @@ return [
         Glossary::CARD_WILDFIRE => [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 40,
-            'penalty' => 'Blanks all cards except Flames, Weather, Wizards, Weapons, Artifacts, Great Flood, Island, Mountain, Unicorn, & Dragon'
+            'penalty' => [
+                Glossary::ACTION_BLANKS, [
+                    [], [
+                        'suits' => [
+                            Glossary::SUIT_FLAME,
+                            Glossary::SUIT_WEATHER,
+                            Glossary::SUIT_WIZARD,
+                            Glossary::SUIT_WEAPON,
+                            Glossary::SUIT_ARTIFACT,
+                        ],
+                        'cards' => [
+                            Glossary::CARD_GREAT_FLOOD,
+                            Glossary::CARD_ISLAND,
+                            Glossary::CARD_MOUNTAIN,
+                            Glossary::CARD_UNICORN,
+                            Glossary::CARD_DRAGON,
+                        ]
+                    ]
+                ]
+            ]
         ],
         Glossary::CARD_WORLD_TREE => [
             'suit' => Glossary::SUIT_ARTIFACT,

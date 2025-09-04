@@ -58,4 +58,24 @@ class Bonus
             }
         }
     }
+
+    public static function withBothCards(Hand $hand, Card $current, array $params): void
+    {
+
+    }
+
+    public static function ifNo(Hand $hand, Card $current, array $params): void
+    {
+        $value = $params[0];
+        $suits = $params[1];
+        foreach ($hand->getCards() as $card) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if (in_array($card->getSuit(), $suits, true)) {
+                return ;
+            }
+        }
+        $current->applyBonus($value);
+    }
 }

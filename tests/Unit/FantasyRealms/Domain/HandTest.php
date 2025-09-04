@@ -51,3 +51,18 @@ it('island clears penalty from swamp', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_SWAMP, Glossary::CARD_ISLAND, Glossary::CARD_DWARVISH_INFANTRY]);
     expect($hand->getTotal())->toBe(47);
 });
+
+it('elven archers get points if there is no weather', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_ISLAND]);
+    expect($hand->getTotal())->toBe(29);
+});
+
+it('air elemental cancel elven archers bonus', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_AIR_ELEMENTAL]);
+    expect($hand->getTotal())->toBe(14);
+});
+
+it('rainstorm blanks fire elemental', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_RAINSTORM, Glossary::CARD_FIRE_ELEMENTAL]);
+    expect($hand->getTotal())->toBe(8);
+});
