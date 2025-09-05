@@ -113,7 +113,7 @@ return [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 15,
             'penalty' => [
-                'action' => Glossary::ACTION_WITH_SUITS,
+                'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 2,
                 'suits' => [Glossary::SUIT_ARMY]
             ],
@@ -149,9 +149,9 @@ return [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 3,
             'bonus' => [
-                'action' => Glossary::ACTION_WITH_SUITS,
+                'action' => Glossary::ACTION_WITH_ANY_ONE_CARD,
                 'value' => 30,
-                'suits' => [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_WARLORD, Glossary::CARD_BEASTMASTER]
+                'cards' => [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_WARLORD, Glossary::CARD_BEASTMASTER]
             ],
         ],
         Glossary::CARD_EMPRESS => [
@@ -214,7 +214,7 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_CARD,
                 'value' => 28,
-                'card' => Glossary::CARD_SWAMP
+                'cards' => [Glossary::CARD_SWAMP]
             ],
         ],
         Glossary::CARD_KING => [
@@ -231,7 +231,7 @@ return [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 20,
                         'suits' => [Glossary::SUIT_ARMY],
-                        'with_card' => Glossary::CARD_QUEEN
+                        'cards' => [Glossary::CARD_QUEEN]
                     ]
                 ]
             ]
@@ -248,7 +248,7 @@ return [
             'suit' => Glossary::SUIT_ARMY,
             'base_strength' => 17,
             'penalty' => [
-                'action' => Glossary::ACTION_WITH_SUITS,
+                'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 2,
                 'suits' => [Glossary::SUIT_LAND]
             ],
@@ -259,7 +259,7 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_CARD,
                 'value' => 30,
-                'card' => Glossary::CARD_RAINSTORM
+                'cards' => [Glossary::CARD_RAINSTORM]
             ],
         ],
         Glossary::CARD_MAGIC_WAND => [
@@ -345,7 +345,7 @@ return [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 20,
                         'suits' => [Glossary::SUIT_ARMY],
-                        'with_card' => Glossary::CARD_KING
+                        'cards' => [Glossary::CARD_KING]
                     ]
                 ]
             ]
@@ -395,7 +395,19 @@ return [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 4,
             'bonus' => [
-                'action' => '+15 with any one Leader, +40 with both Leader and Sword of Keth'
+                'or' => [
+                    [
+                        'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                        'value' => 15,
+                        'suits' => [Glossary::SUIT_LEADER],
+                    ],
+                    [
+                        'action' => Glossary::ACTION_WITH_BOTH_CARDS,
+                        'value' => 40,
+                        'suits' => [Glossary::SUIT_LEADER],
+                        'cards' => [Glossary::CARD_SWORD_OF_KETH]
+                    ]
+                ]
             ]
         ],
         Glossary::CARD_SMOKE => [
@@ -419,7 +431,19 @@ return [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 7,
             'bonus' => [
-                'action' => '+10 with any one Leader, +40 with both Leader and Shield of Keth'
+                'or' => [
+                    [
+                        'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                        'value' => 10,
+                        'suits' => [Glossary::SUIT_LEADER],
+                    ],
+                    [
+                        'action' => Glossary::ACTION_WITH_BOTH_CARDS,
+                        'value' => 40,
+                        'suits' => [Glossary::SUIT_LEADER],
+                        'cards' => [Glossary::CARD_SHIELD_OF_KETH]
+                    ]
+                ]
             ]
         ],
         Glossary::CARD_UNDERGROUND_CAVERNS => [
@@ -428,7 +452,9 @@ return [
             'bonus' => [
                 'and' => [
                     [
-                        'action' => '+25 with Dwarvish Infantry or Dragon'
+                        'action' => Glossary::ACTION_WITH_CARD,
+                        'value' => 25,
+                        'cards' => [Glossary::CARD_DRAGON, Glossary::CARD_DWARVISH_INFANTRY]
                     ],
                     [
                         'action' => Glossary::ACTION_CLEARS_PENALTY,
@@ -441,7 +467,19 @@ return [
             'suit' => Glossary::SUIT_BEAST,
             'base_strength' => 9,
             'bonus' => [
-                'action' => '+30 with Princess, +15 with Empress, Queen, or Elemental Enchantress'
+                'or' => [
+                    [
+                        'action' => Glossary::ACTION_WITH_CARD,
+                        'value' => 30,
+                        'cards' => [Glossary::CARD_PRINCESS]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_WITH_CARD,
+                        'value' => 15,
+                        'cards' => [Glossary::CARD_EMPRESS, Glossary::CARD_QUEEN, Glossary::CARD_ELEMENTAL_ENCHANTRESS]
+                    ]
+                ]
+
             ]
         ],
         Glossary::CARD_WAR_DIRIGIBLE => [

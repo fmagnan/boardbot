@@ -41,23 +41,12 @@ class Penalty
     public static function withCard(Hand $hand, Card $current, array $params): void
     {
         $value = (int) $params['value'];
-        $cardName = $params['card'];
-        foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $cardName) {
-                $current->applyPenalty($value);
-            }
-        }
-    }
-
-    public static function withSuits(Hand $hand, Card $current, array $params): void
-    {
-        $value = (int) $params['value'];
-        $suits = $params['suits'];
+        $cards = $params['cards'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
+            if (in_array($card->getName(), $cards, true)) {
                 $current->applyPenalty($value);
             }
         }

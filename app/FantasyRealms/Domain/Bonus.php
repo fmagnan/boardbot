@@ -8,7 +8,7 @@ class Bonus
 {
     public static function withAnyOneSuit(Hand $hand, Card $current, array $params): void
     {
-        $value = (int)$params['value'];
+        $value = (int) $params['value'];
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -24,9 +24,27 @@ class Bonus
         }
     }
 
+    public static function withAnyOneCard(Hand $hand, Card $current, array $params): void
+    {
+        $value = (int) $params['value'];
+        $cards = $params['cards'];
+        $found = false;
+        foreach ($hand->getCards() as $card) {
+            if ($card->getName() === $current->getName()) {
+                continue;
+            }
+            if (in_array($card->getName(), $cards, true)) {
+                $found = true;
+            }
+        }
+        if ($found) {
+            $current->applyBonus($value);
+        }
+    }
+
     public static function forEach(Hand $hand, Card $current, array $params): void
     {
-        $value = (int)$params['value'];
+        $value = (int) $params['value'];
         $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
@@ -40,21 +58,13 @@ class Bonus
 
     public static function withCard(Hand $hand, Card $current, array $params): void
     {
-        $value = (int)$params['value'];
-        $cardName = $params['card'];
+        $value = (int) $params['value'];
+        $cards = $params['cards'];
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $cardName) {
-                $current->applyBonus($value);
+            if ($card->getName() === $current->getName()) {
+                continue;
             }
-        }
-    }
-
-    public static function withSuits(Hand $hand, Card $current, array $params): void
-    {
-        $value = (int)$params['value'];
-        $suits = $params['suits'];
-        foreach ($hand->getCards() as $card) {
-            if (in_array($card->getSuit(), $suits, true)) {
+            if (in_array($card->getName(), $cards, true)) {
                 $current->applyBonus($value);
             }
         }
@@ -75,19 +85,18 @@ class Bonus
 
     public static function withBothCards(Hand $hand, Card $current, array $params): void
     {
-
     }
 
     public static function ifNo(Hand $hand, Card $current, array $params): void
     {
-        $value = (int)$params['value'];
+        $value = (int) $params['value'];
         $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
-                return ;
+                return;
             }
         }
         $current->applyBonus($value);

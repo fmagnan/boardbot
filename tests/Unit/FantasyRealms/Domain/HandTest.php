@@ -2,7 +2,7 @@
 
 use App\FantasyRealms\Domain\Glossary;
 
-it('count cards in hand', function (): void {
+it('counts cards in hand', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_DRAGON, Glossary::CARD_BELL_TOWER, Glossary::CARD_MAGIC_WAND]);
     expect($hand->countCards())->toBe(3);
 });
@@ -86,3 +86,19 @@ it('counts smoke with fire elemental', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_SMOKE, Glossary::CARD_FIRE_ELEMENTAL]);
     expect($hand->getTotal())->toBe(31);
 });
+
+it('does nothing when dragon and bell tower are together', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_DRAGON, Glossary::CARD_BELL_TOWER]);
+    expect($hand->getTotal())->toBe(-2);
+});
+
+it('does nothing when beast master and celestial knights are together', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_CELESTIAL_KNIGHTS, Glossary::CARD_BEASTMASTER]);
+    expect($hand->getTotal())->toBe(21);
+});
+
+it('adds points when beast master encounters unicorn', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_BEASTMASTER, Glossary::CARD_UNICORN]);
+    expect($hand->getTotal())->toBe(27);
+});
+

@@ -11,7 +11,7 @@ it('card does not trigger bonus with empty hand', function (): void {
         [
             'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
             'value' => 10,
-            'suits' => [Glossary::SUIT_ARTIFACT]
+            'suits' => [Glossary::SUIT_ARTIFACT],
         ],
         [],
     );
