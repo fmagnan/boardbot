@@ -224,14 +224,14 @@ return [
                 'or' => [
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
-                        'value' => 5,
-                        'suits' => [Glossary::SUIT_ARMY]
-                    ],
-                    [
-                        'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 20,
                         'suits' => [Glossary::SUIT_ARMY],
                         'cards' => [Glossary::CARD_QUEEN]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 5,
+                        'suits' => [Glossary::SUIT_ARMY]
                     ]
                 ]
             ]
@@ -338,15 +338,15 @@ return [
                 'or' => [
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
-                        'value' => 5,
-                        'suits' => [Glossary::SUIT_ARMY]
-                    ],
-                    [
-                        'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 20,
                         'suits' => [Glossary::SUIT_ARMY],
                         'cards' => [Glossary::CARD_KING]
-                    ]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
+                        'value' => 5,
+                        'suits' => [Glossary::SUIT_ARMY]
+                    ],
                 ]
             ]
         ],
@@ -397,16 +397,16 @@ return [
             'bonus' => [
                 'or' => [
                     [
-                        'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
-                        'value' => 15,
-                        'suits' => [Glossary::SUIT_LEADER],
-                    ],
-                    [
                         'action' => Glossary::ACTION_WITH_BOTH_CARDS,
                         'value' => 40,
                         'suits' => [Glossary::SUIT_LEADER],
                         'cards' => [Glossary::CARD_SWORD_OF_KETH]
-                    ]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                        'value' => 15,
+                        'suits' => [Glossary::SUIT_LEADER],
+                    ],
                 ]
             ]
         ],
@@ -433,16 +433,16 @@ return [
             'bonus' => [
                 'or' => [
                     [
-                        'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
-                        'value' => 10,
-                        'suits' => [Glossary::SUIT_LEADER],
-                    ],
-                    [
                         'action' => Glossary::ACTION_WITH_BOTH_CARDS,
                         'value' => 40,
                         'suits' => [Glossary::SUIT_LEADER],
                         'cards' => [Glossary::CARD_SHIELD_OF_KETH]
-                    ]
+                    ],
+                    [
+                        'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
+                        'value' => 10,
+                        'suits' => [Glossary::SUIT_LEADER],
+                    ],
                 ]
             ]
         ],
@@ -479,7 +479,6 @@ return [
                         'cards' => [Glossary::CARD_EMPRESS, Glossary::CARD_QUEEN, Glossary::CARD_ELEMENTAL_ENCHANTRESS]
                     ]
                 ]
-
             ]
         ],
         Glossary::CARD_WAR_DIRIGIBLE => [

@@ -102,3 +102,8 @@ it('adds points when beast master encounters unicorn', function (): void {
     expect($hand->getTotal())->toBe(27);
 });
 
+it('adds maximum points for unicorn with princess', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_UNICORN, Glossary::CARD_PRINCESS]);
+    expect($hand->getTotal())->toBe(41);
+});
+

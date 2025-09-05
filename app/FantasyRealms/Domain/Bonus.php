@@ -6,7 +6,7 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
-    public static function withAnyOneSuit(Hand $hand, Card $current, array $params): void
+    public static function withAnyOneSuit(Hand $hand, Card $current, array $params): bool
     {
         $value = (int) $params['value'];
         $suits = $params['suits'];
@@ -22,9 +22,11 @@ class Bonus
         if ($found) {
             $current->applyBonus($value);
         }
+
+        return $found;
     }
 
-    public static function withAnyOneCard(Hand $hand, Card $current, array $params): void
+    public static function withAnyOneCard(Hand $hand, Card $current, array $params): bool
     {
         $value = (int) $params['value'];
         $cards = $params['cards'];
@@ -40,54 +42,69 @@ class Bonus
         if ($found) {
             $current->applyBonus($value);
         }
+
+        return $found;
     }
 
-    public static function forEach(Hand $hand, Card $current, array $params): void
+    public static function forEach(Hand $hand, Card $current, array $params): bool
     {
         $value = (int) $params['value'];
         $suits = $params['suits'];
+        $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
                 $current->applyBonus($value);
+                $found = true;
             }
         }
+
+        return $found;
     }
 
-    public static function withCard(Hand $hand, Card $current, array $params): void
+    public static function withCard(Hand $hand, Card $current, array $params): bool
     {
         $value = (int) $params['value'];
         $cards = $params['cards'];
+        $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
             if (in_array($card->getName(), $cards, true)) {
                 $current->applyBonus($value);
+                $found = true;
             }
         }
+
+        return $found;
     }
 
-    public static function clearsPenalty(Hand $hand, Card $current, array $params): void
+    public static function clearsPenalty(Hand $hand, Card $current, array $params): bool
     {
         $suits = $params['suits'];
+        $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
                 $card->clearPenalty();
+                $found = true;
             }
         }
+
+        return $found;
     }
 
-    public static function withBothCards(Hand $hand, Card $current, array $params): void
+    public static function withBothCards(Hand $hand, Card $current, array $params): bool
     {
+        return false;
     }
 
-    public static function ifNo(Hand $hand, Card $current, array $params): void
+    public static function ifNo(Hand $hand, Card $current, array $params): bool
     {
         $value = (int) $params['value'];
         $suits = $params['suits'];
@@ -96,9 +113,11 @@ class Bonus
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
-                return;
+                return false;
             }
         }
         $current->applyBonus($value);
+
+        return true;
     }
 }
