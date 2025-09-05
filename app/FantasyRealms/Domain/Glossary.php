@@ -159,4 +159,8 @@ class Glossary
     public const string ACTION_BLANKED_WITH = 'blankedWith';
 
     public const string ACTION_WITH_ANY_ONE_CARD = 'withAnyOneCard';
+
+    public const string ACTION_ADD_BASE_STRENGTH_AMONG = 'addBaseStrengthAmong';
+
+    public const string ACTION_CARD_RUN = 'cardRun';
 }

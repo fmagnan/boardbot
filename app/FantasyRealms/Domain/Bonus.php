@@ -101,6 +101,31 @@ class Bonus
 
     public static function withBothCards(Hand $hand, Card $current, array $params): bool
     {
+        $value = (int) $params['value'];
+        $cards = $params['cards'];
+        $suits = $params['suits'];
+        foreach($cards as $card) {
+            if (!$hand->hasCard($card)) {
+                return false;
+            }
+        }
+        foreach($suits as $suit) {
+            if (!$hand->hasSuit($suit, $current)) {
+                return false;
+            }
+        }
+        $current->applyBonus($value);
+
+        return true;
+    }
+
+    public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function cardRun(Hand $hand, Card $current, array $params): bool
+    {
         return false;
     }
 

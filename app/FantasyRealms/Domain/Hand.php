@@ -49,4 +49,29 @@ class Hand
 
         return $total;
     }
+
+    public function hasCard(string $name): bool
+    {
+        foreach ($this->cards as $card) {
+            if ($name === $card->getName()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasSuit(int $suit, Card $exclude): bool
+    {
+        foreach ($this->cards as $item) {
+            if ($item->getName() === $exclude->getName()) {
+                continue;
+            }
+            if ($suit === $item->getSuit()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

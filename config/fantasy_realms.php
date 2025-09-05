@@ -190,12 +190,43 @@ return [
         Glossary::CARD_FOUNTAIN_OF_LIFE => [
             'suit' => Glossary::SUIT_FLOOD,
             'base_strength' => 1,
-            'bonus' => 'Add the base strength of any Weapon, Flood, Flame, Land, or Weather in your hand'
+            'bonus' => [
+                'action' => Glossary::ACTION_ADD_BASE_STRENGTH_AMONG,
+                'suits' => [Glossary::SUIT_WEAPON, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME, Glossary::SUIT_LAND, Glossary::SUIT_WEATHER]
+            ]
         ],
         Glossary::CARD_GEM_OF_ORDER => [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 5,
-            'bonus' => '+10 for 3-card run, +30 for 4-card run, +60 for 5-card run, +100 for 6-card run, +150 for 7-card run'
+            'bonus' => [
+                'or' => [
+                    [
+                        'action' => Glossary::ACTION_CARD_RUN,
+                        'value' => 150,
+                        'cards' => 7
+                    ],
+                    [
+                        'action' => Glossary::ACTION_CARD_RUN,
+                        'value' => 100,
+                        'cards' => 6
+                    ],
+                    [
+                        'action' => Glossary::ACTION_CARD_RUN,
+                        'value' => 60,
+                        'cards' => 5
+                    ],
+                    [
+                        'action' => Glossary::ACTION_CARD_RUN,
+                        'value' => 30,
+                        'cards' => 4
+                    ],
+                    [
+                        'action' => Glossary::ACTION_CARD_RUN,
+                        'value' => 10,
+                        'cards' => 3
+                    ],
+                ]
+            ]
         ],
         Glossary::CARD_GREAT_FLOOD => [
             'suit' => Glossary::SUIT_FLOOD,
