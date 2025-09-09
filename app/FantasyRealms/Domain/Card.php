@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\FantasyRealms\Domain;
 
-use PHPUnit\Event\Runtime\PHPUnit;
-
 class Card
 {
     private int $value;
@@ -87,16 +85,17 @@ class Card
             foreach ($this->bonus['and'] as $bonus) {
                 Bonus::apply($hand, $this, $bonus);
             }
-        } elseif (isset($this->bonus['or'])) {
+            return;
+        }
+        if (isset($this->bonus['or'])) {
             foreach ($this->bonus['or'] as $bonus) {
-                $bonusFunction = $bonus['action'];
-                if (Bonus::$bonusFunction($hand, $this, $bonus)) {
+                if (Bonus::apply($hand, $this, $bonus)) {
                     break;
                 }
             }
-        } else {
-            Bonus::apply($hand, $this, $this->bonus);
+            return;
         }
+        Bonus::apply($hand, $this, $this->bonus);
     }
 
     public function apply(Hand $hand): Hand

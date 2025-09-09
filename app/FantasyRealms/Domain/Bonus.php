@@ -6,9 +6,9 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
-    public static function apply(Hand $hand, Card $current, array $conf) : void
+    public static function apply(Hand $hand, Card $current, array $conf) : bool
     {
-        self::{self::getAction($conf)}($hand, $current, $conf);
+        return self::{self::getAction($conf)}($hand, $current, $conf);
     }
 
     private static function getAction(array $conf) : string
