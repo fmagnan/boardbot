@@ -6,9 +6,19 @@ namespace App\FantasyRealms\Domain;
 
 class Penalty
 {
+    public static function apply(Hand $hand, Card $current, array $conf) : void
+    {
+        self::{self::getAction($conf)}($hand, $current, $conf);
+    }
+
+    private static function getAction(array $conf) : string
+    {
+        return $conf['action'];
+    }
+
     public static function unlessAtLeast(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -20,7 +30,7 @@ class Penalty
             }
         }
         if (!$found) {
-            $current->applyPenalty($value);
+            $current->substractPenalty($value);
         }
 
         return !$found;
@@ -28,7 +38,7 @@ class Penalty
 
     public static function forEach(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -36,7 +46,7 @@ class Penalty
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
-                $current->applyPenalty($value);
+                $current->substractPenalty($value);
                 $found = true;
             }
         }
@@ -46,7 +56,7 @@ class Penalty
 
     public static function withCard(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -54,7 +64,7 @@ class Penalty
                 continue;
             }
             if (in_array($card->getName(), $cards, true)) {
-                $current->applyPenalty($value);
+                $current->substractPenalty($value);
                 $found = true;
             }
         }
@@ -71,7 +81,7 @@ class Penalty
             if ($card->getName() === $current->getName()) {
                 continue;
             }
-            if (empty($targetSuits) || in_array($card->getSuit(), $targetSuits, true)) {
+            if (count($targetSuits) === 0 || in_array($card->getSuit(), $targetSuits, true)) {
                 if (isset($excludes['suits']) && in_array($card->getSuit(), $excludes['suits'], true)) {
                     continue;
                 }

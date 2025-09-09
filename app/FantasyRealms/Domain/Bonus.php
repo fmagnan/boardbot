@@ -6,6 +6,16 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
+    public static function apply(Hand $hand, Card $current, array $conf) : void
+    {
+        self::{self::getAction($conf)}($hand, $current, $conf);
+    }
+
+    private static function getAction(array $conf) : string
+    {
+        return $conf['action'];
+    }
+
     public static function withAnyOneSuit(Hand $hand, Card $current, array $params): bool
     {
         $value = (int) $params['value'];
@@ -20,7 +30,7 @@ class Bonus
             }
         }
         if ($found) {
-            $current->applyBonus($value);
+            $current->addBonus($value);
         }
 
         return $found;
@@ -40,7 +50,7 @@ class Bonus
             }
         }
         if ($found) {
-            $current->applyBonus($value);
+            $current->addBonus($value);
         }
 
         return $found;
@@ -56,7 +66,7 @@ class Bonus
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
-                $current->applyBonus($value);
+                $current->addBonus($value);
                 $found = true;
             }
         }
@@ -74,7 +84,7 @@ class Bonus
                 continue;
             }
             if (in_array($card->getName(), $cards, true)) {
-                $current->applyBonus($value);
+                $current->addBonus($value);
                 $found = true;
             }
         }
@@ -114,12 +124,12 @@ class Bonus
                 return false;
             }
         }
-        $current->applyBonus($value);
+        $current->addBonus($value);
 
         return true;
     }
 
-    public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
+    /*public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
     {
         return false;
     }
@@ -142,7 +152,7 @@ class Bonus
     public static function changeSuit(Hand $hand, Card $current, array $params): bool
     {
         return false;
-    }
+    }*/
 
     public static function ifNo(Hand $hand, Card $current, array $params): bool
     {
@@ -156,7 +166,7 @@ class Bonus
                 return false;
             }
         }
-        $current->applyBonus($value);
+        $current->addBonus($value);
 
         return true;
     }

@@ -13,12 +13,15 @@ tab-width = 4
 use-tabs = false
 
 [linter]
-integrations = []
+integrations = ["laravel"]
 
 [linter.rules]
 ambiguous-function-call = { enabled = false }
 literal-named-argument = { enabled = false }
 halstead = { effort-threshold = 7000 }
+too-many-methods = { enabled = false }
+kan-defect = { enabled = false }
+cyclomatic-complexity = { enabled = false }
 
 [analyzer]
 find-unused-definitions = true

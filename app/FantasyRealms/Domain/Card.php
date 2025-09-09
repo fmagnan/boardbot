@@ -12,11 +12,12 @@ class Card
 
     public function __construct(
         private string $name,
-        private int $suit,
-        private int $base_strength,
-        private array $bonus,
-        private array $penalty,
-    ) {
+        private int    $suit,
+        private int    $base_strength,
+        private array  $bonus,
+        private array  $penalty,
+    )
+    {
         $this->value = $this->base_strength;
     }
 
@@ -24,8 +25,8 @@ class Card
     {
         return new self(
             $name,
-            (int) $conf['suit'],
-            (int) $conf['base_strength'],
+            (int)$conf['suit'],
+            (int)$conf['base_strength'],
             $conf['bonus'] ?? [],
             $conf['penalty'] ?? [],
         );
@@ -55,44 +56,53 @@ class Card
         return $this->base_strength;
     }
 
-    public function applyBonus(int $value): self
+    public function addBonus(int $value): self
     {
         $this->value += $value;
 
         return $this;
     }
 
-    public function applyPenalty(int $value): self
+    public function substractPenalty(int $value): self
     {
         $this->value -= $value;
 
         return $this;
     }
 
+    private function applyPenalty(Hand $hand): void
+    {
+        if (count($this->penalty) === 0) {
+            return;
+        }
+        Penalty::apply($hand, $this, $this->penalty);
+    }
+
+    private function applyBonus(Hand $hand): void
+    {
+        if (count($this->bonus) === 0) {
+            return;
+        }
+        if (isset($this->bonus['and'])) {
+            foreach ($this->bonus['and'] as $bonus) {
+                Bonus::apply($hand, $this, $bonus);
+            }
+        } elseif (isset($this->bonus['or'])) {
+            foreach ($this->bonus['or'] as $bonus) {
+                $bonusFunction = $bonus['action'];
+                if (Bonus::$bonusFunction($hand, $this, $bonus)) {
+                    break;
+                }
+            }
+        } else {
+            Bonus::apply($hand, $this, $this->bonus);
+        }
+    }
+
     public function apply(Hand $hand): Hand
     {
-        if (count($this->bonus) > 0) {
-            if (isset($this->bonus['and'])) {
-                foreach ($this->bonus['and'] as $bonus) {
-                    $bonusFunction = $bonus['action'];
-                    Bonus::$bonusFunction($hand, $this, $bonus);
-                }
-            } elseif (isset($this->bonus['or'])) {
-                foreach ($this->bonus['or'] as $bonus) {
-                    $bonusFunction = $bonus['action'];
-                    if (Bonus::$bonusFunction($hand, $this, $bonus)) {
-                        break;
-                    }
-                }
-            } else {
-                $bonusFunction = $this->bonus['action'];
-                Bonus::$bonusFunction($hand, $this, $this->bonus);
-            }
-        }
-        if (count($this->penalty) > 0) {
-            $penaltyFunction = $this->penalty['action'];
-            Penalty::$penaltyFunction($hand, $this, $this->penalty);
-        }
+        $this->applyBonus($hand);
+        $this->applyPenalty($hand);
 
         return $hand;
     }
