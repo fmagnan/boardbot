@@ -6,12 +6,12 @@ namespace App\FantasyRealms\Domain;
 
 class Bonus
 {
-    public static function apply(Hand $hand, Card $current, array $conf) : bool
+    public static function apply(Hand $hand, Card $current, array $conf): bool
     {
         return self::{self::getAction($conf)}($hand, $current, $conf);
     }
 
-    private static function getAction(array $conf) : string
+    private static function getAction(array $conf): string
     {
         return $conf['action'];
     }
@@ -130,29 +130,29 @@ class Bonus
     }
 
     /*public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
-    {
-        return false;
-    }
-
-    public static function cardRun(Hand $hand, Card $current, array $params): bool
-    {
-        return false;
-    }
-
-    public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
-    {
-        return false;
-    }
-
-    public static function differentCardsInSameSuit(Hand $hand, Card $current, array $params): bool
-    {
-        return false;
-    }
-
-    public static function changeSuit(Hand $hand, Card $current, array $params): bool
-    {
-        return false;
-    }*/
+     * {
+     * return false;
+     * }
+     *
+     * public static function cardRun(Hand $hand, Card $current, array $params): bool
+     * {
+     * return false;
+     * }
+     *
+     * public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
+     * {
+     * return false;
+     * }
+     *
+     * public static function differentCardsInSameSuit(Hand $hand, Card $current, array $params): bool
+     * {
+     * return false;
+     * }
+     *
+     * public static function changeSuit(Hand $hand, Card $current, array $params): bool
+     * {
+     * return false;
+     * }*/
 
     public static function ifNo(Hand $hand, Card $current, array $params): bool
     {

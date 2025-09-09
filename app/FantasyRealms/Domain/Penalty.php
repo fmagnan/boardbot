@@ -6,19 +6,19 @@ namespace App\FantasyRealms\Domain;
 
 class Penalty
 {
-    public static function apply(Hand $hand, Card $current, array $conf) : bool
+    public static function apply(Hand $hand, Card $current, array $conf): bool
     {
         return self::{self::getAction($conf)}($hand, $current, $conf);
     }
 
-    private static function getAction(array $conf) : string
+    private static function getAction(array $conf): string
     {
         return $conf['action'];
     }
 
     public static function unlessAtLeast(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int)$params['value'];
+        $value = (int) $params['value'];
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -38,7 +38,7 @@ class Penalty
 
     public static function forEach(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int)$params['value'];
+        $value = (int) $params['value'];
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -56,7 +56,7 @@ class Penalty
 
     public static function withCard(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int)$params['value'];
+        $value = (int) $params['value'];
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
