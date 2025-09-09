@@ -163,4 +163,10 @@ class Glossary
     public const string ACTION_ADD_BASE_STRENGTH_AMONG = 'addBaseStrengthAmong';
 
     public const string ACTION_CARD_RUN = 'cardRun';
+
+    public const string ACTION_TAKE_ON_NAME_AND_SUIT = 'takeOnNameAndSuit';
+
+    public const string ACTION_DIFFERENT_CARDS_IN_SAME_SUIT = 'differentCardsInSameSuit';
+
+    public const string ACTION_CHANGE_SUIT = 'changeSuit';
 }

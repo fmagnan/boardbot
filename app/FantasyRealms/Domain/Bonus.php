@@ -104,12 +104,12 @@ class Bonus
         $value = (int) $params['value'];
         $cards = $params['cards'];
         $suits = $params['suits'];
-        foreach($cards as $card) {
+        foreach ($cards as $card) {
             if (!$hand->hasCard($card)) {
                 return false;
             }
         }
-        foreach($suits as $suit) {
+        foreach ($suits as $suit) {
             if (!$hand->hasSuit($suit, $current)) {
                 return false;
             }
@@ -125,6 +125,21 @@ class Bonus
     }
 
     public static function cardRun(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function differentCardsInSameSuit(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function changeSuit(Hand $hand, Card $current, array $params): bool
     {
         return false;
     }

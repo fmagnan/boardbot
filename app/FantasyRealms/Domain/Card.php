@@ -78,7 +78,7 @@ class Card
                     Bonus::$bonusFunction($hand, $this, $bonus);
                 }
             } elseif (isset($this->bonus['or'])) {
-                foreach($this->bonus['or'] as $bonus) {
+                foreach ($this->bonus['or'] as $bonus) {
                     $bonusFunction = $bonus['action'];
                     if (Bonus::$bonusFunction($hand, $this, $bonus)) {
                         break;

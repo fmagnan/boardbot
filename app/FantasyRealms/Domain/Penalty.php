@@ -30,7 +30,7 @@ class Penalty
     {
         $value = (int) $params['value'];
         $suits = $params['suits'];
-        $found =false;
+        $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
@@ -48,7 +48,7 @@ class Penalty
     {
         $value = (int) $params['value'];
         $cards = $params['cards'];
-        $found =false;
+        $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
@@ -66,7 +66,7 @@ class Penalty
     {
         $targetSuits = $params['targets']['suits'] ?? [];
         $excludes = $params['excludes'];
-        $found =false;
+        $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;
@@ -89,7 +89,7 @@ class Penalty
     public static function blankedUnless(Hand $hand, Card $current, array $params): bool
     {
         $suits = $params['suits'];
-        $found =false;
+        $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
                 continue;

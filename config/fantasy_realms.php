@@ -56,7 +56,8 @@ return [
                         'action' => Glossary::ACTION_BLANKS,
                         'suits' => [Glossary::SUIT_FLOOD]
                     ],
-                    ['action' => Glossary::ACTION_FOR_EACH,
+                    [
+                        'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 5,
                         'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST, Glossary::SUIT_FLAME]
                     ]
@@ -67,7 +68,7 @@ return [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 3,
             'bonus' => [
-                'action' => 'you may change the suit of one other card. Its name, bonuses and penalties remain the same.'
+                'action' => Glossary::ACTION_CHANGE_SUIT
             ]
         ],
         Glossary::CARD_CANDLE => [
@@ -90,7 +91,23 @@ return [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 7,
             'bonus' => [
-                'action' => '+10 if three different cards in same suit, +40 if four different cards, +100 if five different cards'
+                'or' =>  [
+                    [
+                        'action' => Glossary::ACTION_DIFFERENT_CARDS_IN_SAME_SUIT,
+                        'value' => 10,
+                        'cards' => 3
+                    ],
+                    [
+                        'action' => Glossary::ACTION_DIFFERENT_CARDS_IN_SAME_SUIT,
+                        'value' => 40,
+                        'cards' => 4
+                    ],
+                    [
+                        'action' => Glossary::ACTION_DIFFERENT_CARDS_IN_SAME_SUIT,
+                        'value' => 100,
+                        'cards' => 5
+                    ],
+                ]
             ]
         ],
         Glossary::CARD_DOPPELGANGER => [
@@ -419,7 +436,8 @@ return [
             'suit' => Glossary::SUIT_WILD,
             'base_strength' => 0,
             'bonus' => [
-                'action' => 'May take on the name and suit of any Artifact, Leader, Wizard, Weapon or Beast. Does not take bonus or penalty.'
+                'action' => Glossary::ACTION_TAKE_ON_NAME_AND_SUIT,
+                'suits' => [Glossary::SUIT_ARTIFACT, Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD, Glossary::SUIT_WEAPON, Glossary::SUIT_BEAST]
             ],
         ],
         Glossary::CARD_SHIELD_OF_KETH => [
