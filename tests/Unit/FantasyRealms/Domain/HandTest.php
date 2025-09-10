@@ -126,3 +126,13 @@ it('combines when king has shield and sword of keth', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_SHIELD_OF_KETH, Glossary::CARD_KING, Glossary::CARD_SWORD_OF_KETH]);
     expect($hand->getTotal())->toBe(99);
 });
+
+it('gets full points when candle has bell tower, book of changes and any wizard', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_CANDLE, Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER, Glossary::CARD_BEASTMASTER]);
+    expect($hand->getTotal())->toBe(137);
+});
+
+it('does not get candle bonus without a wizard', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_CANDLE, Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER, Glossary::CARD_SWORD_OF_KETH]);
+    expect($hand->getTotal())->toBe(20);
+});

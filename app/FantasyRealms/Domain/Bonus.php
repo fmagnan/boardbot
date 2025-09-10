@@ -18,7 +18,7 @@ class Bonus
 
     public static function withAnyOneSuit(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -38,7 +38,7 @@ class Bonus
 
     public static function withAnyOneCard(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -58,7 +58,7 @@ class Bonus
 
     public static function forEach(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -76,7 +76,7 @@ class Bonus
 
     public static function withCard(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -111,7 +111,7 @@ class Bonus
 
     public static function withBothCards(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $cards = $params['cards'];
         $suits = $params['suits'];
         foreach ($cards as $card) {
@@ -148,15 +148,15 @@ class Bonus
      * {
      * return false;
      * }
-     *
-     * public static function changeSuit(Hand $hand, Card $current, array $params): bool
-     * {
-     * return false;
-     * }*/
+     */
+    public static function changeSuit(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
 
     public static function ifNo(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
+        $value = (int)$params['value'];
         $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {

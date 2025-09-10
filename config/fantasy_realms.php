@@ -75,7 +75,10 @@ return [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 2,
             'bonus' => [
-                'action' => '+100 with Book of Changes, Bell Tower, and any one Wizard'
+                'action' => Glossary::ACTION_WITH_BOTH_CARDS,
+                'value' => 100,
+                'cards' => [Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER],
+                'suits' => [Glossary::SUIT_WIZARD]
             ]
         ],
         Glossary::CARD_CELESTIAL_KNIGHTS => [
