@@ -94,7 +94,7 @@ return [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 7,
             'bonus' => [
-                'or' =>  [
+                'or' => [
                     [
                         'action' => Glossary::ACTION_DIFFERENT_CARDS_IN_SAME_SUIT,
                         'value' => 10,
@@ -117,7 +117,7 @@ return [
             'suit' => Glossary::SUIT_WILD,
             'base_strength' => 0,
             'bonus' => [
-                'action' => 'May duplicate the name, suit, base strength, and penalty but not bonus of any one other card in your hand'
+                'action' => Glossary::ACTION_DUPLICATE
             ]
         ],
         Glossary::CARD_DRAGON => [
@@ -326,7 +326,8 @@ return [
             'suit' => Glossary::SUIT_WILD,
             'base_strength' => 0,
             'bonus' => [
-                'action' => 'May take on the name and suit of any Army, Land, Weather, Flood or Flame. Does not take bonus or penalty.'
+                'action' => Glossary::ACTION_TAKE_ON_NAME_AND_SUIT,
+                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_WEATHER, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]
             ]
         ],
         Glossary::CARD_MOUNTAIN => [
@@ -350,7 +351,8 @@ return [
             'suit' => Glossary::SUIT_WIZARD,
             'base_strength' => 3,
             'bonus' => [
-                'action' => 'At the end of the game, you may take one Army, Leader, Wizard, or Beast from the discard pile and add it to your hand as an eighth card.'
+                'action' => Glossary::ACTION_TAKE_ONE_MORE_CARD_AT_END,
+                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD, Glossary::SUIT_BEAST]
             ]
         ],
         Glossary::CARD_PRINCESS => [
@@ -430,7 +432,8 @@ return [
                         'suits' => [Glossary::SUIT_LAND]
                     ],
                     [
-                        'action' => 'Clears the word Army from Penalty section of all cards in hand'
+                        'action' => Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
+                        'word' => Glossary::SUIT_ARMY
                     ]
                 ]
             ]
@@ -568,16 +571,14 @@ return [
         Glossary::CARD_WARSHIP => [
             'suit' => Glossary::SUIT_WEAPON,
             'base_strength' => 23,
+            'bonus' => [
+                'action' => Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
+                'word' => Glossary::SUIT_ARMY,
+                'suits' => [Glossary::SUIT_FLOOD]
+            ],
             'penalty' => [
-                'and' => [
-                    [
-                        'action' => Glossary::ACTION_BLANKED_UNLESS,
-                        'suits' => [Glossary::SUIT_FLOOD],
-                    ],
-                    [
-                        'action' => 'Clears the word Army from Penalty section of all Floods'
-                    ]
-                ]
+                'action' => Glossary::ACTION_BLANKED_UNLESS,
+                'suits' => [Glossary::SUIT_FLOOD],
             ]
         ],
         Glossary::CARD_WATER_ELEMENTAL => [
@@ -593,7 +594,10 @@ return [
             'suit' => Glossary::SUIT_WEATHER,
             'base_strength' => 13,
             'bonus' => [
-                'action' => '+40 with Rainstorm and either Blizzard or Great Flood'
+                'action' => Glossary::ACTION_WITH_CARD_AND_EITHER,
+                'value' => 40,
+                'cards' => [Glossary::CARD_RAINSTORM],
+                'either' => [Glossary::CARD_BLIZZARD, Glossary::CARD_GREAT_FLOOD]
             ]
         ],
         Glossary::CARD_WILDFIRE => [
@@ -624,7 +628,8 @@ return [
             'suit' => Glossary::SUIT_ARTIFACT,
             'base_strength' => 2,
             'bonus' => [
-                'action' => '+50 if every active card in hand is a different suit'
+                'action' => Glossary::ACTION_EACH_ACTIVE_CARD_IS_DIFFERENT_SUIT,
+                'value' => 50
             ],
         ],
     ]

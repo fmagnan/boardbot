@@ -129,27 +129,52 @@ class Bonus
         return true;
     }
 
-    /*public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
-     * {
-     * return false;
-     * }
-     *
-     * public static function cardRun(Hand $hand, Card $current, array $params): bool
-     * {
-     * return false;
-     * }
-     *
-     * public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
-     * {
-     * return false;
-     * }
-     *
-     * public static function differentCardsInSameSuit(Hand $hand, Card $current, array $params): bool
-     * {
-     * return false;
-     * }
-     */
+    public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function cardRun(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function differentCardsInSameSuit(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
     public static function changeSuit(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function withCardAndEither(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function clearsWordFromPenalty(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function eachActiveCardIsDifferentSuit(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function duplicate(Hand $hand, Card $current, array $params): bool
+    {
+        return false;
+    }
+
+    public static function takeOneMoreCardAtEnd(Hand $hand, Card $current, array $params): bool
     {
         return false;
     }

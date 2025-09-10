@@ -146,7 +146,11 @@ class Glossary
 
     public const string ACTION_CLEARS_PENALTY = 'clearsPenalty';
 
+    public const string ACTION_CLEARS_WORD_FROM_PENALTY = 'clearsWordFromPenalty';
+
     public const string ACTION_WITH_BOTH_CARDS = 'withBothCards';
+
+    public const string ACTION_WITH_CARD_AND_EITHER = 'withCardAndEither';
 
     public const string ACTION_IF_NO = 'ifNo';
 
@@ -169,4 +173,10 @@ class Glossary
     public const string ACTION_DIFFERENT_CARDS_IN_SAME_SUIT = 'differentCardsInSameSuit';
 
     public const string ACTION_CHANGE_SUIT = 'changeSuit';
+
+    public const string ACTION_EACH_ACTIVE_CARD_IS_DIFFERENT_SUIT = 'eachActiveCardIsDifferentSuit';
+
+    public const string ACTION_DUPLICATE = 'duplicate';
+
+    public const string ACTION_TAKE_ONE_MORE_CARD_AT_END = 'takeOneMoreCardAtEnd';
 }
