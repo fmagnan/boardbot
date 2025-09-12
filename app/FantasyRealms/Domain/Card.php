@@ -72,6 +72,20 @@ class Card
         if (count($this->penalty) === 0) {
             return;
         }
+        if (isset($this->penalty['and'])) {
+            foreach ($this->penalty['and'] as $penalty) {
+                Penalty::apply($hand, $this, $penalty);
+            }
+            return;
+        }
+        if (isset($this->penalty['or'])) {
+            foreach ($this->penalty['or'] as $penalty) {
+                if (Penalty::apply($hand, $this, $penalty)) {
+                    break;
+                }
+            }
+            return;
+        }
         Penalty::apply($hand, $this, $this->penalty);
     }
 

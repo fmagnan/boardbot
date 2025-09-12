@@ -18,7 +18,9 @@ return [
             'base_strength' => 35,
             'penalty' => [
                 'action' => Glossary::ACTION_BLANKS,
-                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST]
+                'targets' => [
+                    'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST]
+                ]
             ]
         ],
         Glossary::CARD_BEASTMASTER => [
@@ -54,7 +56,9 @@ return [
                 'and' => [
                     [
                         'action' => Glossary::ACTION_BLANKS,
-                        'suits' => [Glossary::SUIT_FLOOD]
+                        'targets' => [
+                            'suits' => [Glossary::SUIT_FLOOD]
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
@@ -253,7 +257,9 @@ return [
             'base_strength' => 32,
             'penalty' => [
                 'action' => Glossary::ACTION_BLANKS,
-                'targets' => [Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_FLAME],
+                'targets' => [
+                    'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_FLAME],
+                ],
                 'excludes' => [
                     'cards' => [Glossary::CARD_MOUNTAIN, Glossary::CARD_LIGHTNING]
                 ]

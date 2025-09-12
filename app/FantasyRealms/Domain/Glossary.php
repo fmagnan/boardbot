@@ -136,47 +136,47 @@ class Glossary
 
     public const string CARD_WORLD_TREE = 'World Tree';
 
-    public const string ACTION_WITH_ANY_ONE_SUIT = 'withAnyOneSuit';
-
-    public const string ACTION_FOR_EACH = 'forEach';
-
-    public const string ACTION_WITH_CARD = 'withCard';
-
-    public const string ACTION_WITH_SUITS = 'withSuits';
-
-    public const string ACTION_CLEARS_PENALTY = 'clearsPenalty';
-
-    public const string ACTION_CLEARS_WORD_FROM_PENALTY = 'clearsWordFromPenalty';
-
-    public const string ACTION_WITH_BOTH_CARDS = 'withBothCards';
-
-    public const string ACTION_WITH_CARD_AND_EITHER = 'withCardAndEither';
-
-    public const string ACTION_IF_NO = 'ifNo';
-
-    public const string ACTION_UNLESS_AT_LEAST = 'unlessAtLeast';
-
-    public const string ACTION_BLANKS = 'blanks';
+    public const string ACTION_ADD_BASE_STRENGTH_AMONG = 'addBaseStrengthAmong';
 
     public const string ACTION_BLANKED_UNLESS = 'blankedUnless';
 
     public const string ACTION_BLANKED_WITH = 'blankedWith';
 
-    public const string ACTION_WITH_ANY_ONE_CARD = 'withAnyOneCard';
-
-    public const string ACTION_ADD_BASE_STRENGTH_AMONG = 'addBaseStrengthAmong';
+    public const string ACTION_BLANKS = 'blanks';
 
     public const string ACTION_CARD_RUN = 'cardRun';
 
-    public const string ACTION_TAKE_ON_NAME_AND_SUIT = 'takeOnNameAndSuit';
+    public const string ACTION_CHANGE_SUIT = 'changeSuit';
+
+    public const string ACTION_CLEARS_PENALTY = 'clearsPenalty';
+
+    public const string ACTION_CLEARS_WORD_FROM_PENALTY = 'clearsWordFromPenalty';
 
     public const string ACTION_DIFFERENT_CARDS_IN_SAME_SUIT = 'differentCardsInSameSuit';
 
-    public const string ACTION_CHANGE_SUIT = 'changeSuit';
+    public const string ACTION_DUPLICATE = 'duplicate';
 
     public const string ACTION_EACH_ACTIVE_CARD_IS_DIFFERENT_SUIT = 'eachActiveCardIsDifferentSuit';
 
-    public const string ACTION_DUPLICATE = 'duplicate';
+    public const string ACTION_FOR_EACH = 'forEach';
+
+    public const string ACTION_IF_NO = 'ifNo';
+
+    public const string ACTION_TAKE_ON_NAME_AND_SUIT = 'takeOnNameAndSuit';
 
     public const string ACTION_TAKE_ONE_MORE_CARD_AT_END = 'takeOneMoreCardAtEnd';
+
+    public const string ACTION_UNLESS_AT_LEAST = 'unlessAtLeast';
+
+    public const string ACTION_WITH_ANY_ONE_CARD = 'withAnyOneCard';
+
+    public const string ACTION_WITH_ANY_ONE_SUIT = 'withAnyOneSuit';
+
+    public const string ACTION_WITH_BOTH_CARDS = 'withBothCards';
+
+    public const string ACTION_WITH_CARD = 'withCard';
+
+    public const string ACTION_WITH_CARD_AND_EITHER = 'withCardAndEither';
+
+    public const string ACTION_WITH_SUITS = 'withSuits';
 }

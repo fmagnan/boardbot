@@ -75,7 +75,7 @@ class Penalty
     public static function blanks(Hand $hand, Card $current, array $params): bool
     {
         $targetSuits = $params['targets']['suits'] ?? [];
-        $excludes = $params['excludes'];
+        $excludes = $params['excludes'] ?? [];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->getName() === $current->getName()) {
@@ -88,6 +88,7 @@ class Penalty
                 if (isset($excludes['cards']) && in_array($card->getName(), $excludes['cards'], true)) {
                     continue;
                 }
+                echo 'card ' . $card->getName(). ' is blanked by ' . $current->getName() . PHP_EOL;
                 $card->blank();
                 $found = true;
             }

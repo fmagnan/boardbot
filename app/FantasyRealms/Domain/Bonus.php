@@ -112,14 +112,12 @@ class Bonus
     public static function withBothCards(Hand $hand, Card $current, array $params): bool
     {
         $value = (int)$params['value'];
-        $cards = $params['cards'];
-        $suits = $params['suits'];
-        foreach ($cards as $card) {
+        foreach ($params['cards'] as $card) {
             if (!$hand->hasCard($card)) {
                 return false;
             }
         }
-        foreach ($suits as $suit) {
+        foreach ($params['suits'] as $suit) {
             if (!$hand->hasSuit($suit, $current)) {
                 return false;
             }
@@ -127,6 +125,24 @@ class Bonus
         $current->addBonus($value);
 
         return true;
+    }
+
+    public static function withCardAndEither(Hand $hand, Card $current, array $params): bool
+    {
+        $value = (int)$params['value'];
+        foreach ($params['cards'] as $card) {
+            if (!$hand->hasCard($card)) {
+                return false;
+            }
+        }
+        foreach ($params['either'] as $card) {
+            if ($hand->hasCard($card)) {
+                $current->addBonus($value);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
@@ -154,10 +170,7 @@ class Bonus
         return false;
     }
 
-    public static function withCardAndEither(Hand $hand, Card $current, array $params): bool
-    {
-        return false;
-    }
+
 
     public static function clearsWordFromPenalty(Hand $hand, Card $current, array $params): bool
     {

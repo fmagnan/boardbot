@@ -136,3 +136,13 @@ it('does not get candle bonus without a wizard', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_CANDLE, Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER, Glossary::CARD_SWORD_OF_KETH]);
     expect($hand->getTotal())->toBe(20);
 });
+
+it('does not get full points from whirlwind when rainstorm is missing', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_BLIZZARD, Glossary::CARD_GREAT_FLOOD, Glossary::CARD_WHIRLWIND]);
+    expect($hand->getTotal())->toBe(43);
+});
+
+it('gets whirlwind bonus when rainstorm and blizzard are together', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_BLIZZARD, Glossary::CARD_RAINSTORM, Glossary::CARD_WHIRLWIND]);
+    expect($hand->getTotal())->toBe(91);
+});
