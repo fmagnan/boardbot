@@ -56,7 +56,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
                 'value' => 15,
-                'suits' => [Glossary::SUIT_WIZARD]
+                'suits' => [
+                    Glossary::SUIT_WIZARD
+                ]
             ],
         ],
         Glossary::CARD_BLIZZARD => [
@@ -67,7 +69,9 @@ return [
                     [
                         'action' => Glossary::ACTION_BLANKS,
                         'targets' => [
-                            'suits' => [Glossary::SUIT_FLOOD]
+                            'suits' => [
+                                Glossary::SUIT_FLOOD
+                            ]
                         ]
                     ],
                     [

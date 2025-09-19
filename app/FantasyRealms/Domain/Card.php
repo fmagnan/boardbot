@@ -102,6 +102,11 @@ class Card
         return in_array($this->name, $cards, true);
     }
 
+    public function isBlanked() : bool
+    {
+        return $this->suit === Glossary::SUIT_NONE;
+    }
+
     public function isPrior(array $bonus): bool
     {
         if (isset($bonus['and'])) {

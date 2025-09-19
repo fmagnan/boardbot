@@ -223,3 +223,26 @@ it('gets maximum points from collector when five cards have same suit', function
     );
     expect($hand->getTotal())->toBe(267);
 });
+
+it('gets world tree bonus if each active card has a different suit', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_WORLD_TREE,
+        ],
+    );
+    expect($hand->getTotal())->toBe(59);
+});
+
+it('gets no points from world tree if at least two active card have same suit', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_WORLD_TREE,
+            Glossary::CARD_BOOK_OF_CHANGES,
+        ],
+    );
+    expect($hand->getTotal())->toBe(12);
+});

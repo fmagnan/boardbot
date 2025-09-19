@@ -83,7 +83,19 @@ class Bonus
 
     public static function eachActiveCardIsDifferentSuit(Hand $hand, Card $current, array $params): bool
     {
-        return false;
+        $suits = [];
+        foreach ($hand->getCards() as $card) {
+            if ($card->isBlanked()) {
+                continue;
+            }
+            if (in_array($card->getSuit(), $suits, true)) {
+                return false;
+            }
+            $suits[] = $card->getSuit();
+        }
+        $current->addBonus((int) $params['value']);
+
+        return true;
     }
 
     public static function forEach(Hand $hand, Card $current, array $params): bool
