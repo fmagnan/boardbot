@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\FantasyRealms\Domain;
 
+use PHPUnit\Event\Runtime\PHP;
+
 class Hand
 {
     /** @var Card[] */
@@ -14,24 +16,14 @@ class Hand
         $this->cards[] = $card;
     }
 
-    public function getCards(): array
-    {
-        return $this->cards;
-    }
-
     public function countCards(): int
     {
         return count($this->cards);
     }
 
-    private function sortCardsByPriority(): void
+    public function getCards(): array
     {
-        foreach ($this->cards as $index => $card) {
-            if ($card->isPrior()) {
-                $out = array_splice($this->cards, $index, 1);
-                array_splice($this->cards, 0, 0, $out);
-            }
-        }
+        return $this->cards;
     }
 
     public function getTotal(): int
@@ -73,5 +65,15 @@ class Hand
         }
 
         return false;
+    }
+
+    private function sortCardsByPriority(): void
+    {
+        foreach ($this->cards as $index => $card) {
+            if ($card->isPrior($card->getBonus())) {
+                $out = array_splice($this->cards, $index, 1);
+                array_splice($this->cards, 0, 0, $out);
+            }
+        }
     }
 }

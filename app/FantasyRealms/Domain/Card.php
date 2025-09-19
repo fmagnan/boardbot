@@ -18,6 +18,39 @@ class Card
         $this->value = $this->base_strength;
     }
 
+    public function addBonus(int $value): self
+    {
+        $this->value += $value;
+
+        return $this;
+    }
+
+    public function apply(Hand $hand): Hand
+    {
+        $this->applyBonus($hand);
+        $this->applyPenalty($hand);
+
+        return $hand;
+    }
+
+    public function blank(): self
+    {
+        $this->base_strength = 0;
+        $this->value = 0;
+        $this->bonus = [];
+        $this->penalty = [];
+        $this->name = '';
+        $this->suit = Glossary::SUIT_NONE;
+
+        return $this;
+    }
+
+    public function clearPenalty(): self
+    {
+        $this->penalty = [];
+        return $this;
+    }
+
     public static function fromConf(string $name, array $conf): self
     {
         return new self(
@@ -27,6 +60,16 @@ class Card
             $conf['bonus'] ?? [],
             $conf['penalty'] ?? [],
         );
+    }
+
+    public function getBaseStrength(): int
+    {
+        return $this->base_strength;
+    }
+
+    public function getBonus(): array
+    {
+        return $this->bonus;
     }
 
     public function getName(): string
@@ -39,23 +82,60 @@ class Card
         return $this->suit;
     }
 
-    public function isPrior(): bool
+    public function getValue(): int
     {
-        if (isset($this->bonus['action']) && $this->bonus['action'] === Glossary::ACTION_CLEARS_PENALTY) {
-            return true;
+        return $this->value;
+    }
+
+    public function hasPenalty(): bool
+    {
+        return !empty($this->penalty);
+    }
+
+    public function hasSameSuitAs(array $suits): bool
+    {
+        return in_array($this->suit, $suits, true);
+    }
+
+    public function isAmong(array $cards): bool
+    {
+        return in_array($this->name, $cards, true);
+    }
+
+    public function isPrior(array $bonus): bool
+    {
+        if (isset($bonus['and'])) {
+            foreach($bonus['and'] as $subBonus) {
+                if ($this->isPrior($subBonus)) {
+                    return true;
+                }
+            }
         }
-
-        return false;
+        if (!isset($bonus['action'])) {
+            return false;
+        }
+        return in_array($bonus['action'], [
+            Glossary::ACTION_CLEARS_PENALTY,
+            Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
+        ]);
     }
 
-    public function getBaseStrength(): int
+    public function isSameAs(Card $card): bool
     {
-        return $this->base_strength;
+        return $card->getName() === $this->name;
     }
 
-    public function addBonus(int $value): self
+    public function removeWordFromPenalty(int|string $word): self
     {
-        $this->value += $value;
+        if (is_int($word)) {
+            if (($key = array_search($word, $this->penalty['suits'])) !== false) {
+                unset($this->penalty['suits'][$key]);
+            }
+        } else {
+            if (($key = array_search($word, $this->penalty['cards'])) !== false) {
+                unset($this->penalty['cards'][$key]);
+            }
+        }
 
         return $this;
     }
@@ -65,28 +145,6 @@ class Card
         $this->value -= $value;
 
         return $this;
-    }
-
-    private function applyPenalty(Hand $hand): void
-    {
-        if (count($this->penalty) === 0) {
-            return;
-        }
-        if (isset($this->penalty['and'])) {
-            foreach ($this->penalty['and'] as $penalty) {
-                Penalty::apply($hand, $this, $penalty);
-            }
-            return;
-        }
-        if (isset($this->penalty['or'])) {
-            foreach ($this->penalty['or'] as $penalty) {
-                if (Penalty::apply($hand, $this, $penalty)) {
-                    break;
-                }
-            }
-            return;
-        }
-        Penalty::apply($hand, $this, $this->penalty);
     }
 
     private function applyBonus(Hand $hand): void
@@ -111,69 +169,25 @@ class Card
         Bonus::apply($hand, $this, $this->bonus);
     }
 
-    public function apply(Hand $hand): Hand
+    private function applyPenalty(Hand $hand): void
     {
-        $this->applyBonus($hand);
-        $this->applyPenalty($hand);
-
-        return $hand;
-    }
-
-    public function getValue(): int
-    {
-        return $this->value;
-    }
-
-    public function clearPenalty(): self
-    {
-        $this->penalty = [];
-        return $this;
-    }
-
-    public function blank(): self
-    {
-        $this->base_strength = 0;
-        $this->value = 0;
-        $this->bonus = [];
-        $this->penalty = [];
-        $this->name = '';
-        $this->suit = Glossary::SUIT_NONE;
-
-        return $this;
-    }
-
-    public function hasPenalty(): bool
-    {
-        return !empty($this->penalty);
-    }
-
-    public function removeWordFromPenalty(int|string $word) : self
-    {
-        if (is_int($word)) {
-            if (($key = array_search($word, $this->penalty['suits'])) !== false) {
-                unset($this->penalty['suits'][$key]);
-            }
-        } else {
-            if (($key = array_search($word, $this->penalty['cards'])) !== false) {
-                unset($this->penalty['cards'][$key]);
-            }
+        if (count($this->penalty) === 0) {
+            return;
         }
-
-        return $this;
-    }
-
-    public function isSameAs(Card $card): bool
-    {
-        return $card->getName() === $this->name;
-    }
-
-    public function hasSameSuitAs(array $suits): bool
-    {
-        return in_array($this->suit, $suits, true);
-    }
-
-    public function isAmong(array $cards): bool
-    {
-        return in_array($this->name, $cards, true);
+        if (isset($this->penalty['and'])) {
+            foreach ($this->penalty['and'] as $penalty) {
+                Penalty::apply($hand, $this, $penalty);
+            }
+            return;
+        }
+        if (isset($this->penalty['or'])) {
+            foreach ($this->penalty['or'] as $penalty) {
+                if (Penalty::apply($hand, $this, $penalty)) {
+                    break;
+                }
+            }
+            return;
+        }
+        Penalty::apply($hand, $this, $this->penalty);
     }
 }

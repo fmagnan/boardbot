@@ -60,7 +60,7 @@ class Penalty
                 continue;
             }
             if ($card->hasSameSuitAs($params['suits'])) {
-                $current->substractPenalty((int)$params['value']);
+                $current->substractPenalty((int) $params['value']);
                 $found = true;
             }
         }
@@ -80,7 +80,7 @@ class Penalty
             }
         }
         if (!$found) {
-            $current->substractPenalty((int)$params['value']);
+            $current->substractPenalty((int) $params['value']);
         }
 
         return !$found;
@@ -94,14 +94,13 @@ class Penalty
                 continue;
             }
             if ($card->isAmong($params['cards'])) {
-                $current->substractPenalty((int)$params['value']);
+                $current->substractPenalty((int) $params['value']);
                 $found = true;
             }
         }
 
         return $found;
     }
-
 
     private static function getAction(array $conf): string
     {

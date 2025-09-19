@@ -119,7 +119,7 @@ class Bonus
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->isAmong( $params['cards'])) {
+            if ($card->isAmong($params['cards'])) {
                 $found = true;
             }
         }

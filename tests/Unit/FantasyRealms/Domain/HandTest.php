@@ -156,6 +156,22 @@ it('gets whirlwind bonus when rainstorm and blizzard are together', function ():
 });
 
 it('cancels swamp penalty with rangers bonus', function (): void {
-    $hand = init_hand($this->deck, [Glossary::CARD_RANGERS, Glossary::CARD_SWAMP]);
+    $hand = init_hand($this->deck, [Glossary::CARD_SWAMP, Glossary::CARD_RANGERS]);
     expect($hand->getTotal())->toBe(23);
+});
+
+it('gets no points from collector when all cards have different suits', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_RANGERS,
+            Glossary::CARD_SWAMP,
+            Glossary::CARD_DRAGON,
+            Glossary::CARD_PRINCESS,
+            Glossary::CARD_FORGE,
+            Glossary::CARD_FOREST,
+        ],
+    );
+    expect($hand->getTotal())->toBe(113);
 });

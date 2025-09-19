@@ -204,12 +204,28 @@ return [
         Glossary::CARD_FOREST => [
             'suit' => Glossary::SUIT_LAND,
             'base_strength' => 7,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [12, [Glossary::SUIT_BEAST], [Glossary::CARD_ELVEN_ARCHERS]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 12,
+                'suits' => [
+                    Glossary::SUIT_BEAST
+                ],
+                'cards' => [
+                    Glossary::CARD_ELVEN_ARCHERS
+                ]
+            ]
         ],
         Glossary::CARD_FORGE => [
             'suit' => Glossary::SUIT_FLAME,
             'base_strength' => 9,
-            'bonus' => [Glossary::ACTION_FOR_EACH, [9, [Glossary::SUIT_WEAPON, Glossary::SUIT_ARTIFACT]]],
+            'bonus' => [
+                'action' => Glossary::ACTION_FOR_EACH,
+                'value' => 9,
+                'suits' => [
+                    Glossary::SUIT_WEAPON,
+                    Glossary::SUIT_ARTIFACT
+                ]
+            ],
         ],
         Glossary::CARD_FOUNTAIN_OF_LIFE => [
             'suit' => Glossary::SUIT_FLOOD,
@@ -333,7 +349,13 @@ return [
             'base_strength' => 0,
             'bonus' => [
                 'action' => Glossary::ACTION_TAKE_ON_NAME_AND_SUIT,
-                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_WEATHER, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]
+                'suits' => [
+                    Glossary::SUIT_ARMY,
+                    Glossary::SUIT_LAND,
+                    Glossary::SUIT_WEATHER,
+                    Glossary::SUIT_FLOOD,
+                    Glossary::SUIT_FLAME
+                ]
             ]
         ],
         Glossary::CARD_MOUNTAIN => [
@@ -358,7 +380,12 @@ return [
             'base_strength' => 3,
             'bonus' => [
                 'action' => Glossary::ACTION_TAKE_ONE_MORE_CARD_AT_END,
-                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD, Glossary::SUIT_BEAST]
+                'suits' => [
+                    Glossary::SUIT_ARMY,
+                    Glossary::SUIT_LEADER,
+                    Glossary::SUIT_WIZARD,
+                    Glossary::SUIT_BEAST
+                ]
             ]
         ],
         Glossary::CARD_PRINCESS => [
@@ -367,7 +394,11 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 8,
-                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_WIZARD, Glossary::SUIT_LEADER]
+                'suits' => [
+                    Glossary::SUIT_ARMY,
+                    Glossary::SUIT_WIZARD,
+                    Glossary::SUIT_LEADER
+                ]
             ],
         ],
         Glossary::CARD_PROTECTION_RUNE => [
