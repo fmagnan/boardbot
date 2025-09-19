@@ -308,3 +308,14 @@ it('can add a last card with necromancer', function (): void {
     ]);
     expect($hand->getTotal())->toBe(46);
 });
+
+it('can have two times the same card because of the doppelganger', function (): void {
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_DRAGON,
+        Glossary::CARD_WARLOCK_LORD,
+    ]);
+    $hand->addCard(Glossary::CARD_DOPPELGANGER, [
+        'card' => Glossary::CARD_DRAGON
+    ]);
+    expect($hand->getTotal())->toBe(85);
+});

@@ -10,11 +10,12 @@ class Card
 
     public function __construct(
         private string $name,
-        private int $suit,
-        private int $base_strength,
-        private array $bonus,
-        private array $penalty,
-    ) {
+        private int    $suit,
+        private int    $base_strength,
+        private array  $bonus,
+        private array  $penalty,
+    )
+    {
         $this->value = $this->base_strength;
     }
 
@@ -55,6 +56,19 @@ class Card
     public function clearPenalty(): self
     {
         $this->penalty = [];
+
+        return $this;
+    }
+
+    public function duplicate(Card $from): self
+    {
+        $this->name = $from->getName();
+        $this->base_strength = $from->getBaseStrength();
+        $this->value = $this->base_strength;
+        $this->bonus = [];
+        $this->penalty = $from->getPenalty();
+        $this->suit = $from->getSuit();
+
         return $this;
     }
 
@@ -71,6 +85,11 @@ class Card
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getPenalty(): array
+    {
+        return $this->penalty;
     }
 
     public function getSuit(): int
@@ -119,6 +138,7 @@ class Card
             Glossary::ACTION_CLEARS_PENALTY,
             Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
             Glossary::ACTION_CHANGE_SUIT,
+            Glossary::ACTION_DUPLICATE,
         ]);
     }
 

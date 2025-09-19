@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\FantasyRealms\Domain;
 
+use PHPUnit\Event\Runtime\PHP;
+
 class Bonus
 {
     public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
@@ -112,7 +114,13 @@ class Bonus
 
     public static function duplicate(Hand $hand, Card $current, array $params): bool
     {
-        /** @todo */
+        foreach ($hand->getCards() as $card) {
+            if ($card->isSameAs($params['card'])) {
+                $current->duplicate($card);
+                return true;
+            }
+        }
+
         return false;
     }
 
