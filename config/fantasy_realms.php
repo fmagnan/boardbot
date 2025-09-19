@@ -10,7 +10,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 15,
-                'suits' => [Glossary::SUIT_WEATHER]
+                'suits' => [
+                    Glossary::SUIT_WEATHER
+                ]
             ]
         ],
         Glossary::CARD_BASILISK => [
@@ -19,7 +21,11 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_BLANKS,
                 'targets' => [
-                    'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST]
+                    'suits' => [
+                        Glossary::SUIT_ARMY,
+                        Glossary::SUIT_LEADER,
+                        Glossary::SUIT_BEAST
+                    ]
                 ]
             ]
         ],
@@ -115,8 +121,8 @@ return [
                 'or' => [
                     [
                         'action' => Glossary::ACTION_DIFFERENT_CARDS_IN_SAME_SUIT,
-                        'value' => 10,
-                        'cards' => 3
+                        'value' => 100,
+                        'cards' => 5
                     ],
                     [
                         'action' => Glossary::ACTION_DIFFERENT_CARDS_IN_SAME_SUIT,
@@ -125,8 +131,8 @@ return [
                     ],
                     [
                         'action' => Glossary::ACTION_DIFFERENT_CARDS_IN_SAME_SUIT,
-                        'value' => 100,
-                        'cards' => 5
+                        'value' => 10,
+                        'cards' => 3
                     ],
                 ]
             ]
@@ -340,13 +346,19 @@ return [
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 20,
-                        'suits' => [Glossary::SUIT_ARMY],
-                        'cards' => [Glossary::CARD_QUEEN]
+                        'suits' => [
+                            Glossary::SUIT_ARMY
+                        ],
+                        'cards' => [
+                            Glossary::CARD_QUEEN
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 5,
-                        'suits' => [Glossary::SUIT_ARMY]
+                        'suits' => [
+                            Glossary::SUIT_ARMY
+                        ]
                     ]
                 ]
             ]
@@ -356,7 +368,10 @@ return [
             'base_strength' => 14,
             'bonus' => [
                 'action' => Glossary::ACTION_CLEARS_PENALTY,
-                'suits' => [Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]
+                'suits' => [
+                    Glossary::SUIT_FLOOD,
+                    Glossary::SUIT_FLAME
+                ]
             ]
         ],
         Glossary::CARD_LIGHT_CALVARY => [
@@ -471,13 +486,19 @@ return [
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 20,
-                        'suits' => [Glossary::SUIT_ARMY],
-                        'cards' => [Glossary::CARD_KING]
+                        'suits' => [
+                            Glossary::SUIT_ARMY
+                        ],
+                        'cards' => [
+                            Glossary::CARD_KING
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 5,
-                        'suits' => [Glossary::SUIT_ARMY]
+                        'suits' => [
+                            Glossary::SUIT_ARMY
+                        ]
                     ],
                 ]
             ]
@@ -533,13 +554,19 @@ return [
                     [
                         'action' => Glossary::ACTION_WITH_BOTH_CARDS,
                         'value' => 40,
-                        'suits' => [Glossary::SUIT_LEADER],
-                        'cards' => [Glossary::CARD_SWORD_OF_KETH]
+                        'suits' => [
+                            Glossary::SUIT_LEADER
+                        ],
+                        'cards' => [
+                            Glossary::CARD_SWORD_OF_KETH
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
                         'value' => 15,
-                        'suits' => [Glossary::SUIT_LEADER],
+                        'suits' => [
+                            Glossary::SUIT_LEADER
+                        ],
                     ],
                 ]
             ]
@@ -569,13 +596,19 @@ return [
                     [
                         'action' => Glossary::ACTION_WITH_BOTH_CARDS,
                         'value' => 40,
-                        'suits' => [Glossary::SUIT_LEADER],
-                        'cards' => [Glossary::CARD_SHIELD_OF_KETH]
+                        'suits' => [
+                            Glossary::SUIT_LEADER
+                        ],
+                        'cards' => [
+                            Glossary::CARD_SHIELD_OF_KETH
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
                         'value' => 10,
-                        'suits' => [Glossary::SUIT_LEADER],
+                        'suits' => [
+                            Glossary::SUIT_LEADER
+                        ],
                     ],
                 ]
             ]
@@ -641,7 +674,10 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
                 'value' => 14,
-                'suits' => [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]
+                'suits' => [
+                    Glossary::SUIT_LEADER,
+                    Glossary::SUIT_WIZARD
+                ]
             ]
         ],
         Glossary::CARD_WARLOCK_LORD => [
@@ -650,7 +686,10 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 10,
-                'suits' => [Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD]
+                'suits' => [
+                    Glossary::SUIT_LEADER,
+                    Glossary::SUIT_WIZARD
+                ]
             ],
         ],
         Glossary::CARD_WARSHIP => [
@@ -659,11 +698,15 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
                 'word' => Glossary::SUIT_ARMY,
-                'suits' => [Glossary::SUIT_FLOOD]
+                'suits' => [
+                    Glossary::SUIT_FLOOD
+                ]
             ],
             'penalty' => [
                 'action' => Glossary::ACTION_BLANKED_UNLESS,
-                'suits' => [Glossary::SUIT_FLOOD],
+                'suits' => [
+                    Glossary::SUIT_FLOOD
+                ],
             ]
         ],
         Glossary::CARD_WATER_ELEMENTAL => [
@@ -672,7 +715,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 15,
-                'suits' => [Glossary::SUIT_FLOOD]
+                'suits' => [
+                    Glossary::SUIT_FLOOD
+                ]
             ]
         ],
         Glossary::CARD_WHIRLWIND => [

@@ -191,3 +191,35 @@ it('gets points from collector when three cards have same suit', function (): vo
     );
     expect($hand->getTotal())->toBe(156);
 });
+
+it('gets points from collector when four cards have same suit', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_BEASTMASTER,
+            Glossary::CARD_HYDRA,
+            Glossary::CARD_DRAGON,
+            Glossary::CARD_UNICORN,
+            Glossary::CARD_BASILISK,
+            Glossary::CARD_FOREST,
+        ],
+    );
+    expect($hand->getTotal())->toBe(233);
+});
+
+it('gets maximum points from collector when five cards have same suit', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_BEASTMASTER,
+            Glossary::CARD_HYDRA,
+            Glossary::CARD_DRAGON,
+            Glossary::CARD_UNICORN,
+            Glossary::CARD_BASILISK,
+            Glossary::CARD_WARHORSE,
+        ],
+    );
+    expect($hand->getTotal())->toBe(267);
+});
