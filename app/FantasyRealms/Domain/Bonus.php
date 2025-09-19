@@ -114,13 +114,12 @@ class Bonus
 
     public static function withAnyOneCard(Hand $hand, Card $current, array $params): bool
     {
-        $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getName(), $cards, true)) {
+            if ($card->isAmong( $params['cards'])) {
                 $found = true;
             }
         }
@@ -168,13 +167,12 @@ class Bonus
 
     public static function withCard(Hand $hand, Card $current, array $params): bool
     {
-        $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getName(), $cards, true)) {
+            if ($card->isAmong($params['cards'])) {
                 $current->addBonus((int) $params['value']);
                 $found = true;
             }

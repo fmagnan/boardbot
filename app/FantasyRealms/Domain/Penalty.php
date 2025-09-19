@@ -11,88 +11,6 @@ class Penalty
         return self::{self::getAction($conf)}($hand, $current, $conf);
     }
 
-    private static function getAction(array $conf): string
-    {
-        return $conf['action'];
-    }
-
-    public static function unlessAtLeast(Hand $hand, Card $current, array $params): bool
-    {
-        $value = (int) $params['value'];
-        $suits = $params['suits'];
-        $found = false;
-        foreach ($hand->getCards() as $card) {
-            if ($card->isSameAs($current)) {
-                continue;
-            }
-            if ($card->hasSameSuitAs($params['suits'])) {
-                $found = true;
-            }
-        }
-        if (!$found) {
-            $current->substractPenalty($value);
-        }
-
-        return !$found;
-    }
-
-    public static function forEach(Hand $hand, Card $current, array $params): bool
-    {
-        $found = false;
-        foreach ($hand->getCards() as $card) {
-            if ($card->isSameAs($current)) {
-                continue;
-            }
-            if ($card->hasSameSuitAs($params['suits'])) {
-                $current->substractPenalty((int) $params['value']);
-                $found = true;
-            }
-        }
-
-        return $found;
-    }
-
-    public static function withCard(Hand $hand, Card $current, array $params): bool
-    {
-        $found = false;
-        foreach ($hand->getCards() as $card) {
-            if ($card->isSameAs($current)) {
-                continue;
-            }
-            if (in_array($card->getName(), $params['cards'], true)) {
-                $current->substractPenalty((int) $params['value']);
-                $found = true;
-            }
-        }
-
-        return $found;
-    }
-
-    public static function blanks(Hand $hand, Card $current, array $params): bool
-    {
-        $targetSuits = $params['targets']['suits'] ?? [];
-        $excludes = $params['excludes'] ?? [];
-        $found = false;
-        foreach ($hand->getCards() as $card) {
-            if ($card->isSameAs($current)) {
-                continue;
-            }
-            if (count($targetSuits) === 0 || in_array($card->getSuit(), $targetSuits, true)) {
-                if (isset($excludes['suits']) && in_array($card->getSuit(), $excludes['suits'], true)) {
-                    continue;
-                }
-                if (isset($excludes['cards']) && in_array($card->getName(), $excludes['cards'], true)) {
-                    continue;
-                }
-                echo 'card ' . $card->getName() . ' is blanked by ' . $current->getName() . PHP_EOL;
-                $card->blank();
-                $found = true;
-            }
-        }
-
-        return $found;
-    }
-
     public static function blankedUnless(Hand $hand, Card $current, array $params): bool
     {
         $found = false;
@@ -108,5 +26,85 @@ class Penalty
         }
 
         return $found;
+    }
+
+    public static function blanks(Hand $hand, Card $current, array $params): bool
+    {
+        $targetSuits = $params['targets']['suits'] ?? [];
+        $excludes = $params['excludes'] ?? [];
+        $found = false;
+        foreach ($hand->getCards() as $card) {
+            if ($card->isSameAs($current)) {
+                continue;
+            }
+            if (count($targetSuits) === 0 || $card->hasSameSuitAs($targetSuits)) {
+                if (isset($excludes['suits']) && $card->hasSameSuitAs($excludes['suits'])) {
+                    continue;
+                }
+                if (isset($excludes['cards']) && $card->isAmong($excludes['cards'])) {
+                    continue;
+                }
+                $card->blank();
+                $found = true;
+            }
+        }
+
+        return $found;
+    }
+
+    public static function forEach(Hand $hand, Card $current, array $params): bool
+    {
+        $found = false;
+        foreach ($hand->getCards() as $card) {
+            if ($card->isSameAs($current)) {
+                continue;
+            }
+            if ($card->hasSameSuitAs($params['suits'])) {
+                $current->substractPenalty((int)$params['value']);
+                $found = true;
+            }
+        }
+
+        return $found;
+    }
+
+    public static function unlessAtLeast(Hand $hand, Card $current, array $params): bool
+    {
+        $found = false;
+        foreach ($hand->getCards() as $card) {
+            if ($card->isSameAs($current)) {
+                continue;
+            }
+            if ($card->hasSameSuitAs($params['suits'])) {
+                $found = true;
+            }
+        }
+        if (!$found) {
+            $current->substractPenalty((int)$params['value']);
+        }
+
+        return !$found;
+    }
+
+    public static function withCard(Hand $hand, Card $current, array $params): bool
+    {
+        $found = false;
+        foreach ($hand->getCards() as $card) {
+            if ($card->isSameAs($current)) {
+                continue;
+            }
+            if ($card->isAmong($params['cards'])) {
+                $current->substractPenalty((int)$params['value']);
+                $found = true;
+            }
+        }
+
+        return $found;
+    }
+
+
+    private static function getAction(array $conf): string
+    {
+        return $conf['action'];
     }
 }

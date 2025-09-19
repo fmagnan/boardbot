@@ -171,4 +171,9 @@ class Card
     {
         return in_array($this->suit, $suits, true);
     }
+
+    public function isAmong(array $cards): bool
+    {
+        return in_array($this->name, $cards, true);
+    }
 }
