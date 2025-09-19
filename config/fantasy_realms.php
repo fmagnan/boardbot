@@ -79,9 +79,9 @@ return [
                         'value' => 5,
                         'suits' => [
                             Glossary::SUIT_ARMY,
-                            Glossary::SUIT_LEADER,
                             Glossary::SUIT_BEAST,
-                            Glossary::SUIT_FLAME
+                            Glossary::SUIT_FLAME,
+                            Glossary::SUIT_LEADER,
                         ]
                     ]
                 ],
@@ -101,8 +101,8 @@ return [
                 'action' => Glossary::ACTION_WITH_BOTH_CARDS,
                 'value' => 100,
                 'cards' => [
+                    Glossary::CARD_BELL_TOWER,
                     Glossary::CARD_BOOK_OF_CHANGES,
-                    Glossary::CARD_BELL_TOWER
                 ],
                 'suits' => [
                     Glossary::SUIT_WIZARD
@@ -115,7 +115,9 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_UNLESS_AT_LEAST,
                 'value' => 8,
-                'suits' => [Glossary::SUIT_LEADER]
+                'suits' => [
+                    Glossary::SUIT_LEADER
+                ]
             ],
         ],
         Glossary::CARD_COLLECTOR => [
@@ -176,7 +178,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 15,
-                'suits' => [Glossary::SUIT_LAND]
+                'suits' => [
+                    Glossary::SUIT_LAND
+                ]
             ],
         ],
         Glossary::CARD_ELEMENTAL_ENCHANTRESS => [
@@ -199,7 +203,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_IF_NO,
                 'value' => 5,
-                'suits' => [Glossary::SUIT_WEATHER]
+                'suits' => [
+                    Glossary::SUIT_WEATHER
+                ]
             ]
         ],
         Glossary::CARD_ELVEN_LONGBOW => [
@@ -221,12 +227,16 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 10,
-                'suits' => [Glossary::SUIT_ARMY]
+                'suits' => [
+                    Glossary::SUIT_ARMY
+                ]
             ],
             'penalty' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 5,
-                'suits' => [Glossary::SUIT_LEADER]
+                'suits' => [
+                    Glossary::SUIT_LEADER
+                ]
             ],
         ],
         Glossary::CARD_FIRE_ELEMENTAL => [
@@ -235,7 +245,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 15,
-                'suits' => [Glossary::SUIT_FLAME]
+                'suits' => [
+                    Glossary::SUIT_FLAME
+                ]
             ],
         ],
         Glossary::CARD_FOREST => [
@@ -384,7 +396,9 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 2,
-                'suits' => [Glossary::SUIT_LAND]
+                'suits' => [
+                    Glossary::SUIT_LAND
+                ]
             ],
         ],
         Glossary::CARD_LIGHTNING => [
@@ -393,7 +407,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_CARD,
                 'value' => 30,
-                'cards' => [Glossary::CARD_RAINSTORM]
+                'cards' => [
+                    Glossary::CARD_RAINSTORM
+                ]
             ],
         ],
         Glossary::CARD_MAGIC_WAND => [
@@ -402,7 +418,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
                 'value' => 25,
-                'suits' => [Glossary::SUIT_WIZARD]
+                'suits' => [
+                    Glossary::SUIT_WIZARD
+                ]
             ],
         ],
         Glossary::CARD_MIRAGE => [
@@ -412,10 +430,10 @@ return [
                 'action' => Glossary::ACTION_TAKE_ON_NAME_AND_SUIT,
                 'suits' => [
                     Glossary::SUIT_ARMY,
+                    Glossary::SUIT_FLAME,
+                    Glossary::SUIT_FLOOD,
                     Glossary::SUIT_LAND,
                     Glossary::SUIT_WEATHER,
-                    Glossary::SUIT_FLOOD,
-                    Glossary::SUIT_FLAME
                 ]
             ]
         ],
@@ -427,11 +445,16 @@ return [
                     [
                         'action' => Glossary::ACTION_WITH_BOTH_CARDS,
                         'value' => 50,
-                        'cards' => [Glossary::CARD_SMOKE, Glossary::CARD_WILDFIRE]
+                        'cards' => [
+                            Glossary::CARD_SMOKE,
+                            Glossary::CARD_WILDFIRE
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_CLEARS_PENALTY,
-                        'suits' => [Glossary::SUIT_FLOOD]
+                        'suits' => [
+                            Glossary::SUIT_FLOOD
+                        ]
                     ]
                 ]
             ]
@@ -443,9 +466,9 @@ return [
                 'action' => Glossary::ACTION_TAKE_ONE_MORE_CARD_AT_END,
                 'suits' => [
                     Glossary::SUIT_ARMY,
+                    Glossary::SUIT_BEAST,
                     Glossary::SUIT_LEADER,
                     Glossary::SUIT_WIZARD,
-                    Glossary::SUIT_BEAST
                 ]
             ]
         ],
@@ -457,8 +480,8 @@ return [
                 'value' => 8,
                 'suits' => [
                     Glossary::SUIT_ARMY,
+                    Glossary::SUIT_LEADER,
                     Glossary::SUIT_WIZARD,
-                    Glossary::SUIT_LEADER
                 ]
             ],
         ],
@@ -513,15 +536,21 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_ANY_ONE_SUIT,
                 'value' => 10,
-                'suits' => [Glossary::SUIT_FLOOD]
+                'suits' => [
+                    Glossary::SUIT_FLOOD
+                ]
             ],
             'penalty' => [
                 'action' => Glossary::ACTION_BLANKS,
                 'targets' => [
-                    'suits' => [Glossary::SUIT_FLAME],
+                    'suits' => [
+                        Glossary::SUIT_FLAME
+                    ],
                 ],
                 'excludes' => [
-                    'cards' => [Glossary::CARD_LIGHTNING]
+                    'cards' => [
+                        Glossary::CARD_LIGHTNING
+                    ]
                 ]
             ]
         ],
@@ -533,7 +562,9 @@ return [
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 10,
-                        'suits' => [Glossary::SUIT_LAND]
+                        'suits' => [
+                            Glossary::SUIT_LAND
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
@@ -547,7 +578,13 @@ return [
             'base_strength' => 0,
             'bonus' => [
                 'action' => Glossary::ACTION_TAKE_ON_NAME_AND_SUIT,
-                'suits' => [Glossary::SUIT_ARTIFACT, Glossary::SUIT_LEADER, Glossary::SUIT_WIZARD, Glossary::SUIT_WEAPON, Glossary::SUIT_BEAST]
+                'suits' => [
+                    Glossary::SUIT_ARTIFACT,
+                    Glossary::SUIT_BEAST,
+                    Glossary::SUIT_LEADER,
+                    Glossary::SUIT_WEAPON,
+                    Glossary::SUIT_WIZARD,
+                ]
             ],
         ],
         Glossary::CARD_SHIELD_OF_KETH => [
@@ -580,7 +617,9 @@ return [
             'base_strength' => 27,
             'penalty' => [
                 'action' => Glossary::ACTION_BLANKED_UNLESS,
-                'suits' => [Glossary::SUIT_FLAME]
+                'suits' => [
+                    Glossary::SUIT_FLAME
+                ]
             ],
         ],
         Glossary::CARD_SWAMP => [
@@ -589,7 +628,10 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 3,
-                'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_FLAME]
+                'suits' => [
+                    Glossary::SUIT_ARMY,
+                    Glossary::SUIT_FLAME
+                ]
             ],
         ],
         Glossary::CARD_SWORD_OF_KETH => [
@@ -625,11 +667,16 @@ return [
                     [
                         'action' => Glossary::ACTION_WITH_CARD,
                         'value' => 25,
-                        'cards' => [Glossary::CARD_DRAGON, Glossary::CARD_DWARVISH_INFANTRY]
+                        'cards' => [
+                            Glossary::CARD_DRAGON,
+                            Glossary::CARD_DWARVISH_INFANTRY
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_CLEARS_PENALTY,
-                        'suits' => [Glossary::SUIT_WEATHER]
+                        'suits' => [
+                            Glossary::SUIT_WEATHER
+                        ]
                     ]
                 ]
             ]
@@ -650,9 +697,9 @@ return [
                         'action' => Glossary::ACTION_WITH_CARD,
                         'value' => 15,
                         'cards' => [
+                            Glossary::CARD_ELEMENTAL_ENCHANTRESS,
                             Glossary::CARD_EMPRESS,
                             Glossary::CARD_QUEEN,
-                            Glossary::CARD_ELEMENTAL_ENCHANTRESS
                         ]
                     ]
                 ]
@@ -664,11 +711,15 @@ return [
             'penalty' => [
                 [
                     'action' => Glossary::ACTION_BLANKED_UNLESS,
-                    'suits' => [Glossary::SUIT_ARMY]
+                    'suits' => [
+                        Glossary::SUIT_ARMY
+                    ]
                 ],
                 [
                     'action' => Glossary::ACTION_BLANKED_WITH,
-                    'suits' => [Glossary::SUIT_WEATHER]
+                    'suits' => [
+                        Glossary::SUIT_WEATHER
+                    ]
                 ],
             ]
         ],
@@ -730,8 +781,13 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_CARD_AND_EITHER,
                 'value' => 40,
-                'cards' => [Glossary::CARD_RAINSTORM],
-                'either' => [Glossary::CARD_BLIZZARD, Glossary::CARD_GREAT_FLOOD]
+                'cards' => [
+                    Glossary::CARD_RAINSTORM
+                ],
+                'either' => [
+                    Glossary::CARD_BLIZZARD,
+                    Glossary::CARD_GREAT_FLOOD
+                ]
             ]
         ],
         Glossary::CARD_WILDFIRE => [
@@ -742,18 +798,18 @@ return [
                 'targets' => [],
                 'excludes' => [
                     'suits' => [
+                        Glossary::SUIT_ARTIFACT,
                         Glossary::SUIT_FLAME,
+                        Glossary::SUIT_WEAPON,
                         Glossary::SUIT_WEATHER,
                         Glossary::SUIT_WIZARD,
-                        Glossary::SUIT_WEAPON,
-                        Glossary::SUIT_ARTIFACT,
                     ],
                     'cards' => [
                         Glossary::CARD_GREAT_FLOOD,
+                        Glossary::CARD_DRAGON,
                         Glossary::CARD_ISLAND,
                         Glossary::CARD_MOUNTAIN,
                         Glossary::CARD_UNICORN,
-                        Glossary::CARD_DRAGON,
                     ]
                 ]
             ]

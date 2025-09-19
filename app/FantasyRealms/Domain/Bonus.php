@@ -32,6 +32,19 @@ class Bonus
 
     public static function cardRun(Hand $hand, Card $current, array $params): bool
     {
+        $baseStrengths = [];
+        foreach ($hand->getCards() as $card) {
+            if (!in_array($card->getBaseStrength(), $baseStrengths)) {
+                $baseStrengths[] = $card->getBaseStrength();
+            }
+        }
+        $longestRun = self::lookForLongestRun($baseStrengths);
+
+        if ($longestRun >= $params['cards']) {
+            $current->addBonus((int)$params['value']);
+            return true;
+        }
+
         return false;
     }
 
@@ -242,5 +255,33 @@ class Bonus
     private static function getAction(array $conf): string
     {
         return $conf['action'];
+    }
+
+    private static function lookForLongestRun(array $input): int
+    {
+        if (empty($input)) {
+            return 0;
+        }
+
+        sort($input);
+
+        $longestRun = [];
+        $currentRun = [$input[0]];
+
+        for ($i = 1; $i < count($input); $i++) {
+            if ($input[$i] == $input[$i - 1] + 1) {
+                $currentRun[] = $input[$i];
+            } else {
+                if (count($currentRun) > count($longestRun)) {
+                    $longestRun = $currentRun;
+                }
+                $currentRun = [$input[$i]];
+            }
+        }
+        if (count($currentRun) > count($longestRun)) {
+            $longestRun = $currentRun;
+        }
+
+        return count($longestRun);
     }
 }

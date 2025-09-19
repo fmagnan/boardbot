@@ -252,14 +252,14 @@ it('cannot choose any card with fountain of life and only artifacts', function (
         $this->deck,
         [
             Glossary::CARD_BOOK_OF_CHANGES,
-            Glossary::CARD_WORLD_TREE,
             Glossary::CARD_FOUNTAIN_OF_LIFE,
             Glossary::CARD_GEM_OF_ORDER,
             Glossary::CARD_PROTECTION_RUNE,
             Glossary::CARD_SHIELD_OF_KETH,
+            Glossary::CARD_WORLD_TREE,
         ],
     );
-    expect($hand->getTotal())->toBe(16);
+    expect($hand->getTotal())->toBe(76);
 });
 
 it('gains maximum value among various flood cards with fountain of life', function (): void {
@@ -274,4 +274,16 @@ it('gains maximum value among various flood cards with fountain of life', functi
         ],
     );
     expect($hand->getTotal())->toBe(93);
+});
+
+it('gains minimum points when only three cards are in run with gem of order', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_GEM_OF_ORDER,
+            Glossary::CARD_QUEEN,
+        ],
+    );
+    expect($hand->getTotal())->toBe(28);
 });
