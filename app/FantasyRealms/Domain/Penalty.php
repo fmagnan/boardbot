@@ -25,7 +25,7 @@ class Penalty
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
+            if ($card->hasSameSuitAs($params['suits'])) {
                 $found = true;
             }
         }
@@ -38,15 +38,13 @@ class Penalty
 
     public static function forEach(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
-        $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
-                $current->substractPenalty($value);
+            if ($card->hasSameSuitAs($params['suits'])) {
+                $current->substractPenalty((int) $params['value']);
                 $found = true;
             }
         }
@@ -56,15 +54,13 @@ class Penalty
 
     public static function withCard(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
-        $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getName(), $cards, true)) {
-                $current->substractPenalty($value);
+            if (in_array($card->getName(), $params['cards'], true)) {
+                $current->substractPenalty((int) $params['value']);
                 $found = true;
             }
         }
@@ -99,13 +95,12 @@ class Penalty
 
     public static function blankedUnless(Hand $hand, Card $current, array $params): bool
     {
-        $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
+            if ($card->hasSameSuitAs($params['suits'])) {
                 return false;
             }
             $current->blank();

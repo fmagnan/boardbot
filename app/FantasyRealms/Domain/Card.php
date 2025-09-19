@@ -166,4 +166,9 @@ class Card
     {
         return $card->getName() === $this->name;
     }
+
+    public function hasSameSuitAs(array $suits): bool
+    {
+        return in_array($this->suit, $suits, true);
+    }
 }

@@ -28,13 +28,12 @@ class Bonus
 
     public static function clearsPenalty(Hand $hand, Card $current, array $params): bool
     {
-        $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
+            if ($card->hasSameSuitAs($params['suits'])) {
                 $card->clearPenalty();
                 $found = true;
             }
@@ -45,13 +44,12 @@ class Bonus
 
     public static function clearsWordFromPenalty(Hand $hand, Card $current, array $params): bool
     {
-        $word = $params['word'];
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
             if ($card->hasPenalty()) {
-                $card->removeWordFromPenalty($word);
+                $card->removeWordFromPenalty($params['word']);
             }
         }
 
@@ -75,15 +73,13 @@ class Bonus
 
     public static function forEach(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
-        $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
-                $current->addBonus($value);
+            if ($card->hasSameSuitAs($params['suits'])) {
+                $current->addBonus((int) $params['value']);
                 $found = true;
             }
         }
@@ -93,17 +89,15 @@ class Bonus
 
     public static function ifNo(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
-        $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
+            if ($card->hasSameSuitAs($params['suits'])) {
                 return false;
             }
         }
-        $current->addBonus($value);
+        $current->addBonus((int) $params['value']);
 
         return true;
     }
@@ -120,7 +114,6 @@ class Bonus
 
     public static function withAnyOneCard(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -132,7 +125,7 @@ class Bonus
             }
         }
         if ($found) {
-            $current->addBonus($value);
+            $current->addBonus((int) $params['value']);
         }
 
         return $found;
@@ -140,19 +133,17 @@ class Bonus
 
     public static function withAnyOneSuit(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
-        $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (in_array($card->getSuit(), $suits, true)) {
+            if ($card->hasSameSuitAs($params['suits'])) {
                 $found = true;
             }
         }
         if ($found) {
-            $current->addBonus($value);
+            $current->addBonus((int) $params['value']);
         }
 
         return $found;
@@ -160,7 +151,6 @@ class Bonus
 
     public static function withBothCards(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
         foreach ($params['cards'] as $card) {
             if (!$hand->hasCard($card)) {
                 return false;
@@ -171,14 +161,13 @@ class Bonus
                 return false;
             }
         }
-        $current->addBonus($value);
+        $current->addBonus((int) $params['value']);
 
         return true;
     }
 
     public static function withCard(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
@@ -186,7 +175,7 @@ class Bonus
                 continue;
             }
             if (in_array($card->getName(), $cards, true)) {
-                $current->addBonus($value);
+                $current->addBonus((int) $params['value']);
                 $found = true;
             }
         }
@@ -196,7 +185,6 @@ class Bonus
 
     public static function withCardAndEither(Hand $hand, Card $current, array $params): bool
     {
-        $value = (int) $params['value'];
         foreach ($params['cards'] as $card) {
             if (!$hand->hasCard($card)) {
                 return false;
@@ -204,7 +192,7 @@ class Bonus
         }
         foreach ($params['either'] as $card) {
             if ($hand->hasCard($card)) {
-                $current->addBonus($value);
+                $current->addBonus((int) $params['value']);
                 return true;
             }
         }
