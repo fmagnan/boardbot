@@ -88,7 +88,7 @@ class Penalty
                 if (isset($excludes['cards']) && in_array($card->getName(), $excludes['cards'], true)) {
                     continue;
                 }
-                echo 'card ' . $card->getName(). ' is blanked by ' . $current->getName() . PHP_EOL;
+                echo 'card ' . $card->getName() . ' is blanked by ' . $current->getName() . PHP_EOL;
                 $card->blank();
                 $found = true;
             }

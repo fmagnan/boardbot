@@ -141,4 +141,24 @@ class Card
 
         return $this;
     }
+
+    public function hasPenalty(): bool
+    {
+        return !empty($this->penalty);
+    }
+
+    public function removeWordFromPenalty(int|string $word) : self
+    {
+        if (is_int($word)) {
+            if (($key = array_search($word, $this->penalty['suits'])) !== false) {
+                unset($this->penalty['suits'][$key]);
+            }
+        } else {
+            if (($key = array_search($word, $this->penalty['cards'])) !== false) {
+                unset($this->penalty['cards'][$key]);
+            }
+        }
+        
+        return $this;
+    }
 }

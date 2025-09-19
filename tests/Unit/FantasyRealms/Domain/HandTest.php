@@ -128,12 +128,20 @@ it('combines when king has shield and sword of keth', function (): void {
 });
 
 it('gets full points when candle has bell tower, book of changes and any wizard', function (): void {
-    $hand = init_hand($this->deck, [Glossary::CARD_CANDLE, Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER, Glossary::CARD_BEASTMASTER]);
+    $hand = init_hand(
+        $this->deck,
+        [Glossary::CARD_CANDLE, Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER, Glossary::CARD_BEASTMASTER],
+    );
     expect($hand->getTotal())->toBe(137);
 });
 
 it('does not get candle bonus without a wizard', function (): void {
-    $hand = init_hand($this->deck, [Glossary::CARD_CANDLE, Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER, Glossary::CARD_SWORD_OF_KETH]);
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_CANDLE,
+        Glossary::CARD_BOOK_OF_CHANGES,
+        Glossary::CARD_BELL_TOWER,
+        Glossary::CARD_SWORD_OF_KETH,
+    ]);
     expect($hand->getTotal())->toBe(20);
 });
 
@@ -145,4 +153,9 @@ it('does not get full points from whirlwind when rainstorm is missing', function
 it('gets whirlwind bonus when rainstorm and blizzard are together', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_BLIZZARD, Glossary::CARD_RAINSTORM, Glossary::CARD_WHIRLWIND]);
     expect($hand->getTotal())->toBe(91);
+});
+
+it('cancels swamp penalty with rangers bonus', function (): void {
+    $hand = init_hand($this->deck, [Glossary::CARD_RANGERS, Glossary::CARD_SWAMP]);
+    expect($hand->getTotal())->toBe(23);
 });
