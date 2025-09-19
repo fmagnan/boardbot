@@ -22,7 +22,7 @@ class Penalty
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
@@ -42,7 +42,7 @@ class Penalty
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
@@ -60,7 +60,7 @@ class Penalty
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getName(), $cards, true)) {
@@ -78,7 +78,7 @@ class Penalty
         $excludes = $params['excludes'] ?? [];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (count($targetSuits) === 0 || in_array($card->getSuit(), $targetSuits, true)) {
@@ -102,7 +102,7 @@ class Penalty
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {

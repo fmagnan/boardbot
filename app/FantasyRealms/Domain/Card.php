@@ -158,7 +158,12 @@ class Card
                 unset($this->penalty['cards'][$key]);
             }
         }
-        
+
         return $this;
+    }
+
+    public function isSameAs(Card $card): bool
+    {
+        return $card->getName() === $this->name;
     }
 }

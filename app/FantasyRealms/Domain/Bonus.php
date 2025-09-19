@@ -31,7 +31,7 @@ class Bonus
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
@@ -47,7 +47,7 @@ class Bonus
     {
         $word = $params['word'];
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if ($card->hasPenalty()) {
@@ -79,7 +79,7 @@ class Bonus
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
@@ -96,7 +96,7 @@ class Bonus
         $value = (int) $params['value'];
         $suits = $params['suits'];
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
@@ -124,7 +124,7 @@ class Bonus
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getName(), $cards, true)) {
@@ -144,7 +144,7 @@ class Bonus
         $suits = $params['suits'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getSuit(), $suits, true)) {
@@ -182,7 +182,7 @@ class Bonus
         $cards = $params['cards'];
         $found = false;
         foreach ($hand->getCards() as $card) {
-            if ($card->getName() === $current->getName()) {
+            if ($card->isSameAs($current)) {
                 continue;
             }
             if (in_array($card->getName(), $cards, true)) {
