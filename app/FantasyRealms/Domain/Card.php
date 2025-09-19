@@ -45,21 +45,17 @@ class Card
         return $this;
     }
 
+    public function changeSuit(int $suit): self
+    {
+        $this->suit = $suit;
+
+        return $this;
+    }
+
     public function clearPenalty(): self
     {
         $this->penalty = [];
         return $this;
-    }
-
-    public static function fromConf(string $name, array $conf): self
-    {
-        return new self(
-            $name,
-            (int) $conf['suit'],
-            (int) $conf['base_strength'],
-            $conf['bonus'] ?? [],
-            $conf['penalty'] ?? [],
-        );
     }
 
     public function getBaseStrength(): int
@@ -122,12 +118,17 @@ class Card
         return in_array($bonus['action'], [
             Glossary::ACTION_CLEARS_PENALTY,
             Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
+            Glossary::ACTION_CHANGE_SUIT,
         ]);
     }
 
-    public function isSameAs(Card $card): bool
+    public function isSameAs(Card|string $card): bool
     {
-        return $card->getName() === $this->name;
+        if ($card instanceof Card) {
+            return $card->getName() === $this->name;
+        }
+
+        return $card === $this->name;
     }
 
     public function removeWordFromPenalty(int|string $word): self

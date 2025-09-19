@@ -1,6 +1,7 @@
 <?php
 
 use App\FantasyRealms\Domain\Glossary;
+use App\FantasyRealms\Domain\Card;
 
 it('counts cards in hand', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_DRAGON, Glossary::CARD_BELL_TOWER, Glossary::CARD_MAGIC_WAND]);
@@ -128,35 +129,54 @@ it('combines when king has shield and sword of keth', function (): void {
 });
 
 it('gets full points when candle has bell tower, book of changes and any wizard', function (): void {
-    $hand = init_hand(
-        $this->deck,
-        [Glossary::CARD_CANDLE, Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER, Glossary::CARD_BEASTMASTER],
-    );
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_BEASTMASTER,
+        Glossary::CARD_BELL_TOWER,
+        Glossary::CARD_CANDLE,
+    ]);
+    $hand->addCard(Glossary::CARD_BOOK_OF_CHANGES, [
+        'card' => Glossary::CARD_CANDLE,
+        'suit' => Glossary::SUIT_WEAPON
+    ]);
     expect($hand->getTotal())->toBe(137);
 });
 
 it('does not get candle bonus without a wizard', function (): void {
     $hand = init_hand($this->deck, [
-        Glossary::CARD_CANDLE,
-        Glossary::CARD_BOOK_OF_CHANGES,
         Glossary::CARD_BELL_TOWER,
+        Glossary::CARD_CANDLE,
         Glossary::CARD_SWORD_OF_KETH,
+    ]);
+    $hand->addCard(Glossary::CARD_BOOK_OF_CHANGES, [
+        'card' => Glossary::CARD_CANDLE,
+        'suit' => Glossary::SUIT_WEAPON
     ]);
     expect($hand->getTotal())->toBe(20);
 });
 
 it('does not get full points from whirlwind when rainstorm is missing', function (): void {
-    $hand = init_hand($this->deck, [Glossary::CARD_BLIZZARD, Glossary::CARD_GREAT_FLOOD, Glossary::CARD_WHIRLWIND]);
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_BLIZZARD,
+        Glossary::CARD_GREAT_FLOOD,
+        Glossary::CARD_WHIRLWIND
+    ]);
     expect($hand->getTotal())->toBe(43);
 });
 
 it('gets whirlwind bonus when rainstorm and blizzard are together', function (): void {
-    $hand = init_hand($this->deck, [Glossary::CARD_BLIZZARD, Glossary::CARD_RAINSTORM, Glossary::CARD_WHIRLWIND]);
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_BLIZZARD,
+        Glossary::CARD_RAINSTORM,
+        Glossary::CARD_WHIRLWIND
+    ]);
     expect($hand->getTotal())->toBe(91);
 });
 
 it('cancels swamp penalty with rangers bonus', function (): void {
-    $hand = init_hand($this->deck, [Glossary::CARD_SWAMP, Glossary::CARD_RANGERS]);
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_SWAMP,
+        Glossary::CARD_RANGERS
+    ]);
     expect($hand->getTotal())->toBe(23);
 });
 
@@ -196,13 +216,13 @@ it('gets points from collector when four cards have same suit', function (): voi
     $hand = init_hand(
         $this->deck,
         [
-            Glossary::CARD_COLLECTOR,
-            Glossary::CARD_BEASTMASTER,
-            Glossary::CARD_HYDRA,
-            Glossary::CARD_DRAGON,
-            Glossary::CARD_UNICORN,
             Glossary::CARD_BASILISK,
+            Glossary::CARD_BEASTMASTER,
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_DRAGON,
             Glossary::CARD_FOREST,
+            Glossary::CARD_HYDRA,
+            Glossary::CARD_UNICORN,
         ],
     );
     expect($hand->getTotal())->toBe(233);
@@ -212,12 +232,12 @@ it('gets maximum points from collector when five cards have same suit', function
     $hand = init_hand(
         $this->deck,
         [
-            Glossary::CARD_COLLECTOR,
-            Glossary::CARD_BEASTMASTER,
-            Glossary::CARD_HYDRA,
-            Glossary::CARD_DRAGON,
-            Glossary::CARD_UNICORN,
             Glossary::CARD_BASILISK,
+            Glossary::CARD_BEASTMASTER,
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_DRAGON,
+            Glossary::CARD_HYDRA,
+            Glossary::CARD_UNICORN,
             Glossary::CARD_WARHORSE,
         ],
     );
@@ -241,9 +261,12 @@ it('gets no points from world tree if at least two active card have same suit', 
         [
             Glossary::CARD_COLLECTOR,
             Glossary::CARD_WORLD_TREE,
-            Glossary::CARD_BOOK_OF_CHANGES,
         ],
     );
+    $hand->addCard(Glossary::CARD_BOOK_OF_CHANGES, [
+        'card' => Glossary::CARD_COLLECTOR,
+        'suit' => Glossary::SUIT_WEAPON
+    ]);
     expect($hand->getTotal())->toBe(12);
 });
 
@@ -251,7 +274,6 @@ it('cannot choose any card with fountain of life and only artifacts', function (
     $hand = init_hand(
         $this->deck,
         [
-            Glossary::CARD_BOOK_OF_CHANGES,
             Glossary::CARD_FOUNTAIN_OF_LIFE,
             Glossary::CARD_GEM_OF_ORDER,
             Glossary::CARD_PROTECTION_RUNE,
@@ -259,6 +281,10 @@ it('cannot choose any card with fountain of life and only artifacts', function (
             Glossary::CARD_WORLD_TREE,
         ],
     );
+    $hand->addCard(Glossary::CARD_BOOK_OF_CHANGES, [
+        'card' => Glossary::CARD_PROTECTION_RUNE,
+        'suit' => Glossary::SUIT_WILD
+    ]);
     expect($hand->getTotal())->toBe(76);
 });
 
@@ -286,4 +312,19 @@ it('gains minimum points when only three cards are in run with gem of order', fu
         ],
     );
     expect($hand->getTotal())->toBe(28);
+});
+
+it('can change suit card with book of changes', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_DRAGON,
+            Glossary::CARD_QUEEN,
+        ],
+    );
+    $hand->addCard(Glossary::CARD_BOOK_OF_CHANGES, [
+        'card' => Glossary::CARD_QUEEN,
+        'suit' => Glossary::SUIT_WIZARD
+    ]);
+    expect($hand->getTotal())->toBe(39);
 });

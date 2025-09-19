@@ -50,7 +50,13 @@ class Bonus
 
     public static function changeSuit(Hand $hand, Card $current, array $params): bool
     {
-        /** @todo */
+        foreach ($hand->getCards() as $card) {
+            if (!$card->isSameAs($params['card'])) {
+                continue;
+            }
+            $card->changeSuit($params['suit']);
+            return true;
+        }
         return false;
     }
 
