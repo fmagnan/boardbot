@@ -50,6 +50,7 @@ class Bonus
 
     public static function changeSuit(Hand $hand, Card $current, array $params): bool
     {
+        /** @todo */
         return false;
     }
 
@@ -105,6 +106,7 @@ class Bonus
 
     public static function duplicate(Hand $hand, Card $current, array $params): bool
     {
+        /** @todo */
         return false;
     }
 
@@ -158,11 +160,13 @@ class Bonus
 
     public static function takeOneMoreCardAtEnd(Hand $hand, Card $current, array $params): bool
     {
+        /** @todo */
         return false;
     }
 
     public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
     {
+        /** @todo */
         return false;
     }
 
