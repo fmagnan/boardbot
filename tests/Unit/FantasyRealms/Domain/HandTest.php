@@ -319,3 +319,14 @@ it('can have two times the same card because of the doppelganger', function (): 
     ]);
     expect($hand->getTotal())->toBe(85);
 });
+
+it('can get penalties twice if doppelganger is misused', function (): void {
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_DRAGON,
+        Glossary::CARD_CANDLE,
+    ]);
+    $hand->addCard(Glossary::CARD_DOPPELGANGER, [
+        'card' => Glossary::CARD_DRAGON
+    ]);
+    expect($hand->getTotal())->toBe(-18);
+});
