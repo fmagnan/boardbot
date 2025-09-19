@@ -297,3 +297,14 @@ it('can change suit card with book of changes', function (): void {
     ]);
     expect($hand->getTotal())->toBe(39);
 });
+
+it('can add a last card with necromancer', function (): void {
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_DRAGON,
+        Glossary::CARD_EARTH_ELEMENTAL,
+    ]);
+    $hand->addCard(Glossary::CARD_NECROMANCER, [
+        'card' => Glossary::CARD_UNICORN
+    ]);
+    expect($hand->getTotal())->toBe(46);
+});

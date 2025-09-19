@@ -166,8 +166,9 @@ class Bonus
 
     public static function takeOneMoreCardAtEnd(Hand $hand, Card $current, array $params): bool
     {
-        /** @todo */
-        return false;
+        $hand->addCard($params['card']);
+
+        return true;
     }
 
     public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
