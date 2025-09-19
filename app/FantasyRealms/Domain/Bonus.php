@@ -41,7 +41,7 @@ class Bonus
         $longestRun = self::lookForLongestRun($baseStrengths);
 
         if ($longestRun >= $params['cards']) {
-            $current->addBonus((int)$params['value']);
+            $current->addBonus((int) $params['value']);
             return true;
         }
 
@@ -101,8 +101,8 @@ class Bonus
             }
         }
         foreach ($countSuits as $count) {
-            if ($count >= (int)$params['cards']) {
-                $current->addBonus((int)$params['value']);
+            if ($count >= (int) $params['cards']) {
+                $current->addBonus((int) $params['value']);
                 return true;
             }
         }
@@ -128,7 +128,7 @@ class Bonus
             }
             $suits[] = $card->getSuit();
         }
-        $current->addBonus((int)$params['value']);
+        $current->addBonus((int) $params['value']);
 
         return true;
     }
@@ -141,7 +141,7 @@ class Bonus
                 continue;
             }
             if ($card->hasSuitAmong($params['suits'])) {
-                $current->addBonus((int)$params['value']);
+                $current->addBonus((int) $params['value']);
                 $found = true;
             }
         }
@@ -159,7 +159,7 @@ class Bonus
                 return false;
             }
         }
-        $current->addBonus((int)$params['value']);
+        $current->addBonus((int) $params['value']);
 
         return true;
     }
@@ -188,7 +188,7 @@ class Bonus
             }
         }
         if ($found) {
-            $current->addBonus((int)$params['value']);
+            $current->addBonus((int) $params['value']);
         }
 
         return $found;
@@ -206,7 +206,7 @@ class Bonus
             }
         }
         if ($found) {
-            $current->addBonus((int)$params['value']);
+            $current->addBonus((int) $params['value']);
         }
 
         return $found;
@@ -224,7 +224,7 @@ class Bonus
                 return false;
             }
         }
-        $current->addBonus((int)$params['value']);
+        $current->addBonus((int) $params['value']);
 
         return true;
     }
@@ -237,7 +237,7 @@ class Bonus
                 continue;
             }
             if ($card->isAmong($params['cards'])) {
-                $current->addBonus((int)$params['value']);
+                $current->addBonus((int) $params['value']);
                 $found = true;
             }
         }
@@ -254,7 +254,7 @@ class Bonus
         }
         foreach ($params['either'] as $card) {
             if ($hand->hasCard($card)) {
-                $current->addBonus((int)$params['value']);
+                $current->addBonus((int) $params['value']);
                 return true;
             }
         }
@@ -279,7 +279,7 @@ class Bonus
         $currentRun = [$input[0]];
 
         for ($i = 1; $i < count($input); $i++) {
-            if ($input[$i] == $input[$i - 1] + 1) {
+            if ($input[$i] == ($input[$i - 1] + 1)) {
                 $currentRun[] = $input[$i];
             } else {
                 if (count($currentRun) > count($longestRun)) {

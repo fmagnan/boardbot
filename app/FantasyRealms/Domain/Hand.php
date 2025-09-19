@@ -11,22 +11,15 @@ class Hand
     /** @var Card[] */
     private array $cards = [];
 
-    public function __construct(private array $deck)
-    {
+    public function __construct(
+        private array $deck,
+    ) {}
 
-    }
-
-    public function addCard(string $name, array $params=[]): void
+    public function addCard(string $name, array $params = []): void
     {
         $conf = $this->deck[$name];
         $bonus = array_merge($params, $conf['bonus'] ?? []);
-        $card = new Card(
-            $name,
-            (int) $conf['suit'],
-            (int) $conf['base_strength'],
-            $bonus,
-            $conf['penalty'] ?? [],
-        );
+        $card = new Card($name, (int) $conf['suit'], (int) $conf['base_strength'], $bonus, $conf['penalty'] ?? []);
         $this->cards[] = $card;
     }
 
