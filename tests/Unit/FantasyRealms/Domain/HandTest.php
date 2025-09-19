@@ -175,3 +175,19 @@ it('gets no points from collector when all cards have different suits', function
     );
     expect($hand->getTotal())->toBe(113);
 });
+
+it('gets points from collector when three cards have same suit', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_COLLECTOR,
+            Glossary::CARD_BEASTMASTER,
+            Glossary::CARD_HYDRA,
+            Glossary::CARD_DRAGON,
+            Glossary::CARD_UNICORN,
+            Glossary::CARD_FORGE,
+            Glossary::CARD_FOREST,
+        ],
+    );
+    expect($hand->getTotal())->toBe(156);
+});

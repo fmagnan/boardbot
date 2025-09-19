@@ -58,6 +58,21 @@ class Bonus
 
     public static function differentCardsInSameSuit(Hand $hand, Card $current, array $params): bool
     {
+        $countSuits = [];
+        foreach ($hand->getCards() as $card) {
+            if(!isset($countSuits[$card->getSuit()])) {
+                $countSuits[$card->getSuit()] = 1;
+            } else {
+                $countSuits[$card->getSuit()]++;
+            }
+        }
+        foreach ($countSuits as $count) {
+            if ($count >= (int) $params['cards']) {
+                $current->addBonus((int) $params['value']);
+                return true;
+            }
+        }
+
         return false;
     }
 

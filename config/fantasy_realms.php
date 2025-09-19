@@ -31,11 +31,15 @@ return [
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 9,
-                        'suits' => [Glossary::SUIT_BEAST]
+                        'suits' => [
+                            Glossary::SUIT_BEAST
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_CLEARS_PENALTY,
-                        'suits' => [Glossary::SUIT_BEAST]
+                        'suits' => [
+                            Glossary::SUIT_BEAST
+                        ]
                     ]
                 ]
             ]
@@ -63,7 +67,12 @@ return [
                     [
                         'action' => Glossary::ACTION_FOR_EACH,
                         'value' => 5,
-                        'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LEADER, Glossary::SUIT_BEAST, Glossary::SUIT_FLAME]
+                        'suits' => [
+                            Glossary::SUIT_ARMY,
+                            Glossary::SUIT_LEADER,
+                            Glossary::SUIT_BEAST,
+                            Glossary::SUIT_FLAME
+                        ]
                     ]
                 ],
             ]
@@ -81,8 +90,13 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_BOTH_CARDS,
                 'value' => 100,
-                'cards' => [Glossary::CARD_BOOK_OF_CHANGES, Glossary::CARD_BELL_TOWER],
-                'suits' => [Glossary::SUIT_WIZARD]
+                'cards' => [
+                    Glossary::CARD_BOOK_OF_CHANGES,
+                    Glossary::CARD_BELL_TOWER
+                ],
+                'suits' => [
+                    Glossary::SUIT_WIZARD
+                ]
             ]
         ],
         Glossary::CARD_CELESTIAL_KNIGHTS => [
@@ -130,7 +144,9 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_UNLESS_AT_LEAST,
                 'value' => 40,
-                'suits' => [Glossary::SUIT_WIZARD]
+                'suits' => [
+                    Glossary::SUIT_WIZARD
+                ]
             ],
         ],
         Glossary::CARD_DWARVISH_INFANTRY => [
@@ -139,7 +155,9 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 2,
-                'suits' => [Glossary::SUIT_ARMY]
+                'suits' => [
+                    Glossary::SUIT_ARMY
+                ]
             ],
         ],
         Glossary::CARD_EARTH_ELEMENTAL => [
@@ -157,7 +175,12 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_FOR_EACH,
                 'value' => 5,
-                'suits' => [Glossary::SUIT_LAND, Glossary::SUIT_WEATHER, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME]
+                'suits' => [
+                    Glossary::SUIT_FLAME,
+                    Glossary::SUIT_FLOOD,
+                    Glossary::SUIT_LAND,
+                    Glossary::SUIT_WEATHER,
+                ]
             ],
         ],
         Glossary::CARD_ELVEN_ARCHERS => [
@@ -175,7 +198,11 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_ANY_ONE_CARD,
                 'value' => 30,
-                'cards' => [Glossary::CARD_ELVEN_ARCHERS, Glossary::CARD_WARLORD, Glossary::CARD_BEASTMASTER]
+                'cards' => [
+                    Glossary::CARD_ELVEN_ARCHERS,
+                    Glossary::CARD_WARLORD,
+                    Glossary::CARD_BEASTMASTER
+                ]
             ],
         ],
         Glossary::CARD_EMPRESS => [
@@ -232,7 +259,13 @@ return [
             'base_strength' => 1,
             'bonus' => [
                 'action' => Glossary::ACTION_ADD_BASE_STRENGTH_AMONG,
-                'suits' => [Glossary::SUIT_WEAPON, Glossary::SUIT_FLOOD, Glossary::SUIT_FLAME, Glossary::SUIT_LAND, Glossary::SUIT_WEATHER]
+                'suits' => [
+                    Glossary::SUIT_WEAPON,
+                    Glossary::SUIT_FLOOD,
+                    Glossary::SUIT_FLAME,
+                    Glossary::SUIT_LAND,
+                    Glossary::SUIT_WEATHER
+                ]
             ]
         ],
         Glossary::CARD_GEM_OF_ORDER => [
@@ -274,10 +307,17 @@ return [
             'penalty' => [
                 'action' => Glossary::ACTION_BLANKS,
                 'targets' => [
-                    'suits' => [Glossary::SUIT_ARMY, Glossary::SUIT_LAND, Glossary::SUIT_FLAME],
+                    'suits' => [
+                        Glossary::SUIT_ARMY,
+                        Glossary::SUIT_LAND,
+                        Glossary::SUIT_FLAME
+                    ],
                 ],
                 'excludes' => [
-                    'cards' => [Glossary::CARD_MOUNTAIN, Glossary::CARD_LIGHTNING]
+                    'cards' => [
+                        Glossary::CARD_MOUNTAIN,
+                        Glossary::CARD_LIGHTNING
+                    ]
                 ]
             ]
         ],
@@ -287,7 +327,9 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_WITH_CARD,
                 'value' => 28,
-                'cards' => [Glossary::CARD_SWAMP]
+                'cards' => [
+                    Glossary::CARD_SWAMP
+                ]
             ],
         ],
         Glossary::CARD_KING => [
@@ -563,12 +605,18 @@ return [
                     [
                         'action' => Glossary::ACTION_WITH_CARD,
                         'value' => 30,
-                        'cards' => [Glossary::CARD_PRINCESS]
+                        'cards' => [
+                            Glossary::CARD_PRINCESS
+                        ]
                     ],
                     [
                         'action' => Glossary::ACTION_WITH_CARD,
                         'value' => 15,
-                        'cards' => [Glossary::CARD_EMPRESS, Glossary::CARD_QUEEN, Glossary::CARD_ELEMENTAL_ENCHANTRESS]
+                        'cards' => [
+                            Glossary::CARD_EMPRESS,
+                            Glossary::CARD_QUEEN,
+                            Glossary::CARD_ELEMENTAL_ENCHANTRESS
+                        ]
                     ]
                 ]
             ]
