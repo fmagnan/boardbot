@@ -92,7 +92,7 @@ class Card
         return !empty($this->penalty);
     }
 
-    public function hasSameSuitAs(array $suits): bool
+    public function hasSuitAmong(array $suits): bool
     {
         return in_array($this->suit, $suits, true);
     }

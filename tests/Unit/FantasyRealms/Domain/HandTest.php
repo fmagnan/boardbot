@@ -246,3 +246,32 @@ it('gets no points from world tree if at least two active card have same suit', 
     );
     expect($hand->getTotal())->toBe(12);
 });
+
+it('cannot choose any card with fountain of life and only artifacts', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_BOOK_OF_CHANGES,
+            Glossary::CARD_WORLD_TREE,
+            Glossary::CARD_FOUNTAIN_OF_LIFE,
+            Glossary::CARD_GEM_OF_ORDER,
+            Glossary::CARD_PROTECTION_RUNE,
+            Glossary::CARD_SHIELD_OF_KETH,
+        ],
+    );
+    expect($hand->getTotal())->toBe(16);
+});
+
+it('gains maximum value among various flood cards with fountain of life', function (): void {
+    $hand = init_hand(
+        $this->deck,
+        [
+            Glossary::CARD_FOUNTAIN_OF_LIFE,
+            Glossary::CARD_GREAT_FLOOD,
+            Glossary::CARD_PROTECTION_RUNE,
+            Glossary::CARD_WAR_DIRIGIBLE,
+            Glossary::CARD_WORLD_TREE,
+        ],
+    );
+    expect($hand->getTotal())->toBe(93);
+});

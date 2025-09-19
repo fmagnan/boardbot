@@ -18,7 +18,7 @@ class Penalty
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->hasSameSuitAs($params['suits'])) {
+            if ($card->hasSuitAmong($params['suits'])) {
                 return false;
             }
             $current->blank();
@@ -37,8 +37,8 @@ class Penalty
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if (count($targetSuits) === 0 || $card->hasSameSuitAs($targetSuits)) {
-                if (isset($excludes['suits']) && $card->hasSameSuitAs($excludes['suits'])) {
+            if (count($targetSuits) === 0 || $card->hasSuitAmong($targetSuits)) {
+                if (isset($excludes['suits']) && $card->hasSuitAmong($excludes['suits'])) {
                     continue;
                 }
                 if (isset($excludes['cards']) && $card->isAmong($excludes['cards'])) {
@@ -59,7 +59,7 @@ class Penalty
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->hasSameSuitAs($params['suits'])) {
+            if ($card->hasSuitAmong($params['suits'])) {
                 $current->substractPenalty((int) $params['value']);
                 $found = true;
             }
@@ -75,7 +75,7 @@ class Penalty
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->hasSameSuitAs($params['suits'])) {
+            if ($card->hasSuitAmong($params['suits'])) {
                 $found = true;
             }
         }

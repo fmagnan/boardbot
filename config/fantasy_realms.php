@@ -270,10 +270,10 @@ return [
             'bonus' => [
                 'action' => Glossary::ACTION_ADD_BASE_STRENGTH_AMONG,
                 'suits' => [
-                    Glossary::SUIT_WEAPON,
-                    Glossary::SUIT_FLOOD,
                     Glossary::SUIT_FLAME,
+                    Glossary::SUIT_FLOOD,
                     Glossary::SUIT_LAND,
+                    Glossary::SUIT_WEAPON,
                     Glossary::SUIT_WEATHER
                 ]
             ]

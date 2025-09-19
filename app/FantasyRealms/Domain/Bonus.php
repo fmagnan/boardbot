@@ -8,6 +8,20 @@ class Bonus
 {
     public static function addBaseStrengthAmong(Hand $hand, Card $current, array $params): bool
     {
+        $maximumValue = 0;
+        foreach ($hand->getCards() as $card) {
+            if ($card->isSameAs($current)) {
+                continue;
+            }
+            if (!$card->hasSuitAmong($params['suits'])) {
+                continue;
+            }
+            if ($card->getBaseStrength() > $maximumValue) {
+                $maximumValue = $card->getBaseStrength();
+            }
+        }
+        $current->addBonus($maximumValue);
+
         return false;
     }
 
@@ -33,7 +47,7 @@ class Bonus
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->hasSameSuitAs($params['suits'])) {
+            if ($card->hasSuitAmong($params['suits'])) {
                 $card->clearPenalty();
                 $found = true;
             }
@@ -60,15 +74,15 @@ class Bonus
     {
         $countSuits = [];
         foreach ($hand->getCards() as $card) {
-            if(!isset($countSuits[$card->getSuit()])) {
+            if (!isset($countSuits[$card->getSuit()])) {
                 $countSuits[$card->getSuit()] = 1;
             } else {
                 $countSuits[$card->getSuit()]++;
             }
         }
         foreach ($countSuits as $count) {
-            if ($count >= (int) $params['cards']) {
-                $current->addBonus((int) $params['value']);
+            if ($count >= (int)$params['cards']) {
+                $current->addBonus((int)$params['value']);
                 return true;
             }
         }
@@ -93,7 +107,7 @@ class Bonus
             }
             $suits[] = $card->getSuit();
         }
-        $current->addBonus((int) $params['value']);
+        $current->addBonus((int)$params['value']);
 
         return true;
     }
@@ -105,8 +119,8 @@ class Bonus
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->hasSameSuitAs($params['suits'])) {
-                $current->addBonus((int) $params['value']);
+            if ($card->hasSuitAmong($params['suits'])) {
+                $current->addBonus((int)$params['value']);
                 $found = true;
             }
         }
@@ -120,11 +134,11 @@ class Bonus
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->hasSameSuitAs($params['suits'])) {
+            if ($card->hasSuitAmong($params['suits'])) {
                 return false;
             }
         }
-        $current->addBonus((int) $params['value']);
+        $current->addBonus((int)$params['value']);
 
         return true;
     }
@@ -151,7 +165,7 @@ class Bonus
             }
         }
         if ($found) {
-            $current->addBonus((int) $params['value']);
+            $current->addBonus((int)$params['value']);
         }
 
         return $found;
@@ -164,12 +178,12 @@ class Bonus
             if ($card->isSameAs($current)) {
                 continue;
             }
-            if ($card->hasSameSuitAs($params['suits'])) {
+            if ($card->hasSuitAmong($params['suits'])) {
                 $found = true;
             }
         }
         if ($found) {
-            $current->addBonus((int) $params['value']);
+            $current->addBonus((int)$params['value']);
         }
 
         return $found;
@@ -187,7 +201,7 @@ class Bonus
                 return false;
             }
         }
-        $current->addBonus((int) $params['value']);
+        $current->addBonus((int)$params['value']);
 
         return true;
     }
@@ -200,7 +214,7 @@ class Bonus
                 continue;
             }
             if ($card->isAmong($params['cards'])) {
-                $current->addBonus((int) $params['value']);
+                $current->addBonus((int)$params['value']);
                 $found = true;
             }
         }
@@ -217,7 +231,7 @@ class Bonus
         }
         foreach ($params['either'] as $card) {
             if ($hand->hasCard($card)) {
-                $current->addBonus((int) $params['value']);
+                $current->addBonus((int)$params['value']);
                 return true;
             }
         }
