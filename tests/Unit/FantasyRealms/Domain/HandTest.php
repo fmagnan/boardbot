@@ -338,7 +338,7 @@ it('can get bonuses from shapeshifter', function (): void {
         Glossary::CARD_PRINCESS,
     ]);
     $hand->addCard(Glossary::CARD_SHAPESHIFTER, [
-        'card' => Card::fromConf($this->deck, Glossary::CARD_SHIELD_OF_KETH)
+        'card' => Card::fromDeck(Glossary::CARD_SHIELD_OF_KETH, $this->deck),
     ]);
     expect($hand->getTotal())->toBe(49);
 });

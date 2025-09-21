@@ -18,9 +18,8 @@ class Hand
     public function addCard(string $name, array $params = []): void
     {
         $conf = $this->deck[$name];
-        $bonus = array_merge($params, $conf['bonus'] ?? []);
-        $card = new Card($name, (int) $conf['suit'], (int) $conf['base_strength'], $bonus, $conf['penalty'] ?? []);
-        $this->cards[] = $card;
+        $conf['bonus'] = array_merge($params, $conf['bonus'] ?? []);
+        $this->cards[] = Card::fromConf($name, $conf);
     }
 
     public function countCards(): int

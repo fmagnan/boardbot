@@ -72,10 +72,14 @@ class Card
         return $this;
     }
 
-    public static function fromConf(array $deck, string $name) : self
+    public static function fromConf(string $name, array $conf) : self
     {
-        $conf = $deck[$name];
         return new self($name, (int) $conf['suit'], (int) $conf['base_strength'], $conf['bonus'] ?? [], $conf['penalty'] ?? []);
+    }
+
+    public static function fromDeck(string $name, array $deck) : self
+    {
+        return self::fromConf($name, $deck[$name]);
     }
 
     public function getBaseStrength(): int
