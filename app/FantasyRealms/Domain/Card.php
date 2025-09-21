@@ -72,6 +72,12 @@ class Card
         return $this;
     }
 
+    public static function fromConf(array $deck, string $name) : self
+    {
+        $conf = $deck[$name];
+        return new self($name, (int) $conf['suit'], (int) $conf['base_strength'], $conf['bonus'] ?? [], $conf['penalty'] ?? []);
+    }
+
     public function getBaseStrength(): int
     {
         return $this->base_strength;
@@ -139,6 +145,7 @@ class Card
             Glossary::ACTION_CLEARS_WORD_FROM_PENALTY,
             Glossary::ACTION_CHANGE_SUIT,
             Glossary::ACTION_DUPLICATE,
+            Glossary::ACTION_TAKE_ON_NAME_AND_SUIT,
         ]);
     }
 
@@ -169,6 +176,14 @@ class Card
     public function substractPenalty(int $value): self
     {
         $this->value -= $value;
+
+        return $this;
+    }
+
+    public function takeOnNameAndSuit(Card $from) : self
+    {
+        $this->name = $from->getName();
+        $this->suit = $from->getSuit();
 
         return $this;
     }

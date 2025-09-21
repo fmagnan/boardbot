@@ -46,8 +46,6 @@ class Hand
             $total += $card->getValue();
         }
 
-       // print_r($this->cards);
-
         return $total;
     }
 

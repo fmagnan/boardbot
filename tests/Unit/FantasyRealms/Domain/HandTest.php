@@ -1,6 +1,7 @@
 <?php
 
 use App\FantasyRealms\Domain\Glossary;
+use App\FantasyRealms\Domain\Card;
 
 it('counts cards in hand', function (): void {
     $hand = init_hand($this->deck, [Glossary::CARD_DRAGON, Glossary::CARD_BELL_TOWER, Glossary::CARD_MAGIC_WAND]);
@@ -329,4 +330,15 @@ it('can get penalties twice if doppelganger is misused', function (): void {
         'card' => Glossary::CARD_DRAGON
     ]);
     expect($hand->getTotal())->toBe(-18);
+});
+
+it('can get bonuses from shapeshifter', function (): void {
+    $hand = init_hand($this->deck, [
+        Glossary::CARD_SWORD_OF_KETH,
+        Glossary::CARD_PRINCESS,
+    ]);
+    $hand->addCard(Glossary::CARD_SHAPESHIFTER, [
+        'card' => Card::fromConf($this->deck, Glossary::CARD_SHIELD_OF_KETH)
+    ]);
+    expect($hand->getTotal())->toBe(49);
 });

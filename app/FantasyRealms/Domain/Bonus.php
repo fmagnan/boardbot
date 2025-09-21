@@ -181,8 +181,9 @@ class Bonus
 
     public static function takeOnNameAndSuit(Hand $hand, Card $current, array $params): bool
     {
-        /** @todo */
-        return false;
+        $current->takeOnNameAndSuit($params['card']);
+
+        return true;
     }
 
     public static function withAnyOneCard(Hand $hand, Card $current, array $params): bool
